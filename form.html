@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>Bike Suitability Calculator</title>
+  <script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function(){
+    // from stack overflow
+    var type = document.getElementById("type");
+    var block = document.getElementById("blockage");
+
+    //Clear selection dropdowns so we don't accidentally record inaccurate data
+    type.selectedIndex = -1;
+    block.selectedIndex = -1;
+
+    type.addEventListener("input",function(e){
+      switch(type.value){
+        case "stand-alone":
+          console.log("saaa");
+          break;
+        case "segregated":
+          console.log("seeeee");
+          break;
+        case "bike lane":
+          console.log("blllll");
+          var req = document.querySelectorAll(".if-bike-lane");
+          req.forEach(function(e){
+            e.setAttribute("required","");
+          });
+          break;
+        case "mixed traffic":
+          console.log("mx");
+          var req = document.querySelectorAll(".if-mixed");
+          req.forEach(function(e){
+            e.setAttribute("required","");
+          });
+          break;
+      }
+    });
+    });
+  </script>
+</head>
+<body>
+  <form class="">
+    <p><label for="segment-name">Segment name:
+      <input type="text" name="segment-name" placeholder="eg. Humboldt: Locust-Chambers" required/></label></p>
+    <p><label for="segment-type">Segment type:
+      <select id="type" name="segment-type" required>
+      <option value="stand-alone">Stand-alone</option>
+      <option value="segregated">Segregated</option>
+      <option value="bike lane">Bike lane</option>
+      <option value="mixed traffic">Mixed Traffic</option>
+    </select></label></p>
+    -right turn lane/bike lane interfacing at intersection approach
+    <p><label for="lane-count">Number of lanes per direction:
+      <input type="number" class="if-bike-lane" name="lane-count" value=" "/></label></p>
+    -(if bike lane) sum of bike lane and parking lane width
+      -or just bike lane width if not adjacent
+    <p><label for="speed">Speed Limit (or prevailing speed if speed limit isn't followed):
+      <input type="number" name="speed" value=" " class="if-bike-lane if-mixed"/></label></p>
+    <p><label for="blockage">Blockage frequency:
+      <select name="blockage" id="blockage" class="if-bike-lane">
+        <option value="rarely">Rarely</option>
+        <option value="frequently">Frequently</option>
+        </select></label></p>
+    -(if mixed traffic) number of lanes _not sure if this is different from number of lanes per direction_
+    -(if mixed traffic) average daily traffic
+    -_some stuff about unsignalized crossings that I don't fully understand, uses lanes and speed limit_
+    <input type="submit" value="Calculate"/>
+  </form>
+</body>
+</html>
