@@ -1,0 +1,11 @@
+# Information Requirements for Different Calculators
+-[LTS](http://www.northeastern.edu/peter.furth/research/level-of-traffic-stress/):
+  -Segment type (Stand-alone, segregated, bike lane, mixed traffic)
+  -right turn lane/bike lane interfacing at intersection approach
+  -(if bike lane) number of lanes per direction
+  -(if bike lane) sum of bike lane and parking lane width
+    -or just bike lane width if not adjacent
+  -(if bike lane/mixed traffic) speed limit
+  -(if bike lane) blockage frequency
+  -(if mixed traffic) number of lanes _not sure if this is different from number of lanes per direction_
+  -_some stuff about unsignalized crossings that I don't fully understand, uses lanes and speed limit_
