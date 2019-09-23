@@ -15,6 +15,21 @@
     block.selectedIndex = -1;
 
     type.addEventListener("input",function(e){
+      if(last){
+        switch(last){
+          case "bike lane":
+            document.querySelectorAll(".if-bike-lane").forEach(function(e){
+              e.removeAttribute("required");
+            });
+            break;
+          case "mixed traffic":
+            document.querySelectorAll(".if-mixed").forEach(function(e){
+              e.removeAttribute("required");
+            });
+            break;
+        }
+      }
+      var last=type.value;
       switch(type.value){
         case "stand-alone":
           console.log("saaa");
