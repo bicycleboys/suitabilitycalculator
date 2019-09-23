@@ -10,6 +10,8 @@
     var type = document.getElementById("type");
     var block = document.getElementById("blockage");
 
+    var last=false;
+
     //Clear selection dropdowns so we don't accidentally record inaccurate data
     type.selectedIndex = -1;
     block.selectedIndex = -1;
@@ -29,7 +31,7 @@
             break;
         }
       }
-      var last=type.value;
+      last=type.value;
       switch(type.value){
         case "stand-alone":
           console.log("saaa");
