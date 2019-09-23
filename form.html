@@ -59,31 +59,45 @@
   </script>
 </head>
 <body>
-  <form class="">
-    <p><label for="segment-name">Segment name:
-      <input type="text" name="segment-name" placeholder="eg. Humboldt: Locust-Chambers" required/></label></p>
-    <p><label for="segment-type">Segment type:
+  <form>
+    <br/>
+    <label for="segment-name">Segment name:
+      <input type="text" name="segment-name" placeholder="eg. Humboldt: Locust-Chambers" required/></label>
+      <br/>
+    <label for="segment-type">Segment type:
       <select id="type" name="segment-type" required>
       <option value="stand-alone">Stand-alone</option>
       <option value="segregated">Segregated</option>
       <option value="bike lane">Bike lane</option>
       <option value="mixed traffic">Mixed Traffic</option>
-    </select></label></p>
-    -right turn lane/bike lane interfacing at intersection approach
-    <p><label for="lane-count">Number of lanes per direction:
-      <input type="number" class="if-bike-lane" name="lane-count" value=" "/></label></p>
-    -(if bike lane) sum of bike lane and parking lane width
-      -or just bike lane width if not adjacent
-    <p><label for="speed">Speed Limit (or prevailing speed if speed limit isn't followed):
-      <input type="number" name="speed" value=" " class="if-bike-lane if-mixed"/></label></p>
-    <p><label for="blockage">Blockage frequency:
+    </select></label>
+    <br/>
+    <label for="lane-count">Number of lanes per direction:
+      <input type="number" class="if-bike-lane" name="lane-count" value=" "/></label>
+    <p>TOGGLE HERE Bike lane and parking adjacent or not (if bike lane)</p>
+    <label for="width">Sum of bike lane and parking lane width or just bike lane width if not adjacent:
+      <input type="number" class="if-bike-lane" name="width" value=" "/></label>
+    <br/>
+    <label for="speed">Speed Limit (or prevailing speed if speed limit isn't followed):
+      <input type="number" name="speed" value=" " class="if-bike-lane if-mixed"/></label>
+    <br/>
+    <label for="blockage">Blockage frequency:
       <select name="blockage" id="blockage" class="if-bike-lane">
         <option value="rarely">Rarely</option>
         <option value="frequently">Frequently</option>
-        </select></label></p>
+      </select></label>
     -(if mixed traffic) number of lanes _not sure if this is different from number of lanes per direction_
-    -(if mixed traffic) average daily traffic
-    -_some stuff about unsignalized crossings that I don't fully understand, uses lanes and speed limit_
+    <p>TOGGLE HERE for marked center line or not</p>
+    <br/>
+    <label for="adt">Average daily traffic:
+      <input type="number" name="adt" value=" " class="if-mixed"/></label>
+      <br/>
+      <h5>Intersection Stuff</h5>
+    <p style="color: red;">
+      some stuff about unsignalized crossings that I don't fully understand, uses lanes and speed limit
+      <br/>
+    right turn lane/bike lane interfacing at intersection approach</p>
+    <br/>
     <input type="submit" value="Calculate"/>
   </form>
 </body>
