@@ -1,13 +1,15 @@
-import * as lts from 'calculators/lts.js'
+import * as lts from './calculators/lts.js'
 
 function doCalculate() {
-    var infoObject = gatherData();
-    lts.calculate(infoObjecct);
+    if(form.reportVailidity()){
+        var infoObject = gatherData();
+        lts.calculate(infoObject);
+    }
 }
 
 function gatherData(){
     var obj = {};
-    obj.segmentType = type.getValue();
+    obj.segmentType = type.value;
     return obj;
 }
 
@@ -15,6 +17,7 @@ document.addEventListener('DOMContentLoaded', function () {
     var type = document.getElementById("type");
     var block = document.getElementById("blockage");
     var submit = document.getElementById("submit");
+    var form = document.getElementById("form");
 
     var lastType = false;
 
