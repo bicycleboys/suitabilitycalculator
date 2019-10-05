@@ -5,6 +5,7 @@ function doCalculate() {
         var infoObject = gatherData();
         resetForm();
         var ltsData = lts.calculate(infoObject);
+        ltsData.name="LTS";
         display(ltsData);
         doSave(infoObject,ltsData);
     }
@@ -16,7 +17,7 @@ function display(data){
     if(!data.grade){
         throw Error("Aaaaa");
     }
-    grade.textContent = data.grade;
+    grade.textContent = `${data.name}: ${data.grade} (${data.points})`;
     document.body.appendChild(grade);
 }
 
@@ -25,8 +26,27 @@ function doSave(){
 }
 
 function gatherData(){
-    var obj = {};
+    const adjacent = document.getElementById("lanes-adjacent");
+    const width = document.getElementById("width");
+    const speed = document.getElementById("speed");
+    const totalLanes = document.getElementById("total-lanes");
+    const median = document.getElementById("median");
+    const laneCount = document.getElementById("lane-count");
+    const centerline = document.getElementById("centerline");
+    const adt = document.getElementById("adt");
+
+    let obj = {};
     obj.segmentType = type.value;
+    obj.lanesAdjacent = adjacent.value;
+    obj.lanesCombinedWidth = obj.lanesAdjacent? width.value:NaN;
+    obj.laneWidth = obj.lanesAdjacent?NaN:width.value;
+    obj.speed = speed.value;
+    obj.laneCount = laneCount.value;
+    obj.median = median.value;
+    obj.blockage = blockage.value;
+    obj.totalLanes = totalLanes.value;
+    obj.centerline = centerline.value;
+    obj.adt = adt.value;
     return obj;
 }
 

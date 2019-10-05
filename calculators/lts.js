@@ -29,7 +29,7 @@ export function calculate(obj) {
     case 2: grade = 'B'; break;
     case 3: grade = 'D'; break;
     case 4: grade = 'F'; break;
-    default: throw Error("points is invalid");
+    default: throw Error("points is invalid: "+points);
   }
   return { grade: grade, points: points };
 
@@ -75,19 +75,21 @@ function bikeLaneCalculate(o) {
     }
   }
 
+  
   if (o.blockage == 'rarely')
     blockageLTS = 1;
   else if (o.blockage == 'frequently')
     blockageLTS = 3
 
-  const p = max(lanesLTS, widthLTS, speedLTS, blockageLTS);
+  console.log(lanesLTS, widthLTS, speedLTS, blockageLTS);
+  const p = Math.max(lanesLTS, widthLTS, speedLTS, blockageLTS);
   return p;
 }
 
 function mixedTrafficCalculate(o) {
   let p;
-  if (o.laneCount >= 6) p = 4;
-  else if (o.laneCount > 3) {
+  if (o.totalLanes >= 6) p = 4;
+  else if (o.totalLanes > 3) {
     if (o.speed >= 30) p = 4;
     else p = 3;
   } else {

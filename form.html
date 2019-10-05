@@ -24,25 +24,35 @@
     <br />
     <!--TODO: verify lanes is positive-->
     <label for="lane-count">Number of lanes per direction:
-      <input type="number" class="if-bike-lane" name="lane-count" value=" " /></label>
-    <p>TOGGLE HERE Bike lane and parking adjacent or not (if bike lane)</p>
-    <label for="width">Sum of bike lane and parking lane width or just bike lane width if not adjacent:
-      <input type="number" class="if-bike-lane" name="width" value=" " /></label>
+      <input type="number" class="if-bike-lane" id="lane-count" name="lane-count" value=" " /></label>
+      <br/>
+    <label for="lanes-adjacent">Bike lane adjacent to parking lane: 
+      <input type="checkbox" name="lanes-adjacent" id="lanes-adjacent"/> <!--class="if-bike-lane"-->
+    </label>
+    <br/>
+    <label for="width">Sum of bike lane and parking lane width or just bike lane width if not adjacent (ft):
+      <input type="number" class="if-bike-lane" id="width" name="width" value=" " step="0.01" /></label>
     <br />
-    <p>Median (required if bike lane is not adjacent to parking)</p>
-    <label for="speed">Speed Limit (or prevailing speed if speed limit isn't followed):
-      <input type="number" name="speed" value=" " class="if-bike-lane if-mixed" /></label>
+    <label for="median">Median between directions of travel
+      <input type="checkbox" id="median" name="median"/></label> <!--Median (required if bike lane is not adjacent to parking)-->
+      <br/>
+    <label for="speed">Speed Limit (or prevailing speed if speed limit isn't followed) (miles per hour):
+      <input type="number" name="speed" id="speed" value=" " class="if-bike-lane if-mixed" /></label>
     <br />
     <label for="blockage">Blockage frequency:
       <select name="blockage" id="blockage" class="if-bike-lane">
         <option value="rarely">Rarely</option>
         <option value="frequently">Frequently</option>
       </select></label>
-    -(if mixed traffic) number of lanes _not sure if this is different from number of lanes per direction_
-    <p>TOGGLE HERE for marked center line or not</p>
+    <br/>
+    <label for="total-lanes">Total number of lanes in both directions:
+      <input type="number" id="total-lanes" name="total-lanes" class="if-mixed-traffic"/></label>
+      <br/>
+    <label for="centerline">Marked centerline:
+      <input type="checkbox" id="centerline" name="centerline"/></label> <!--if-mixed-traffic-->
     <br />
     <label for="adt">Average daily traffic:
-      <input type="number" name="adt" value=" " class="if-mixed" /></label>
+      <input type="number" id="adt" name="adt" value=" " class="if-mixed" /></label>
     <br />
     <h5>Intersection Stuff</h5>
     <p style="color: red;">
