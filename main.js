@@ -39,7 +39,6 @@ function resetForm(){
 document.addEventListener('DOMContentLoaded', function () {
     var type = document.getElementById("type");
     var blockage = document.getElementById("blockage");
-    console.log(blockage);
     var submit = document.getElementById("submit");
     var form = document.getElementById("form");
 
