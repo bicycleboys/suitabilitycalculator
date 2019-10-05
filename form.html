@@ -4,59 +4,7 @@
 <head>
   <meta charset="utf-8">
   <title>Bike Suitability Calculator</title>
-  <script type="text/javascript">
-    document.addEventListener('DOMContentLoaded', function(){
-    // from stack overflow
-    var type = document.getElementById("type");
-    var block = document.getElementById("blockage");
-
-    var last=false;
-
-    //Clear selection dropdowns so we don't accidentally record inaccurate data
-    type.selectedIndex = -1;
-    block.selectedIndex = -1;
-
-    type.addEventListener("input",function(e){
-      if(last){
-        switch(last){
-          case "bike lane":
-            document.querySelectorAll(".if-bike-lane").forEach(function(e){
-              e.removeAttribute("required");
-            });
-            break;
-          case "mixed traffic":
-            document.querySelectorAll(".if-mixed").forEach(function(e){
-              e.removeAttribute("required");
-            });
-            break;
-        }
-      }
-      last=type.value;
-      switch(type.value){
-        case "stand-alone":
-          console.log("saaa");
-          break;
-        case "segregated":
-          console.log("seeeee");
-          break;
-        case "bike lane":
-          console.log("blllll");
-          var req = document.querySelectorAll(".if-bike-lane");
-          req.forEach(function(e){
-            e.setAttribute("required","");
-          });
-          break;
-        case "mixed traffic":
-          console.log("mx");
-          var req = document.querySelectorAll(".if-mixed");
-          req.forEach(function(e){
-            e.setAttribute("required","");
-          });
-          break;
-      }
-    });
-    });
-  </script>
+  <script type="module" src="main.mjs"></script>
 </head>
 <body>
   <form>
@@ -98,7 +46,7 @@
       <br/>
     right turn lane/bike lane interfacing at intersection approach</p>
     <br/>
-    <input type="submit" value="Calculate"/>
+    <input id="submit" type="button" value="Calculate"/>
   </form>
 </body>
 </html>
