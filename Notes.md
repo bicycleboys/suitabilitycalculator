@@ -5,6 +5,7 @@
   - (if bike lane) number of lanes per direction
   - (if bike lane) sum of bike lane and parking lane width
      - or just bike lane width if not adjacent
+     - if there's a separating median
   - (if bike lane/mixed traffic) speed limit (or prevailing speed if speed limit isn't followed)
   - (if bike lane) blockage frequency
   - (if mixed traffic) number of lanes _not sure if this is different from number of lanes per direction_
