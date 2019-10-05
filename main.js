@@ -1,10 +1,27 @@
 import * as lts from './calculators/lts.js'
 
 function doCalculate() {
-    if(form.reportVailidity()){
+    if(form.reportValidity()){
         var infoObject = gatherData();
-        lts.calculate(infoObject);
+        resetForm();
+        var ltsData = lts.calculate(infoObject);
+        display(ltsData);
+        doSave(infoObject,ltsData);
     }
+}
+
+function display(data){
+    //data should have a grade which is a letter and a percentage/point score
+    var grade = document.createElement("p")
+    if(!data.grade){
+        throw Error("Aaaaa");
+    }
+    grade.textContent = data.grade;
+    document.body.appendChild(grade);
+}
+
+function doSave(){
+    //TODO implement saving
 }
 
 function gatherData(){
@@ -13,17 +30,22 @@ function gatherData(){
     return obj;
 }
 
+function resetForm(){
+    form.reset();
+    type.selectedIndex = -1;
+    blockage.selectedIndex = -1;
+}
+
 document.addEventListener('DOMContentLoaded', function () {
     var type = document.getElementById("type");
-    var block = document.getElementById("blockage");
+    var blockage = document.getElementById("blockage");
+    console.log(blockage);
     var submit = document.getElementById("submit");
     var form = document.getElementById("form");
 
     var lastType = false;
-
+    resetForm();
     //Clear selection dropdowns so we don't accidentally record inaccurate data
-    type.selectedIndex = -1;
-    block.selectedIndex = -1;
 
     type.addEventListener("input", function (e) {
         if (lastType) {
@@ -64,8 +86,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 break;
         }
     });
-
-
 
     submit.addEventListener("click", (event) => {
         doCalculate()
