@@ -64,20 +64,15 @@ document.addEventListener('DOMContentLoaded', function () {
         lastType = type.value;
         switch (type.value) {
             case "stand-alone":
-                console.log("saaa");
-                break;
             case "segregated":
-                console.log("seeeee");
                 break;
             case "bike lane":
-                console.log("blllll");
                 var req = document.querySelectorAll(".if-bike-lane");
                 req.forEach(function (e) {
                     e.setAttribute("required", "");
                 });
                 break;
             case "mixed traffic":
-                console.log("mx");
                 var req = document.querySelectorAll(".if-mixed");
                 req.forEach(function (e) {
                     e.setAttribute("required", "");

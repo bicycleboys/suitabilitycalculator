@@ -12,3 +12,4 @@
   - (if mixed traffic) marked center lines
   - (if mixed traffic) average daily traffic
   - _some stuff about unsignalized crossings that I don't fully understand, uses lanes and speed limit_
+  - "If speed limit < 25 mph, or land use is residential with little parking turnover, then any width is acceptable for LTS 2" in table 2 is hard to encode into formal logic
