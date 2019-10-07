@@ -6,8 +6,8 @@ function doCalculate() {
         resetForm();
         var ltsData = lts.calculate(infoObject);
         ltsData.name="LTS";
-        display(ltsData);
         doSave(infoObject,ltsData);
+        display(ltsData);
     }
 }
 
