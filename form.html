@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title>Bike Suitability Calculator</title>
+  <script type="module" src="main.js"></script>
+</head>
+
+<body>
+  <form id="form">
+    <br />
+    <label for="segment-name">Segment name:
+      <input type="text" name="segment-name" placeholder="eg. Humboldt: Locust-Chambers" required /></label>
+    <br />
+    <label for="segment-type">Segment type:
+      <select id="type" name="segment-type" required>
+        <option value="stand-alone">Stand-alone</option>
+        <option value="segregated">Segregated</option>
+        <option value="bike lane">Bike lane</option>
+        <option value="mixed traffic">Mixed Traffic</option>
+      </select></label>
+    <br />
+    <!--TODO: verify lanes is positive-->
+    <label for="lane-count">Number of lanes per direction:
+      <input type="number" class="if-bike-lane" id="lane-count" name="lane-count" value=" " /></label>
+      <br/>
+    <label for="lanes-adjacent">Bike lane adjacent to parking lane: 
+      <input type="checkbox" name="lanes-adjacent" id="lanes-adjacent"/> <!--class="if-bike-lane"-->
+    </label>
+    <br/>
+    <label for="width">Sum of bike lane and parking lane width or just bike lane width if not adjacent (ft):
+      <input type="number" class="if-bike-lane" id="width" name="width" value=" " step="0.01" /></label>
+    <br />
+    <label for="median">Median between directions of travel
+      <input type="checkbox" id="median" name="median"/></label> <!--Median (required if bike lane is not adjacent to parking)-->
+      <br/>
+    <label for="speed">Speed Limit (or prevailing speed if speed limit isn't followed) (miles per hour):
+      <input type="number" name="speed" id="speed" value=" " class="if-bike-lane if-mixed" /></label>
+    <br />
+    <label for="blockage">Blockage frequency:
+      <select name="blockage" id="blockage" class="if-bike-lane">
+        <option value="rarely">Rarely</option>
+        <option value="frequently">Frequently</option>
+      </select></label>
+    <br/>
+    <label for="total-lanes">Total number of lanes in both directions:
+      <input type="number" id="total-lanes" name="total-lanes" class="if-mixed-traffic"/></label>
+      <br/>
+    <label for="centerline">Marked centerline:
+      <input type="checkbox" id="centerline" name="centerline"/></label> <!--if-mixed-traffic-->
+    <br />
+    <label for="adt">Average daily traffic:
+      <input type="number" id="adt" name="adt" value=" " class="if-mixed" /></label>
+    <br />
+    <h5>Intersection Stuff</h5>
+    <p style="color: red;">
+      some stuff about unsignalized crossings that I don't fully understand, uses lanes and speed limit
+      <br />
+      right turn lane/bike lane interfacing at intersection approach</p>
+    <br />
+    <input id="submit" type="button" value="Calculate" />
+  </form>
+</body>
+
+</html>
