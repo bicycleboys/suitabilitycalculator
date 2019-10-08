@@ -130,6 +130,6 @@ fucntion bicycleLevelOfService(o){
   vma = Math.max(o.vm, 4*o.nth);
   blos = .760 + (-.005*Math.pow(we, 2)) + (.507*Math.ln(vma/(4*o.nth))) +
   (.199*(1.1199*Math.ln(sra - 20) + .8103)*(1+.1038* Math.pow(phva, 2))) +
-  (7.066/Math.pow(o.pc, 2))
-  
+  (7.066/Math.pow(o.pc, 2));
+  return blos;
 }
