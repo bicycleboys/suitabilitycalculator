@@ -35,18 +35,19 @@ function gatherData(){
     const centerline = document.getElementById("centerline");
     const adt = document.getElementById("adt");
 
-    let obj = {};
-    obj.segmentType = type.value;
-    obj.lanesAdjacent = adjacent.value;
-    obj.lanesCombinedWidth = obj.lanesAdjacent? width.value:NaN;
-    obj.laneWidth = obj.lanesAdjacent?NaN:width.value;
-    obj.speed = speed.value;
-    obj.laneCount = laneCount.value;
-    obj.median = median.value;
-    obj.blockage = blockage.value;
-    obj.totalLanes = totalLanes.value;
-    obj.centerline = centerline.value;
-    obj.adt = adt.value;
+    let obj = {
+        segmentType : type.value,
+        lanesAdjacent : adjacent.value,
+        lanesCombinedWidth : adjacent.value? width.value:NaN,
+        laneWidth : adjacent.value?NaN:width.value,
+        speed : speed.value,
+        laneCount : laneCount.value,
+        median : median.value,
+        blockage : blockage.value,
+        totalLanes : totalLanes.value,
+        centerline : centerline.value,
+        adt : adt.value
+    }
     return obj;
 }
 
