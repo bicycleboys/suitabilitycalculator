@@ -1,6 +1,12 @@
 //Level of Traffic Stress calculator
 //Using level of traffic stress calculations from Peter Furth at http://www.northeastern.edu/peter.furth/research/level-of-traffic-stress/
 
+
+/**
+ * Calculates the Level of Traffic Stress of a particular segment
+ * @param {SegmentDataObject} obj Object containing information on a road segment
+ * @returns {grade:string, points:number} grade as a letter grade and a numerical value
+ */
 export function calculate(obj) {
   //we expect obj to have fields for calculation
   //in this case, that's segmentType, right turn lane, lanecount, laneadjacent, lanewidth/parking&lanewidth, speed, blockagefreqency, markedCenterLines, ADT
