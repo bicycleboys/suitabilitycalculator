@@ -1,4 +1,7 @@
-import * as lts from './calculators/lts.js'
+import * as lts from './calculators/lts.js';
+import * as dao from './idbdao.js';
+
+var myDao;
 
 function doCalculate() {
     if(form.reportValidity()){
@@ -21,11 +24,13 @@ function display(data){
     document.body.appendChild(grade);
 }
 
-function doSave(){
-    //TODO implement saving
+function doSave(infoObject, ...pointsData){
+    infoObject.pointsData = pointsData;
+    myDao.add(infoObject);
 }
 
 function gatherData(){
+    const name = document.getElementById("segment-name")
     const adjacent = document.getElementById("lanes-adjacent");
     const width = document.getElementById("width");
     const speed = document.getElementById("speed");
@@ -47,6 +52,8 @@ function gatherData(){
     obj.totalLanes = totalLanes.value;
     obj.centerline = centerline.value;
     obj.adt = adt.value;
+
+    obj.segmentName = name.value;
     return obj;
 }
 
@@ -57,6 +64,7 @@ function resetForm(){
 }
 
 document.addEventListener('DOMContentLoaded', function () {
+    myDao = new dao.IDBDao();
     var type = document.getElementById("type");
     var blockage = document.getElementById("blockage");
     var submit = document.getElementById("submit");
