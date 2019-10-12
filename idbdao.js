@@ -3,7 +3,7 @@
  * Data Access Object for indexedDB
  */
 export class IDBDao{
-    IDBDao(){
+    constructor(){
         console.log("dao constructed");
         var dbRequest = window.indexedDB.open("Segment Data",1);
         dbRequest.onerror = function(e){

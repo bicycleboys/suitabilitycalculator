@@ -1,5 +1,5 @@
 import * as lts from './calculators/lts.js';
-import * as dao from './idbdao.js';
+import {IDBDao} from './idbdao.js';
 
 var myDao;
 
@@ -64,7 +64,7 @@ function resetForm(){
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    myDao = new dao.IDBDao();
+    myDao = new IDBDao();
     var type = document.getElementById("type");
     var blockage = document.getElementById("blockage");
     var submit = document.getElementById("submit");
