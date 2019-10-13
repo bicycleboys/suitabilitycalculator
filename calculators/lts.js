@@ -127,8 +127,8 @@ fucntion bicycleLevelOfService(o){
   if((o.vm*(1-.001*o.phv) < 200.0) && o.phv > 50.0) phva = 50.0;
   else phva = o.phv;
   sra = Math.max(21, o.sr);
-  vma = Math.max(o.vm, 4*o.nth);
-  blos = .760 + (-.005*Math.pow(we, 2)) + (.507*Math.ln(vma/(4*o.nth))) +
+  vma = Math.max(o.vm, 4*o.laneCount);
+  blos = .760 + (-.005*Math.pow(we, 2)) + (.507*Math.ln(vma/(4*o.laneCount))) +
   (.199*(1.1199*Math.ln(sra - 20) + .8103)*(1+.1038* Math.pow(phva, 2))) +
   (7.066/Math.pow(o.pc, 2));
   return blos;
@@ -149,7 +149,7 @@ function pedestrianLevelOfService(o){
   if(o.ppk < .25 || o.parkingStriped) w1 = o.wbl + wosstar;
   else w1 = 10.0;
   plos = 6.0468 + (-1.2276 * Math.ln(wv + .5 * w1 + 50 * o.ppk + o.wbuf * o.fb + o.waa * (6.0 - .3 * o.waa))) +
-  (.0091* o.vm/(4*o.nth)) + (4*Math.pow(o.sr/100, 2));
+  (.0091* o.vm/(4*o.laneCount)) + (4*Math.pow(o.sr/100, 2));
   return plos;
 
 }
