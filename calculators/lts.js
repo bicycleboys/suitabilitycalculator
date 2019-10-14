@@ -22,6 +22,8 @@ export function calculate(obj) {
     case 'mixed traffic':
       points = mixedTrafficCalculate(obj);
       break;
+    default:
+      throw Error("improper segment type");
   }
 
   switch (points) { //semi-arbitrarily defined letter grades to match style of other calculators
@@ -75,13 +77,17 @@ function bikeLaneCalculate(o) {
     }
   }
 
-  
-  if (o.blockage == 'rarely')
-    blockageLTS = 1;
-  else if (o.blockage == 'frequently')
-    blockageLTS = 3
+  switch(o.blockage){
+    case 'rarely':
+      blockageLTS = 1;
+      break;
+    case 'frequently':
+      blockageLTS = 3;
+      break;
+    default:
+      throw Error("invalid blockage, must be \'rarely\' or \'frequently\'")
+  }
 
-  console.log(lanesLTS, widthLTS, speedLTS, blockageLTS);
   const p = Math.max(lanesLTS, widthLTS, speedLTS, blockageLTS);
   return p;
 }

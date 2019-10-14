@@ -26,7 +26,7 @@
     <label for="lane-count">Number of lanes per direction:
       <input type="number" class="if-bike-lane" id="lane-count" name="lane-count" value=" " /></label>
       <br/>
-    <label for="lanes-adjacent">Bike lane adjacent to parking lane: 
+    <label for="lanes-adjacent">Bike lane adjacent to parking lane:
       <input type="checkbox" name="lanes-adjacent" id="lanes-adjacent"/> <!--class="if-bike-lane"-->
     </label>
     <br/>
@@ -60,6 +60,41 @@
       <br />
       right turn lane/bike lane interfacing at intersection approach</p>
     <br />
+
+    <label for="ppk">Parking occupancy as a percentage:
+      <input type="number" id="ppk" value = " "/> </label>
+    </br>
+    <label for="vm">Midsegment demand flow rate in vehicles per hour:
+      <input type="number" id="vm" value = " "/> </label>
+    </br>
+    <label for="wol">Width of outside lane in feet:
+      <input type="number" id="wol" value = " "/> </label>
+    </br>
+    <label for="wbl">Width of bike lane in feet:
+      <input type="number" id="wbl" value=" "/> </label>
+    </br>
+    <label for="wos">Width of paved outside shoulder in feet:
+      <input type="number" id="wos" value = " "/> </label>
+    </br>
+    <label for="curb">Is there a curb present?
+      <input type="checkbox" id="curb" name="curb" /></label>
+    </br>
+    <label for="phv">Heavy vehicles in the midsection flow rate as a percentage:
+      <input type="number" id="phv" value=" "/></label>
+    </br>
+    <label for="sr">Motorized vehicle running speed in miles per hour:
+      <input type="number" id="sr" value=" "/></label>
+    </br>
+    <label for="pc">Pavement condition as a number between 1 and 5:
+      <input type="number" id="pc" value=" "/></label>
+    </br>
+    <label for="wbuf">Width of buffer between roadway and sidewalk in feet:
+      <input type="number" id="wbuf" value=" "/></label>
+    </br>
+    <label for="fb">Is there a continuous barrier at least 3 feet high?
+      <input type="checkbox" id="fb" name="3 ft barrier"/></label>
+    </br>
+
     <input id="submit" type="button" value="Calculate" />
   </form>
 </body>
