@@ -125,4 +125,9 @@ document.addEventListener('DOMContentLoaded', function () {
         doCalculate()
     });
 
+    //Useful for demos, can show off without having to manually input data
+    window.fill = ()=>{
+        document.getElementsByName("segmentName")[0].value="Cramer: Park-Newberry";
+        document.getElementsByName("segmentType")[0].value="mixed traffic"
+    }
 })
