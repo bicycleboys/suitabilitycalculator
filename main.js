@@ -7,7 +7,8 @@ import * as plos from './calculators/plos.js'
  */
 function doCalculate() {
     if(form.reportValidity()){
-        var infoObject = gatherData();
+        var infoObject = gatherData(form);
+        console.log(infoObject);
         resetForm();
         var ltsData = lts.calculate(infoObject);
         var plosData = plos.calculate(infoObject);
@@ -41,32 +42,29 @@ function doSave(infoObject, ...calculatedData){
 
 
 /***
- * Gathers data from the attached form for calculating various levels of service
+ * Creates a Segment Data Object from the fields of the passed-in-form
+ * @param form form to gather data from
  * @returns {SegmentDataObject} object with all info about segment
  */
-function gatherData(){
-    const adjacent = document.getElementById("lanes-adjacent");
-    const width = document.getElementById("width");
-    const speed = document.getElementById("speed");
-    const totalLanes = document.getElementById("total-lanes");
-    const median = document.getElementById("median");
-    const laneCount = document.getElementById("lane-count");
-    const centerline = document.getElementById("centerline");
-    const adt = document.getElementById("adt");
+function gatherData(form){
+    if (form==null) throw Error("Invalid form passed in");
+    let obj = {};
+    let elements = form.querySelectorAll( "input, select, textarea" );
 
-    let obj = {
-        segmentType : type.value,
-        lanesAdjacent : adjacent.value,
-        lanesCombinedWidth : adjacent.value? width.value:NaN,
-        laneWidth : adjacent.value?NaN:width.value,
-        speed : speed.value,
-        laneCount : laneCount.value,
-        median : median.value,
-        blockage : blockage.value,
-        totalLanes : totalLanes.value,
-        centerline : centerline.value,
-        adt : adt.value
+    console.log(elements);
+
+    for( let element of elements ) {
+        var name = element.name;
+        var value = element.value;
+        console.log(element);
+        if( name ) {
+            obj[ name ] = value;
+        }
     }
+
+    obj.lanesCombinedWidth = obj.adjacent? obj.width:NaN;
+    obj.laneWidth = obj.adjacent?NaN:obj.width;
+
     return obj;
 }
 

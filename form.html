@@ -11,11 +11,11 @@
 <body>
   <form id="form">
     <br />
-    <label for="segment-name">Segment name:
-      <input type="text" name="segment-name" placeholder="eg. Humboldt: Locust-Chambers" required /></label>
+    <label for="segmentName">Segment name:
+      <input type="text" name="segmentName" size="35" placeholder="eg. Humboldt: Locust-Chambers" required /></label>
     <br />
-    <label for="segment-type">Segment type:
-      <select id="type" name="segment-type" required>
+    <label for="segmentType">Segment type:
+      <select id="type" name="segmentType" required>
         <option value="stand-alone">Stand-alone</option>
         <option value="segregated">Segregated</option>
         <option value="bike lane">Bike lane</option>
@@ -23,11 +23,11 @@
       </select></label>
     <br />
     <!--TODO: verify lanes is positive-->
-    <label for="lane-count">Number of lanes per direction:
-      <input type="number" class="if-bike-lane" id="lane-count" name="lane-count" value=" " /></label>
+    <label for="laneCount">Number of lanes per direction:
+      <input type="number" class="if-bike-lane" id="laneCount" name="laneCount" value=" " /></label>
       <br/>
-    <label for="lanes-adjacent">Bike lane adjacent to parking lane:
-      <input type="checkbox" name="lanes-adjacent" id="lanes-adjacent"/> <!--class="if-bike-lane"-->
+    <label for="lanesAdjacent">Bike lane adjacent to parking lane:
+      <input type="checkbox" name="lanesAdjacent" id="lanesAdjacent"/> <!--class="if-bike-lane"-->
     </label>
     <br/>
     <label for="width">Sum of bike lane and parking lane width or just bike lane width if not adjacent (ft):
@@ -45,8 +45,8 @@
         <option value="frequently">Frequently</option>
       </select></label>
     <br/>
-    <label for="total-lanes">Total number of lanes in both directions:
-      <input type="number" id="total-lanes" name="total-lanes" class="if-mixed-traffic"/></label>
+    <label for="totalLanes">Total number of lanes in both directions:
+      <input type="number" id="totalLanes" name="totalLanes" class="if-mixed-traffic"/></label>
       <br/>
     <label for="centerline">Marked centerline:
       <input type="checkbox" id="centerline" name="centerline"/></label> <!--if-mixed-traffic-->
