@@ -36,11 +36,15 @@ export class IDBDao{
     };
 
     getList(){
-        var objectStore = db.transaction("segments").objectStore("segments");
+        console.log(this);
+        var objectStore = this.db.transaction("segments").objectStore("segments");
 
-        objectStore.getAll().onsuccess = function(event) {
-            return event.target.result;
-          };
+        return new Promise((resolve,reject)=>{
+            objectStore.getAll().onsuccess = function(event) {
+            console.log("get all worked");
+            resolve(event.target.result);
+            }
+            })
     }
 
     getInfo(segmentName){
