@@ -1,16 +1,24 @@
 import * as lts from './calculators/lts.js'
+import * as blos from './calculators/blos.js'
+import * as plos from './calculators/plos.js'
 
 /***
  * Checks form valididty and runs calculations
  */
 function doCalculate() {
     if(form.reportValidity()){
-        var infoObject = gatherData();
+        var infoObject = gatherData(form);
         resetForm();
         var ltsData = lts.calculate(infoObject);
+        var plosData = plos.calculate(infoObject);
+        var blosData = blos.calculate(infoObject);
         ltsData.name="LTS";
-        doSave(infoObject,ltsData);
+        plosData.name = "PLOS";
+        blosData.name = "BLOS";
+        doSave(infoObject,ltsData,blosData,plosData);
         display(ltsData);
+        display(blosData);
+        display(plosData);
     }
 }
 /**
@@ -21,7 +29,7 @@ function display(data){
     //data should have a grade which is a letter and a percentage/point score
     var grade = document.createElement("p")
     if(!data.grade){
-        throw Error("Aaaaa");
+        throw Error("Cannot display "+data.name+" without a grade");
     }
     grade.textContent = `${data.name}: ${data.grade} (${data.points})`;
     document.body.appendChild(grade);
@@ -33,32 +41,26 @@ function doSave(infoObject, ...calculatedData){
 
 
 /***
- * Gathers data from the attached form for calculating various levels of service
+ * Creates a Segment Data Object from the fields of the passed-in-form
+ * @param form form to gather data from
  * @returns {SegmentDataObject} object with all info about segment
  */
-function gatherData(){
-    const adjacent = document.getElementById("lanes-adjacent");
-    const width = document.getElementById("width");
-    const speed = document.getElementById("speed");
-    const totalLanes = document.getElementById("total-lanes");
-    const median = document.getElementById("median");
-    const laneCount = document.getElementById("lane-count");
-    const centerline = document.getElementById("centerline");
-    const adt = document.getElementById("adt");
+function gatherData(form){
+    if (form==null) throw Error("Invalid form passed in");
+    let obj = {};
+    let elements = form.querySelectorAll( "input, select, textarea" );
 
-    let obj = {
-        segmentType : type.value,
-        lanesAdjacent : adjacent.value,
-        lanesCombinedWidth : adjacent.value? width.value:NaN,
-        laneWidth : adjacent.value?NaN:width.value,
-        speed : speed.value,
-        laneCount : laneCount.value,
-        median : median.value,
-        blockage : blockage.value,
-        totalLanes : totalLanes.value,
-        centerline : centerline.value,
-        adt : adt.value
+    for( let element of elements ) {
+        var name = element.name;
+        var value = element.value;
+        if( name ) {
+            obj[ name ] = value;
+        }
     }
+
+    obj.lanesCombinedWidth = obj.adjacent? obj.width:NaN;
+    obj.laneWidth = obj.adjacent?NaN:obj.width;
+
     return obj;
 }
 
@@ -123,4 +125,9 @@ document.addEventListener('DOMContentLoaded', function () {
         doCalculate()
     });
 
+    //Useful for demos, can show off without having to manually input data
+    window.fill = ()=>{
+        document.getElementsByName("segmentName")[0].value="Cramer: Park-Newberry";
+        document.getElementsByName("segmentType")[0].value="mixed traffic"
+    }
 })
