@@ -1,0 +1,25 @@
+{
+  "name": "suitabilitycalculator",
+  "version": "1.0.0",
+  "description": "PWA to calculate bike suitability",
+  "main": "main.js",
+  "dependencies": {
+    "jest": "^24.9.0"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-modules-commonjs": "^7.6.0"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bicycleboys/suitabilitycalculator.git"
+  },
+  "author": "",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/bicycleboys/suitabilitycalculator/issues"
+  },
+  "homepage": "https://github.com/bicycleboys/suitabilitycalculator#readme"
+}
