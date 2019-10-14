@@ -1,68 +1,85 @@
-import * as lts from './calculators/lts.js';
+import * as lts from './calculators/lts.js'
+import * as blos from './calculators/blos.js'
+import * as plos from './calculators/plos.js'
 import {IDBDao} from './idbdao.js';
 
 var myDao;
 
+/***
+ * Checks form valididty and runs calculations
+ */
 function doCalculate() {
     if(form.reportValidity()){
-        var infoObject = gatherData();
+        var infoObject = gatherData(form);
         resetForm();
         var ltsData = lts.calculate(infoObject);
+        var plosData = plos.calculate(infoObject);
+        var blosData = blos.calculate(infoObject);
         ltsData.name="LTS";
-        doSave(infoObject,ltsData);
+        plosData.name = "PLOS";
+        blosData.name = "BLOS";
+        doSave(infoObject,ltsData,blosData,plosData);
         display(ltsData);
+        display(blosData);
+        display(plosData);
     }
 }
-
+/**
+ * Displays the data passed in
+ * @param {name:string,grade:string,points:number} data 
+ */
 function display(data){
     //data should have a grade which is a letter and a percentage/point score
     var grade = document.createElement("p")
     if(!data.grade){
-        throw Error("Aaaaa");
+        throw Error("Cannot display "+data.name+" without a grade");
     }
     grade.textContent = `${data.name}: ${data.grade} (${data.points})`;
     document.body.appendChild(grade);
 }
 
-function doSave(infoObject, ...pointsData){
-    infoObject.pointsData = pointsData;
+function doSave(infoObject, ...calculatedData){
+    infoObject.pointsData = calculatedData;
     myDao.add(infoObject);
 }
 
-function gatherData(){
-    const name = document.getElementById("segment-name")
-    const adjacent = document.getElementById("lanes-adjacent");
-    const width = document.getElementById("width");
-    const speed = document.getElementById("speed");
-    const totalLanes = document.getElementById("total-lanes");
-    const median = document.getElementById("median");
-    const laneCount = document.getElementById("lane-count");
-    const centerline = document.getElementById("centerline");
-    const adt = document.getElementById("adt");
 
+/***
+ * Creates a Segment Data Object from the fields of the passed-in-form
+ * @param form form to gather data from
+ * @returns {SegmentDataObject} object with all info about segment
+ */
+function gatherData(form){
+    if (form==null) throw Error("Invalid form passed in");
     let obj = {};
-    obj.segmentType = type.value;
-    obj.lanesAdjacent = adjacent.value;
-    obj.lanesCombinedWidth = obj.lanesAdjacent? width.value:NaN;
-    obj.laneWidth = obj.lanesAdjacent?NaN:width.value;
-    obj.speed = speed.value;
-    obj.laneCount = laneCount.value;
-    obj.median = median.value;
-    obj.blockage = blockage.value;
-    obj.totalLanes = totalLanes.value;
-    obj.centerline = centerline.value;
-    obj.adt = adt.value;
+    let elements = form.querySelectorAll( "input, select, textarea" );
 
-    obj.segmentName = name.value;
+    for( let element of elements ) {
+        var name = element.name;
+        var value = element.value;
+        if( name ) {
+            obj[ name ] = value;
+        }
+    }
+
+    obj.lanesCombinedWidth = obj.adjacent? obj.width:NaN;
+    obj.laneWidth = obj.adjacent?NaN:obj.width;
+
     return obj;
 }
 
+/***
+ * Resets attached form (clears text values, resets dropdowns back to non-options)
+ */
 function resetForm(){
     form.reset();
     type.selectedIndex = -1;
     blockage.selectedIndex = -1;
 }
 
+/**
+ * Runs once DOM has loaded
+ */
 document.addEventListener('DOMContentLoaded', function () {
     myDao = new IDBDao();
     var type = document.getElementById("type");
@@ -113,4 +130,9 @@ document.addEventListener('DOMContentLoaded', function () {
         doCalculate()
     });
 
+    //Useful for demos, can show off without having to manually input data
+    window.fill = ()=>{
+        document.getElementsByName("segmentName")[0].value="Cramer: Park-Newberry";
+        document.getElementsByName("segmentType")[0].value="mixed traffic"
+    }
 })
