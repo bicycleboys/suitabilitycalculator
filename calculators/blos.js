@@ -22,5 +22,5 @@ export function calculate(o) {
     blos = .760 + (-.005 * Math.pow(we, 2)) + (.507 * Math.log(vma / (4 * o.laneCount))) +
         (.199 * (1.1199 * Math.log(sra - 20) + .8103) * (1 + .1038 * Math.pow(phva, 2))) +
         (7.066 / Math.pow(o.pc, 2));
-    return blos;
+    return {points:blos, grade: "GRADE NOT IMPLEMENTED"};
 }

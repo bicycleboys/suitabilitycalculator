@@ -16,6 +16,5 @@ export function calculate(o) {
     else w1 = 10.0;
     plos = 6.0468 + (-1.2276 * Math.log(wv + .5 * w1 + 50 * o.ppk + o.wbuf * o.fb + o.waa * (6.0 - .3 * o.waa))) +
         (.0091 * o.vm / (4 * o.laneCount)) + (4 * Math.pow(o.sr / 100, 2));
-    return plos;
-
+    return {points:plos, grade: "GRADE NOT IMPLEMENTED"};
 }
