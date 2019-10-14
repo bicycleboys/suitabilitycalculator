@@ -1,13 +1,21 @@
 import * as lts from './calculators/lts.js'
+import * as blos from './calculators/blos.js'
+import * as plos from './calculators/plos.js'
 
 function doCalculate() {
     if(form.reportValidity()){
         var infoObject = gatherData();
         resetForm();
         var ltsData = lts.calculate(infoObject);
+        var plosData = plos.calculate(infoObject);
+        var blosData = blos.calculate(infoObject);
         ltsData.name="LTS";
-        doSave(infoObject,ltsData);
+        plosData.name = "PLOS";
+        blosData.name = "BLOS";
+        doSave(infoObject,ltsData,blosData,plosData);
         display(ltsData);
+        display(blosData);
+        display(plosData);
     }
 }
 
