@@ -88,7 +88,6 @@ function bikeLaneCalculate(o) {
       throw Error("invalid blockage, must be \'rarely\' or \'frequently\'")
   }
 
-  console.log(lanesLTS, widthLTS, speedLTS, blockageLTS);
   const p = Math.max(lanesLTS, widthLTS, speedLTS, blockageLTS);
   return p;
 }
