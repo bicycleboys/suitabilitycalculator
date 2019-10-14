@@ -1,5 +1,8 @@
 import * as lts from './calculators/lts.js'
 
+/***
+ * Checks form valididty and runs calculations
+ */
 function doCalculate() {
     if(form.reportValidity()){
         var infoObject = gatherData();
@@ -10,7 +13,10 @@ function doCalculate() {
         display(ltsData);
     }
 }
-
+/**
+ * Displays the data passed in
+ * @param {name:string,grade:string,points:number} data 
+ */
 function display(data){
     //data should have a grade which is a letter and a percentage/point score
     var grade = document.createElement("p")
@@ -21,10 +27,15 @@ function display(data){
     document.body.appendChild(grade);
 }
 
-function doSave(){
+function doSave(infoObject, ...calculatedData){
     //TODO implement saving
 }
 
+
+/***
+ * Gathers data from the attached form for calculating various levels of service
+ * @returns {SegmentDataObject} object with all info about segment
+ */
 function gatherData(){
     const adjacent = document.getElementById("lanes-adjacent");
     const width = document.getElementById("width");
@@ -35,27 +46,34 @@ function gatherData(){
     const centerline = document.getElementById("centerline");
     const adt = document.getElementById("adt");
 
-    let obj = {};
-    obj.segmentType = type.value;
-    obj.lanesAdjacent = adjacent.value;
-    obj.lanesCombinedWidth = obj.lanesAdjacent? width.value:NaN;
-    obj.laneWidth = obj.lanesAdjacent?NaN:width.value;
-    obj.speed = speed.value;
-    obj.laneCount = laneCount.value;
-    obj.median = median.value;
-    obj.blockage = blockage.value;
-    obj.totalLanes = totalLanes.value;
-    obj.centerline = centerline.value;
-    obj.adt = adt.value;
+    let obj = {
+        segmentType : type.value,
+        lanesAdjacent : adjacent.value,
+        lanesCombinedWidth : adjacent.value? width.value:NaN,
+        laneWidth : adjacent.value?NaN:width.value,
+        speed : speed.value,
+        laneCount : laneCount.value,
+        median : median.value,
+        blockage : blockage.value,
+        totalLanes : totalLanes.value,
+        centerline : centerline.value,
+        adt : adt.value
+    }
     return obj;
 }
 
+/***
+ * Resets attached form (clears text values, resets dropdowns back to non-options)
+ */
 function resetForm(){
     form.reset();
     type.selectedIndex = -1;
     blockage.selectedIndex = -1;
 }
 
+/**
+ * Runs once DOM has loaded
+ */
 document.addEventListener('DOMContentLoaded', function () {
     var type = document.getElementById("type");
     var blockage = document.getElementById("blockage");
