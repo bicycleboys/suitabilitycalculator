@@ -3,21 +3,31 @@
  * Data Access Object for indexedDB
  */
 export class IDBDao{
+    db;
     constructor(){
+        let self = this;
         console.log("dao constructed");
-        var dbRequest = window.indexedDB.open("Segment Data",1);
+        var dbRequest = window.indexedDB.open("Segment Data",2);
         dbRequest.onerror = function(e){
             throw new Error("Issue with indexedDB");
         }
+        dbRequest.onupgradeneeded = function(e) { 
+            // Save the IDBDatabase interface 
+            self.db = e.target.result;
+          
+            // Create an objectStore for this database
+            self.db.createObjectStore("segments", { keyPath: "segmentName" });
+          };
         dbRequest.onsuccess = function(e){
-            this.db = e.target.result;
-            this.objectStore = this.db.createObjectStore("segments", { keyPath: "segmentName" });
-
+            self.db = e.target.result;
+            console.log(self);
         }
     }
 
     add(infoObject){
-        var request = this.db.transaction(["segments"], "readwrite")
+        //what to do if this gets called before the constructor?
+        console.log(this);
+        var request = this.db.transaction("segments", "readwrite")
                 .objectStore("segments")
                 .add(infoObject);
         request.onsuccess = function(){

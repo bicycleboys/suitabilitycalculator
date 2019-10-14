@@ -82,6 +82,9 @@ function resetForm(){
  */
 document.addEventListener('DOMContentLoaded', function () {
     myDao = new IDBDao();
+
+    //console.log(myDao);
+    //myDao.add({segmentName: "test"});
     var type = document.getElementById("type");
     var blockage = document.getElementById("blockage");
     var submit = document.getElementById("submit");
