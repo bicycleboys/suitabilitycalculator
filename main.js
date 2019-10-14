@@ -8,7 +8,6 @@ import * as plos from './calculators/plos.js'
 function doCalculate() {
     if(form.reportValidity()){
         var infoObject = gatherData(form);
-        console.log(infoObject);
         resetForm();
         var ltsData = lts.calculate(infoObject);
         var plosData = plos.calculate(infoObject);
@@ -30,7 +29,7 @@ function display(data){
     //data should have a grade which is a letter and a percentage/point score
     var grade = document.createElement("p")
     if(!data.grade){
-        throw Error("Aaaaa");
+        throw Error("Cannot display "+data.name+" without a grade");
     }
     grade.textContent = `${data.name}: ${data.grade} (${data.points})`;
     document.body.appendChild(grade);
@@ -51,12 +50,9 @@ function gatherData(form){
     let obj = {};
     let elements = form.querySelectorAll( "input, select, textarea" );
 
-    console.log(elements);
-
     for( let element of elements ) {
         var name = element.name;
         var value = element.value;
-        console.log(element);
         if( name ) {
             obj[ name ] = value;
         }
