@@ -3,11 +3,9 @@
   "version": "1.0.0",
   "description": "PWA to calculate bike suitability",
   "main": "main.js",
-  "dependencies": {
-    "jest": "^24.9.0"
-  },
   "devDependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.6.0"
+    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
+    "jest": "^24.9.0"
   },
   "scripts": {
     "test": "jest"
@@ -21,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/bicycleboys/suitabilitycalculator/issues"
   },
-  "homepage": "https://github.com/bicycleboys/suitabilitycalculator#readme"
+  "homepage": "https://github.com/bicycleboys/suitabilitycalculator#readme",
+  "dependencies": {
+    "idb": "^4.0.5"
+  }
 }
