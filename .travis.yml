@@ -7,6 +7,7 @@ branches:
   - gh-pages
 
 before_deploy:
+  - pwd
   - rm -rf node_modules
   - npm install --production
   - git add -f ./node_modules/
@@ -18,3 +19,4 @@ deploy:
   keep_history: true
   on:
     branch: master
+    branch: better-travis
