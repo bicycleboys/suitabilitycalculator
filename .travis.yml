@@ -9,7 +9,7 @@ branches:
 before_deploy:
   - rm -rf node_modules
   - npm install --production
-  - git add -f node_modules/
+  - git add -f ./node_modules/
 
 deploy:
   provider: pages
