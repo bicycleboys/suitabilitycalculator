@@ -3,11 +3,17 @@
   "version": "1.0.0",
   "description": "PWA to calculate bike suitability",
   "main": "main.js",
-  "dependencies": {
-    "jest": "^24.9.0"
+  "jest": {
+    "setupFiles": [
+      "fake-indexeddb/auto"
+    ]
   },
   "devDependencies": {
-    "@babel/plugin-transform-modules-commonjs": "^7.6.0"
+    "@babel/plugin-transform-modules-commonjs": "^7.6.0",
+    "core-js-bundle": "^3.3.2",
+    "fake-indexeddb": "^2.1.1",
+    "regenerator-runtime": "^0.13.3",
+    "jest": "^24.9.0"
   },
   "scripts": {
     "test": "jest",

@@ -5,6 +5,9 @@
 export class IDBDao{
     // db;
     constructor(){
+        if(typeof window.indexedDB == undefined){
+            throw Error("Your environment doesn't support IndexedDB");
+        }
         let self = this;
         var dbRequest = window.indexedDB.open("Segment Data",2);
         dbRequest.onerror = function(e){
