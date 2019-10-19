@@ -1,7 +1,7 @@
 import * as lts from './calculators/lts.js'
 import * as blos from './calculators/blos.js'
 import * as plos from './calculators/plos.js'
-import {IDBDao} from './idbdao.js';
+import {IDBDao} from './daos/idbdao.js';
 
 var myDao;
 
