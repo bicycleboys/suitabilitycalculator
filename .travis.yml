@@ -7,6 +7,7 @@ branches:
   - gh-pages
 
 before_deploy:
+  - pwd
   - rm -rf node_modules
   - npm install --production
   - git add -f ./node_modules/
@@ -16,5 +17,5 @@ deploy:
   skip_cleanup: true
   github_token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
   keep_history: true
-  on:
-    branch: master
+  # on:
+  #   branch: master
