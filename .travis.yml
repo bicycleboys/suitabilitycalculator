@@ -7,7 +7,6 @@ branches:
   - gh-pages
 
 before_deploy:
-  - pwd
   - rm -rf node_modules
   - npm install --production
   - git add -f ./node_modules/
