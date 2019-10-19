@@ -1,4 +1,3 @@
-
 /***
  * Data Access Object for indexedDB
  */
@@ -8,22 +7,35 @@ export class IDBDao{
         if(typeof window.indexedDB == undefined){
             throw Error("Your environment doesn't support IndexedDB");
         }
-        let self = this;
-        var dbRequest = window.indexedDB.open("Segment Data",2);
-        dbRequest.onerror = function(e){
-            throw new Error("Issue with indexedDB");
+
+        async function setup(){
+            function t(){
+                return new Promise((resolve,reject)=>{
+                    var dbRequest = window.indexedDB.open("Segment Data",2);
+                    dbRequest.onerror = function(e){
+                        reject("Issue with indexedDB");
+                    }
+                    dbRequest.onupgradeneeded = function(e) { 
+                        // Save the IDBDatabase interface 
+                        let db = e.target.result;
+                      
+                        // Create an objectStore for this database
+                        db.createObjectStore("segments", { keyPath: "segmentName" });
+                        resolve(db);
+                      };
+                    dbRequest.onsuccess = function(e){
+                        let db = e.target.result;
+                        resolve(db);
+                    }
+                })
+            }
+
+            db = await t();
+            console.log(db);
+            return db;
         }
-        dbRequest.onupgradeneeded = function(e) { 
-            // Save the IDBDatabase interface 
-            self.db = e.target.result;
-          
-            // Create an objectStore for this database
-            self.db.createObjectStore("segments", { keyPath: "segmentName" });
-          };
-        dbRequest.onsuccess = function(e){
-            self.db = e.target.result;
-            console.log(self);
-        }
+        this.db = setup();
+        console.log(this.db);
     }
 
     add(infoObject){
