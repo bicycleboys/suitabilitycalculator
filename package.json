@@ -10,7 +10,8 @@
     "@babel/plugin-transform-modules-commonjs": "^7.6.0"
   },
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "coverage": "jest --coverage"
   },
   "repository": {
     "type": "git",
