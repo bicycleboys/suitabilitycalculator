@@ -35,8 +35,8 @@ export class IDBDao{
             })
     }
 
-    getInfo(segmentName){
-        var request = this.db.transaction(["segments"], "readwrite")
+    async getInfo(segmentName){
+        return (await this.dbPromise).transaction(["segments"], "readwrite")
                 .objectStore("segments")
                 .get(segmentName);
     }
