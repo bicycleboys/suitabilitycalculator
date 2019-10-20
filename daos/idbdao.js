@@ -23,21 +23,11 @@ export class IDBDao{
         this.dbPromise.then(d=>d.put("segments",infoObject))
     };
 
-    getList(){
-        console.log(this);
-        var objectStore = this.db.transaction("segments").objectStore("segments");
-
-        return new Promise((resolve,reject)=>{
-            objectStore.getAll().onsuccess = function(event) {
-            console.log("get all worked");
-            resolve(event.target.result);
-            }
-            })
+    async getList(){
+        return (await this.dbPromise).getAll("segments");
     }
 
     async getInfo(segmentName){
-        return (await this.dbPromise).transaction(["segments"], "readwrite")
-                .objectStore("segments")
-                .get(segmentName);
+        return (await this.dbPromise).get("segments",segmentName);
     }
 }

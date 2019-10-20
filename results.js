@@ -1,4 +1,4 @@
-import {IDBDao} from './idbdao.js'
+import {IDBDao} from './daos/idbdao.js'
 
 document.addEventListener("DOMContentLoaded",()=>{
     let myDao = new IDBDao();

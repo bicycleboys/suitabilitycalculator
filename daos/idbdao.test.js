@@ -1,5 +1,9 @@
 import {IDBDao} from "./idbdao.js"
 
+describe('test basic idb methods',()=>{
+
+beforeAll(()=>window.indexedDB.deleteDatabase("Segment Data"))
+
 test("constructor",()=>{
     expect(new IDBDao());
 });
@@ -19,16 +23,19 @@ test('get after adding',()=>{
     }
     let myIDBDao = new IDBDao();
     myIDBDao.add(toAdd);
-    expect(myIDBDao.getInfo("test2")).toEqual({segmentName:"test2", otherData:10});
+    myIDBDao.getInfo("test2").then(response=>
+        expect(response).toEqual({segmentName:"test2", otherData:10}));
 })
 
 test('add 5 fast',()=>{
     let toAdd = [{segmentName: "t1"},{segmentName: "t2"},{segmentName: "t3"},{segmentName: "t4"},{segmentName: "t5"}];
     let myIDBDao = new IDBDao();
-    for (o of toAdd){
+    for (let o of toAdd){
         myIDBDao.add(o);
     }
-    for(o of toAdd){
-        expect(myIDBDao.getList()).toContainEqual(o);
+    let list = myIDBDao.getList();
+    for(let o of toAdd){
+        list.then(e=>expect(e).toContainEqual(o));
     }
+})
 })
