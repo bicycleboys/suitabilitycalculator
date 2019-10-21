@@ -13,7 +13,8 @@
   },
   "scripts": {
     "test": "jest",
-    "build": "webpack"
+    "build": "webpack --mode=development",
+    "build:production": "webpack --mode=production"
   },
   "repository": {
     "type": "git",

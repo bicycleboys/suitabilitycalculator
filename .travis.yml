@@ -7,7 +7,7 @@ branches:
   - gh-pages
 
 before_deploy:
-  - npm run build
+  - npm run build:production
 
 deploy:
   provider: pages
