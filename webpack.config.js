@@ -11,6 +11,7 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({ //add index.html to build
+            inject: false,
             template: './src/index.html',
             filename: 'index.html'
         }),
@@ -20,5 +21,6 @@ module.exports = {
             template: './src/form.html',
             filename: 'form.html' 
         })
+        //If you add new pages to src, also add them here
     ]
 };
