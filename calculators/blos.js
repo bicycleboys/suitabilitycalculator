@@ -7,22 +7,29 @@ export function calculate(o) {
     let sra;
     let vma;
     let blos;
+    let vm;
+    let appk;
+    let c1, c2, c3, c4;
+    vm = o.adt / 20;
     if (o.curb) wosstar = Math.max(0.0, o.wos - 1.5);
     else wosstar = o.wos;
-    if (o.ppk = 0.0) wt = o.wol + o.wbl + wosstar;
+    if (o.ppk == 0.0) wt = o.wol + o.wbl + wosstar;
     else wt = o.wol + o.wbl;
-    if (o.devided || o.vm > 160) wv = wt;
-    else wv = wt * (2 - .005 * o.vm);
-    if (o.wbl + wosstar < 4.0) we = Math.max(wv - (10 * o.ppk), 0.0);
-    else we = Math.max(wv + o.wbl + wosstar - (20 * o.ppk), 0.0);
-    if ((o.vm * (1 - .001 * o.phv) < 200.0) && o.phv > 50.0) phva = 50.0;
+    if (o.devided || vm > 160) wv = wt;
+    else wv = wt * (2 - .005 * vm);
+    if (o.wbl + o.wos < 4.0) we = Math.max(wv - (10 * o.ppk), 0.0);
+    else we = Math.max(wv + o.wbl + o.wos - (20 * o.ppk), 0.0);
+    if ((vm * (1 - .001 * o.phv) < 200.0) && o.phv > 50.0) phva = 50.0;
     else phva = o.phv;
     sra = Math.max(21, o.sr);
-    vma = Math.max(o.vm, 4 * o.laneCount);
-    blos = .760 + (-.005 * Math.pow(we, 2)) + (.507 * Math.log(vma / (4 * o.laneCount))) +
-        (.199 * (1.1199 * Math.log(sra - 20) + .8103) * (1 + .1038 * Math.pow(phva, 2))) +
-        (7.066 / Math.pow(o.pc, 2));
-
+    vma = Math.max(vm, 4 * o.laneCount);
+    c1 = (-.005 * Math.pow(we, 2));
+    c2 = (.507 * Math.log(vma / (4 * o.laneCount)));
+    c3 = (.199 * (1.1199 * Math.log(sra - 20) + .8103) * (Math.pow(1 + .1038 *phva, 2)));
+    c4 = (7.066 / Math.pow(o.pc, 2));
+    blos = ((.760) + c1 + c2 +c3 +c4).toFixed(2);
+    console.log(blos);
+    blos = parseFloat(blos);
 
     let grade;
     if(blos<=2){
