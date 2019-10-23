@@ -28,7 +28,6 @@ export function calculate(o) {
     c3 = (.199 * (1.1199 * Math.log(sra - 20) + .8103) * (Math.pow(1 + .1038 *phva, 2)));
     c4 = (7.066 / Math.pow(o.pc, 2));
     blos = ((.760) + c1 + c2 +c3 +c4).toFixed(2);
-    console.log(blos);
     blos = parseFloat(blos);
 
     let grade;

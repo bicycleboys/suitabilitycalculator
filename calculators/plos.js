@@ -27,17 +27,6 @@ export function calculate(o) {
     plos = plos.toFixed(2);
     plos = parseFloat(plos);
 
-    console.log(wv);
-    console.log(w1);
-    console.log(o.ppk);
-    console.log(o.wbuf);
-    console.log(o.fb);
-    console.log(o.waa);
-    console.log(fsw);
-    console.log(fw);
-    console.log(fv);
-    console.log(fs);
-
 
     let grade;
     if(plos<=2){
