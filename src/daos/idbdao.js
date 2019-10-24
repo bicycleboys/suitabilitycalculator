@@ -6,7 +6,7 @@ import {openDB, deleteDB, wrap, unwrap} from 'idb'
 export class IDBDao{
     // db;
     constructor(){
-        if(typeof window.indexedDB == undefined){
+        if(typeof window.indexedDB == 'undefined'){
             throw Error("Your environment doesn't support IndexedDB");
         }
         

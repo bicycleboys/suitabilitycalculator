@@ -39,3 +39,10 @@ test('add 5 fast',()=>{
     }
 })
 })
+
+test('no idb',()=>{
+    let w = window.indexedDB;
+    window.indexedDB = undefined;
+    expect(()=>{new IDBDao()}).toThrow();
+    window.indexedDB = w;
+})
