@@ -97,6 +97,31 @@
 
     <input id="submit" type="button" value="Calculate" />
   </form>
+
+  <!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-analytics.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  var firebaseConfig = {
+    apiKey: "AIzaSyChkACWp5aGd0s3ovbD7sRMugbSaljjyZU",
+    authDomain: "bicycleboys.firebaseapp.com",
+    databaseURL: "https://bicycleboys.firebaseio.com",
+    projectId: "bicycleboys",
+    storageBucket: "bicycleboys.appspot.com",
+    messagingSenderId: "691023297022",
+    appId: "1:691023297022:web:91ea734781e0029e99a8af",
+    measurementId: "G-ZRQ1KHK7PL"
+  };
+  // Initialize Firebase
+  firebase.initializeApp(firebaseConfig);
+  firebase.analytics();
+</script>
+<script src="main.js"></script>
 </body>
 
 </html>

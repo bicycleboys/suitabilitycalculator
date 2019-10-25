@@ -2,6 +2,40 @@ import * as lts from './calculators/lts.js'
 import * as blos from './calculators/blos.js'
 import * as plos from './calculators/plos.js'
 
+
+var firebaseConfig = {
+    apiKey: "AIzaSyChkACWp5aGd0s3ovbD7sRMugbSaljjyZU",
+    authDomain: "bicycleboys.firebaseapp.com",
+    databaseURL: "https://bicycleboys.firebaseio.com",
+    projectId: "bicycleboys",
+    storageBucket: "bicycleboys.appspot.com",
+    messagingSenderId: "691023297022",
+    appId: "1:691023297022:web:91ea734781e0029e99a8af",
+    measurementId: "G-ZRQ1KHK7PL"
+  };
+firebase.initializeApp(config);
+
+var db = firebase.database();
+
+function writeToFirebase(SegmentDataObject, calculatedBLOS, calculatedPLOS, calculatedLTS){
+  //TODO: figure out how we want the data organized, write the write method
+  db.collection("Segments").add({
+    SegmentName: SegmentDataObject.name,
+    BLOS: calculatedBLOS,
+    PLOS: calculatedPLOS,
+    LTS: calculatedLTS,
+    Timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+
+    //do we want to pull all of the info out of the SegmentDataObject? or just store it
+
+})
+.then(function(docRef) {
+    console.log("Document written with ID: ", docRef.id);
+})
+.catch(function(error) {
+    console.error("Error adding document: ", error);
+});
+}
 /***
  * Checks form valididty and runs calculations
  */
@@ -23,7 +57,7 @@ function doCalculate() {
 }
 /**
  * Displays the data passed in
- * @param {name:string,grade:string,points:number} data 
+ * @param {name:string,grade:string,points:number} data
  */
 function display(data){
     //data should have a grade which is a letter and a percentage/point score
