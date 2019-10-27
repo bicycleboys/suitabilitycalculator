@@ -13,9 +13,28 @@ var firebaseConfig = {
     appId: "1:691023297022:web:91ea734781e0029e99a8af",
     measurementId: "G-ZRQ1KHK7PL"
   };
-firebase.initializeApp(config);
+firebase.initializeApp(firebaseConfig);
 
 var db = firebase.database();
+
+//set cache size to be as big as we need
+firebase.firestore().settings({
+  cacheSizeBytes: firebase.firestore.CACHE_SIZE_UNLIMITED
+});
+
+//enable persistence
+firebase.firestore().enablePersistence()
+  .catch(function(err) {
+      if (err.code == 'failed-precondition') {
+          // Multiple tabs open, persistence can only be enabled
+          // in one tab at a a time.
+          // ...
+      } else if (err.code == 'unimplemented') {
+          // The current browser does not support all of the
+          // features required to enable persistence
+          // ...
+      }
+  });
 
 function writeToFirebase(SegmentDataObject, calculatedBLOS, calculatedPLOS, calculatedLTS){
   //TODO: figure out how we want the data organized, write the write method
