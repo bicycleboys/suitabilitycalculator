@@ -1,4 +1,4 @@
-import * as lts from './lts.js';
+import * as lts from './lts';
 
 test('simple - stand alone', () => {
   let obj = {
