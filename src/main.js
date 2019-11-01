@@ -12,9 +12,6 @@ function doCalculate() {
         var ltsData = lts.calculate(infoObject);
         var plosData = plos.calculate(infoObject);
         var blosData = blos.calculate(infoObject);
-        ltsData.name="LTS";
-        plosData.name = "PLOS";
-        blosData.name = "BLOS";
         doSave(infoObject,ltsData,blosData,plosData);
         display(ltsData);
         display(blosData);
