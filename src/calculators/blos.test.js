@@ -12,7 +12,7 @@ test("Excel Example", ()=>{
   let object = {
     laneCount: 1,
     devided: false,
-    sr: 30.0,
+    runningSpeed: 30.0,
     adt: 12000,
     wol: 11.0,
     wbl: 5.0,

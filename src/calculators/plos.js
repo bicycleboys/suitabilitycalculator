@@ -22,7 +22,7 @@ export function calculate(o) {
     let fsw = (6.0 - .3 * o.waa)
     let fw = (-1.2276 * Math.log(wv + (.5 * w1) + (50 * o.ppk) + (o.wbuf * fb) + (o.waa * fsw)));
     let fv = (.0091 * vm / (4 * o.laneCount));
-    let fs = (4 * Math.pow(o.sr / 100, 2));
+    let fs = (4 * Math.pow(o.runningSpeed / 100, 2));
     plos = 6.0468 + fw + fv + fs;
     plos = plos.toFixed(2);
     plos = parseFloat(plos);

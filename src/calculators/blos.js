@@ -21,7 +21,7 @@ export function calculate(o) {
     else we = Math.max(wv + o.wbl + o.wos - (20 * o.ppk), 0.0);
     if ((vm * (1 - .001 * o.phv) < 200.0) && o.phv > 50.0) phva = 50.0;
     else phva = o.phv;
-    sra = Math.max(21, o.sr);
+    sra = Math.max(21, o.runningSpeed);
     vma = Math.max(vm, 4 * o.laneCount);
     c1 = (-.005 * Math.pow(we, 2));
     c2 = (.507 * Math.log(vma / (4 * o.laneCount)));
