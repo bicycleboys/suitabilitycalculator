@@ -33,7 +33,7 @@
   "dependencies": {
     "idb": "^4.0.5"
   },
-  "jest":{
+  "jest": {
     "transform": {
       "^.+\\.tsx?$": "ts-jest"
     }
