@@ -8,7 +8,7 @@ import * as plos from './calculators/plos.js'
 function doCalculate() {
     if(form.reportValidity()){
         var infoObject = gatherData(form);
-        resetForm();
+        //resetForm();
         var ltsData = lts.calculate(infoObject);
         var plosData = plos.calculate(infoObject);
         var blosData = blos.calculate(infoObject);
