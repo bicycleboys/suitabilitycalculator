@@ -14,7 +14,23 @@
     <label for="segmentName">Segment name:
       <input type="text" name="segmentName" size="35" placeholder="eg. Humboldt: Locust-Chambers" required /></label>
     <br />
-    <label for="segmentType">Segment type:
+
+    <!--Sidewalk Stuff-->
+    <label for="waa">Width of sidewalk at the most narrow place in the segment:
+      <input type="number" id="waa" name="waa" value=" " required/></label>
+    </br>
+    <label for="wbuf">Width of buffer between roadway and sidewalk in feet:
+      <input type="number" id="wbuf" name="wbuf" value=" " step="0.5" required/></label>
+    </br>
+    <label for="fb">Is there a continuous barrier at least 3 feet high for the length of the segment? (ex: a concrete barrier)
+      <input type="checkbox" id="fb" name="fb" name="3 ft barrier"/></label>
+    </br>
+    <label for="curb">Is there a curb present?
+        <input type="checkbox" id="curb" name="curb" name="curb"/></label>
+      </br>
+
+    <!--Bike lane stuff-->
+    <label for="segmentType">Bike facility type:
       <select id="type" name="segmentType" required>
         <option value="stand-alone">Stand-alone</option>
         <option value="segregated">Segregated</option>
@@ -22,78 +38,70 @@
         <option value="mixed traffic">Mixed Traffic</option>
       </select></label>
     <br />
-    <!--TODO: verify lanes is positive-->
-    <label for="laneCount">Number of lanes per direction:
-      <input type="number" class="if-bike-lane" id="laneCount" name="laneCount" value=" " /></label>
+    <label for="blockage">Bike lane blockage frequency:
+        <select name="blockage" id="blockage" class="if-bike-lane">
+          <option value="rarely">Rarely</option>
+          <option value="frequently">Frequently</option>
+        </select></label>
       <br/>
     <label for="lanesAdjacent">Bike lane beetween on-street parking and driving lane:
       <input type="checkbox" name="lanesAdjacent" id="lanesAdjacent"/> <!--class="if-bike-lane"-->
     </label>
     <br/>
+    <label for="wbl">Width of bike lane in feet:
+        <input type="number" id="wbl" name="wbl" value=" " step="0.5" required/> </label>
+    </br>
+    <label for="wos">Width of paved outside shoulder in feet:
+        <input type="number" id="wos" name="wos" value = " " step="0.5" required/> </label>
+      </br>
+
+    <!--Parking lane stuff-->
     <label for="width">Sum of bike lane and parking lane width or just bike lane width if not adjacent (ft):
       <input type="number" class="if-bike-lane" id="width" name="width" value=" " step="0.5" /></label>
     <br />
-    <label for="median">Median between directions of travel
-      <input type="checkbox" id="median" name="median"/></label> <!--Median (required if bike lane is not adjacent to parking)-->
-      <br/>
+    <label for="ppk">Parking occupancy as a percentage: <!--Is this 0-100 or 0-1? -Zak -->
+        <input type="number" id="ppk" name="ppk" value = " " required/> </label>
+      </br>
+
+    <!--Car lane stuff (or mixed traffic)-->
     <label for="speed">Speed Limit (or prevailing speed if speed limit isn't followed) (miles per hour):
       <input type="number" name="speed" id="speed" value=" " class="if-bike-lane if-mixed" /></label>
     <br />
-    <label for="blockage">Blockage frequency:
-      <select name="blockage" id="blockage" class="if-bike-lane">
-        <option value="rarely">Rarely</option>
-        <option value="frequently">Frequently</option>
-      </select></label>
-    <br/>
-    <label for="totalLanes">Total number of lanes in both directions:
-      <input type="number" id="totalLanes" name="totalLanes" class="if-mixed-traffic"/></label>
+    <label for="sr">Motorized vehicle running speed in miles per hour: !ask concurrently with posted speed limit
+        <input type="number" id="runningSpeed" name="runningSpeed" value=" " required/></label>
+      </br>
+    <label for="laneCount">Number of travel lanes per direction: <!--TODO: verify lanes is positive-->
+      <input type="number" class="if-bike-lane" id="laneCount" name="laneCount" value=" " /></label>
+      <br/>
+    <label for="wol">Width of outside lane in feet:
+        <input type="number" id="wol" name="wol" value = " " step="0.5" required/> </label>
+      </br>
+    <label for="median">Median between directions of travel (eg. a boulevard)
+      <input type="checkbox" id="median" name="median"/></label> <!--(required if bike lane is not adjacent to parking)-->
       <br/>
     <label for="centerline">Marked centerline:
       <input type="checkbox" id="centerline" name="centerline"/></label> <!--if-mixed-traffic-->
     <br />
+    <label for="totalLanes">Total number of lanes in both directions:
+      <input type="number" id="totalLanes" name="totalLanes" class="if-mixed-traffic"/></label>
+      <br/>
     <label for="adt">Average daily vehicle traffic (in both directions):
       <input type="number" id="adt" name="adt" value=" " class="if-mixed" /></label>
     <br />
+    <label for="pc">Pavement condition as a number between 1 and 5: !add info about which number is good
+        <input type="number" id="pc" name="pc" value=" " required/></label>
+      </br>
+      <label for="phv">Heavy vehicles in the midsection flow rate as a percentage: !explain heavy vehicles definition
+          <input type="number" id="phv" name="phv" value=" " required/></label>
+        </br>
+
+
     <h5>Intersection Stuff</h5>
     <p style="color: red;">
       some stuff about unsignalized crossings that I don't fully understand, uses lanes and speed limit
       <br />
       right turn lane/bike lane interfacing at intersection approach</p>
     <br />
-
-    <label for="ppk">Parking occupancy as a percentage:
-      <input type="number" id="ppk" name="ppk" value = " " required/> </label>
-    </br>
-    <label for="wol">Width of outside lane in feet:
-      <input type="number" id="wol" name="wol" value = " " step="0.5" required/> </label>
-    </br>
-    <label for="wbl">Width of bike lane in feet:
-      <input type="number" id="wbl" name="wbl" value=" " step="0.5" required/> </label>
-    </br>
-    <label for="wos">Width of paved outside shoulder in feet:
-      <input type="number" id="wos" name="wos" value = " " step="0.5" required/> </label>
-    </br>
-    <label for="curb">Is there a curb present?
-      <input type="checkbox" id="curb" name="curb" name="curb"/></label>
-    </br>
-    <label for="phv">Heavy vehicles in the midsection flow rate as a percentage: !explain heavy vehicles definition
-      <input type="number" id="phv" name="phv" value=" " required/></label>
-    </br>
-    <label for="sr">Motorized vehicle running speed in miles per hour: !ask concurrently with posted speed limit
-      <input type="number" id="sr" name="sr" value=" " required/></label>
-    </br>
-    <label for="pc">Pavement condition as a number between 1 and 5: !add info about which number is good
-      <input type="number" id="pc" name="pc" value=" " required/></label>
-    </br>
-    <label for="wbuf">Width of buffer between roadway and sidewalk in feet:
-      <input type="number" id="wbuf" name="wbuf" value=" " step="0.5" required/></label>
-    </br>
-    <label for="waa">Width of sidewalk at the most narrow place in the segment:
-      <input type="number" id="waa" name="waa" value=" " required/></label>
-    </br>
-    <label for="fb">Is there a continuous barrier at least 3 feet high for the length of the segment? (ex: a concrete barrier)
-      <input type="checkbox" id="fb" name="fb" name="3 ft barrier"/></label>
-    </br>
 
     <input id="submit" type="button" value="Calculate" />
   </form>
