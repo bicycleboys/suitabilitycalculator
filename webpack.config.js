@@ -4,7 +4,19 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 module.exports = {
     entry: {
         main: './src/main.js'
-        },
+    },
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+        ],
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
+    },
     output: {
         filename: 'main.js',
         path: path.resolve(__dirname, 'build'),
@@ -19,7 +31,7 @@ module.exports = {
             inject: "head",
             chunks: 'main',
             template: './src/form.html',
-            filename: 'form.html' 
+            filename: 'form.html'
         })
         //If you add new pages to src, also add them here
     ]
