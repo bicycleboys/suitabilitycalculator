@@ -53,6 +53,8 @@ function gatherData(form){
     for( let element of elements ) {
         var name = element.name;
         var value = element.value;
+        if(value=="false") value=false;
+        if(value=="true") value=true;
         if( name ) {
             obj[ name ] = value;
         }

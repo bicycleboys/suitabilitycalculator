@@ -22,11 +22,25 @@
     <label for="wbuf">Width of buffer between roadway and sidewalk in feet:
       <input type="number"  name="wbuf" value=" " step="0.5" required/></label>
     </br>
-    <label for="fb">Is there a continuous barrier at least 3 feet high for the length of the segment? (ex: a concrete barrier)
-      <input type="checkbox"  name="fb" name="3 ft barrier"/></label>
+    <p>Is there a continuous barrier at least 3 feet high for the length of the segment? (ex: a concrete barrier)</p>
+    <div>
+      <input type="radio" id="barrierYes"
+            name="fb" value="true">
+      <label for="barrierYes">Yes</label>
+      <input type="radio" id="barrierNo"
+            name="fb" value="false">
+      <label for="barrierNo">No</label>
+    </div>
     </br>
-    <label for="curb">Is there a curb present?
-        <input type="checkbox"  name="curb" name="curb"/></label>
+      <p>Is there a curb present?</p>
+      <div>
+        <input type="radio" id="curbYes"
+              name="curb" value="true">
+        <label for="curbYes">Yes</label>
+        <input type="radio" id="curbNo"
+              name="curb" value="false">
+        <label for="curbNo">No</label>
+      </div>
       </br>
 
     <!--Bike lane stuff-->
@@ -76,12 +90,26 @@
     <label for="wol">Width of outside lane in feet:
         <input type="number"  name="wol" value = " " step="0.5" required/> </label>
       </br>
-    <label for="median">Median between directions of travel (eg. a boulevard)
-      <input type="checkbox"  name="median"/></label> <!--(required if bike lane is not adjacent to parking)-->
-      <br/>
-    <label for="centerline">Marked centerline:
-      <input type="checkbox"  name="centerline"/></label> <!--if-mixed-traffic-->
-    <br />
+      <p>Is there a median between directions of travel (eg. a boulevard)</p> <!--(required if bike lane is not adjacent to parking)-->
+      <div>
+        <input type="radio" id="medianYes"
+              name="median" value="true">
+        <label for="medianYes">Yes</label>
+        <input type="radio" id="medianNo"
+              name="median" value="false">
+        <label for="medianNo">No</label>
+      </div>
+      </br>
+    <p>Is there a marked centerline?</p> <!--if-mixed-traffic-->
+      <div>
+        <input type="radio" id="centerlineYes"
+              name="centerline" value="true">
+        <label for="centerlineYes">Yes</label>
+        <input type="radio" id="centerlineNo"
+              name="centerline" value="false">
+        <label for="centerlineNo">No</label>
+      </div>
+      </br>
     <label for="totalLanes">Total number of lanes in both directions:
       <input type="number"  name="totalLanes" class="if-mixed-traffic"/></label>
       <br/>
