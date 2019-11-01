@@ -1,13 +1,8 @@
-//TODO
-
 import * as blos from './blos';
-
-test("fixme",()=>{
-    expect(true).toBe(true);
-})
 
 test("Excel Example", ()=>{
   let object = {
+      name: "test",
     laneCount: 1,
     devided: false,
     sr: 30.0,
@@ -18,10 +13,7 @@ test("Excel Example", ()=>{
     curb: true,
     ppk: 0.5,
     pc: 4.0,
-    phv: 4.0,
-    wbuf: 5.0,
-    waa: 6.0,
-    fb: false,
+    phv: 4.0
   }
-  expect(plos.calculate(object)).toEqual({ grade: 'B', points: 2.45 });
+  expect(blos.calculate(object)).toEqual({ grade: 'C', points: 3.19, name: "BLOS" });
 });
