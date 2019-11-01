@@ -20,7 +20,7 @@ function doCalculate() {
 }
 /**
  * Displays the data passed in
- * @param {name:string,grade:string,points:number} data 
+ * @param SegmentGrade data 
  */
 function display(data){
     //data should have a grade which is a letter and a percentage/point score
@@ -121,10 +121,4 @@ document.addEventListener('DOMContentLoaded', function () {
     submit.addEventListener("click", (event) => {
         doCalculate()
     });
-
-    //Useful for demos, can show off without having to manually input data
-    window.fill = ()=>{
-        document.getElementsByName("segmentName")[0].value="Cramer: Park-Newberry";
-        document.getElementsByName("segmentType")[0].value="mixed traffic"
-    }
 })
