@@ -5,17 +5,16 @@
 /**
  * Calculates the Level of Traffic Stress of a particular segment
  * @param {SegmentDataObject} obj Object containing information on a road segment
- * @returns {grade:string, points:number} grade as a letter grade and a numerical value
+ * @returns CalculatorResponse grade as a letter grade and a numerical value or NotCalculated with name
  */
-export function calculate(obj:SegmentDataObject):SegmentGrade {
+export function calculate(obj:SegmentDataObject):CalculatorResponse {
   //we expect obj to have fields for calculation
   //in this case, that's segmentType, right turn lane, lanecount, laneadjacent, lanewidth/parking&lanewidth, speed, blockagefreqency, markedCenterLines, ADT
   if (!obj.hasOwnProperty('segmentType')) {
-    console.log(obj);
-    throw Error("Invalid argument, needs segment type");
+    return {name: "LTS"}; //NotCalculated object
   }
 
-  var grade: string, points: string | number;
+  var grade: string, points: number;
 
   switch (obj.segmentType) { // TODO: Should really be enums or something
     case 'stand-alone':

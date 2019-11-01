@@ -4,6 +4,12 @@ interface SegmentGrade{
     name: string
 }
 
+interface NotCalculated{
+    name: string
+}
+
+type CalculatorResponse = SegmentGrade|NotCalculated;
+
 interface SegmentDataObject{
     parkingStriped?: boolean;
     wbuf?: any;
@@ -34,5 +40,5 @@ interface SegmentDataObject{
 }
 
 interface Calculator{
-    calculate(o:SegmentDataObject):SegmentGrade;
+    calculate(o:SegmentDataObject):CalculatorResponse;
 }
