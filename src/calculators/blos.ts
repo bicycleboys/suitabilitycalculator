@@ -36,5 +36,5 @@ export function calculate(o:SegmentDataObject):SegmentGrade {
     }else if(blos<=5){
         grade="E"
     }else grade="F"
-    return {points:blos, grade: grade, name: "blos"};
+    return {points:blos, grade: grade, name: "BLOS"};
 }

@@ -1,6 +1,6 @@
-import * as lts from './calculators/lts.js'
-import * as blos from './calculators/blos.js'
-import * as plos from './calculators/plos.js'
+import * as lts from './calculators/lts'
+import * as blos from './calculators/blos'
+import * as plos from './calculators/plos'
 
 /***
  * Checks form valididty and runs calculations
