@@ -5,6 +5,10 @@ interface SegmentGrade{
 }
 
 interface SegmentDataObject{
+    parkingStriped?: boolean;
+    wbuf?: any;
+    fb?: any;
+    waa?: number;
     totalLanes?: number;
     centerlines?: boolean;
     adt?: number;

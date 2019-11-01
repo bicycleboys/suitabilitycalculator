@@ -1,6 +1,6 @@
 
 
-export function calculate(o) {
+export function calculate(o:SegmentDataObject):SegmentGrade {
     let wosstar;
     let wt;
     let wv;
@@ -29,5 +29,5 @@ export function calculate(o) {
     }else if(plos<=5){
         grade="E"
     }else grade="F"
-    return {points:plos, grade: grade};
+    return {points:plos, grade: grade, name: "PLOS"};
 }
