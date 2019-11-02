@@ -36,13 +36,11 @@ firebase.firestore().enablePersistence()
       }
   });
 
-function writeToFirebase(SegmentDataObject, calculatedBLOS, calculatedPLOS, calculatedLTS){
+function writeToFirebase(SegmentDataObject, scoresArray){
   //TODO: figure out how we want the data organized, write the write method
   db.collection("Segments").add({
-    SegmentName: SegmentDataObject.name,
-    BLOS: calculatedBLOS,
-    PLOS: calculatedPLOS,
-    LTS: calculatedLTS,
+    SegmentDataObject: SegmentDataObject,
+    Scores: scoresArray,
     Timestamp: firebase.firestore.FieldValue.serverTimestamp(),
 
     //do we want to pull all of the info out of the SegmentDataObject? or just store it
