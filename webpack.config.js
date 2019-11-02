@@ -1,6 +1,8 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
+const outPath = path.resolve(__dirname, 'build');
+
 module.exports = {
     entry: {
         main: './src/main.js',
@@ -8,7 +10,23 @@ module.exports = {
         },
     output: {
         filename: '[name].js',
-        path: path.resolve(__dirname, 'build'),
+        path: outpath,
+        main: './src/main.js'
+    },
+    module: {
+        rules: [
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/,
+            },
+        ],
+    },
+    resolve: {
+        extensions: ['.tsx', '.ts', '.js'],
+    },
+    devServer: {
+        contentBase: outPath
     },
     plugins: [
         new HtmlWebpackPlugin({ //add index.html to build

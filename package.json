@@ -4,11 +4,6 @@
   "description": "PWA to calculate bike suitability",
   "private": true,
   "main": "main.js",
-  "jest": {
-    "setupFiles": [
-      "fake-indexeddb/auto"
-    ]
-  },
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.6.0",
     "core-js-bundle": "^3.3.2",
@@ -16,14 +11,20 @@
     "regenerator-runtime": "^0.13.3",
     "jest": "^24.9.0",
     "html-webpack-plugin": "^3.2.0",
+    "@types/jest": "^24.0.21",
+    "ts-jest": "^24.1.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.6.4",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.9"
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.9.0"
   },
   "scripts": {
     "test": "jest",
     "coverage": "jest --coverage",
     "build": "webpack --mode=development",
-    "build:production": "webpack --mode=production"
+    "build:production": "webpack --mode=production",
+    "serve": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -37,5 +38,13 @@
   "homepage": "https://github.com/bicycleboys/suitabilitycalculator#readme",
   "dependencies": {
     "idb": "^4.0.5"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    },
+    "setupFiles": [
+      "fake-indexeddb/auto"
+    ]
   }
 }

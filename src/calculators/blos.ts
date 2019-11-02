@@ -1,4 +1,4 @@
-export function calculate(o) {
+export function calculate(o:SegmentDataObject):SegmentGrade {
     let wosstar; //$w_{os}^*$, adjusted width of shoulder
     let wt; //$W_{t}$, space available for bikes
     let wv;
@@ -42,5 +42,5 @@ export function calculate(o) {
     }else if(blos<=5){
         grade="E"
     }else grade="F"
-    return {points:blos, grade: grade};
+    return {points:blos, grade: grade, name: "BLOS"};
 }
