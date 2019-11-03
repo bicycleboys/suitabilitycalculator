@@ -10,8 +10,10 @@ test('construct and immediately add',()=>{
     };
     let scoresArray = ["A", 0.0];
     let myfbdao = new fbdao();
+    //console.log(myfbdao);
+    //console.log(myfbdao.db);
     myfbdao.add(toAdd, scoresArray);
-});
+})
 
 test('get added object', ()=>{
   let toAdd = {
@@ -21,7 +23,8 @@ test('get added object', ()=>{
   let myfbdao = new fbdao();
   let scoresArray = ["F", 98.6];
   myfbdao.add(toAdd, scoresArray);
-  element = myfbdao.getElementBySegmentName("test2");
-  expect(element.SegmentDataObject).toEqual({segmentName:"test2", otherData:10}));
-  expect(element.scoresArray).toEqual(["F", 98.6]);
+  let element = myfbdao.getElementBySegmentName("test2");
+  expect(element).toBeDefined();
+  expect(element.SegmentDataObject).toEqual({segmentName:"test2", otherData:10})
+  expect(element.scoresArray).toEqual(["F", 98.6])
 });
