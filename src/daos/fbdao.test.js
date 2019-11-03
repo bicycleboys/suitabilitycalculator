@@ -25,6 +25,7 @@ test('get added object', ()=>{
   myfbdao.add(toAdd, scoresArray);
   let element = myfbdao.getElementBySegmentName("test2");
   expect(element).toBeDefined();
+  console.log(element);
   expect(element.SegmentDataObject).toEqual({segmentName:"test2", otherData:10})
   expect(element.scoresArray).toEqual(["F", 98.6])
 });
