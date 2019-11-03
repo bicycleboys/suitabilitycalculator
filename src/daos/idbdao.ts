@@ -1,10 +1,11 @@
-import {openDB, deleteDB, wrap, unwrap} from 'idb'
+import {openDB, DBSchema, IDBPDatabase} from 'idb'
 
 /***
  * Data Access Object for indexedDB
  */
-export class IDBDao{
-    // db;
+export class IDBDao implements Dao{
+    dbPromise:Promise<IDBPDatabase<any>>;
+
     constructor(){
         if(typeof window.indexedDB == 'undefined'){
             throw Error("Your environment doesn't support IndexedDB");
@@ -19,15 +20,19 @@ export class IDBDao{
         });
     }
 
-    add(infoObject){
-        this.dbPromise.then(d=>d.put("segments",infoObject))
-    };
+    add(data: SegmentDataObject, scores: CalculatorResponse[]): void {
+        this.dbPromise.then(d=>d.put("segments",{data,scores}))
+    }
 
     async getList(){
         return (await this.dbPromise).getAll("segments");
     }
 
-    async getInfo(segmentName){
-        return (await this.dbPromise).get("segments",segmentName);
+    async getInfo(key:any){
+        return (await this.dbPromise).get("segments",key);
+    }
+
+    remove(key: any): void {
+        throw new Error("Method not implemented.");
     }
 }

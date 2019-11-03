@@ -1,4 +1,4 @@
-import {IDBDao} from "./idbdao.js"
+import {IDBDao} from "./idbdao"
 
 describe('test basic idb methods',()=>{
 
@@ -13,7 +13,7 @@ test('construct and immediately add',()=>{
         segmentName: "test"
     }
     let myIDBDao = new IDBDao();
-    myIDBDao.add(toAdd);
+    myIDBDao.add(toAdd,[]);
 })
 
 test('get after adding',()=>{
@@ -38,11 +38,4 @@ test('add 5 fast',()=>{
         list.then(e=>expect(e).toContainEqual(o));
     }
 })
-})
-
-test('no idb',()=>{
-    let w = window.indexedDB;
-    window.indexedDB = undefined;
-    expect(()=>{new IDBDao()}).toThrow();
-    window.indexedDB = w;
 })
