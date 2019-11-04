@@ -5,17 +5,16 @@
 /**
  * Calculates the Level of Traffic Stress of a particular segment
  * @param {SegmentDataObject} obj Object containing information on a road segment
- * @returns {grade:string, points:number} grade as a letter grade and a numerical value
+ * @returns CalculatorResponse grade as a letter grade and a numerical value or NotCalculated with name
  */
-export function calculate(obj) {
+export function calculate(obj:SegmentDataObject):CalculatorResponse {
   //we expect obj to have fields for calculation
   //in this case, that's segmentType, right turn lane, lanecount, laneadjacent, lanewidth/parking&lanewidth, speed, blockagefreqency, markedCenterLines, ADT
   if (!obj.hasOwnProperty('segmentType')) {
-    console.log(obj);
-    throw Error("Invalid argument, needs segment type");
+    return {name: "LTS"}; //NotCalculated object
   }
 
-  var grade, points;
+  var grade: string, points: number;
 
   switch (obj.segmentType) { // TODO: Should really be enums or something
     case 'stand-alone':
@@ -39,15 +38,15 @@ export function calculate(obj) {
     case 4: grade = 'F'; break;
     default: throw Error("points is invalid: "+points);
   }
-  return { grade: grade, points: points };
+  return { grade: grade, points: points, name: "LTS" };
 
 }
 
-function bikeLaneCalculate(o) {
-  let lanesLTS;
-  let widthLTS;
-  let speedLTS;
-  let blockageLTS;
+function bikeLaneCalculate(o:SegmentDataObject) {
+  let lanesLTS: number;
+  let widthLTS: number;
+  let speedLTS: number;
+  let blockageLTS: number;
   if (o.lanesAdjacent) {
     {//Lanes LTS block
       if (o.laneCount < 2) lanesLTS = 1;
@@ -98,8 +97,8 @@ function bikeLaneCalculate(o) {
   return p;
 }
 
-function mixedTrafficCalculate(o) {
-  let p;
+function mixedTrafficCalculate(o: SegmentDataObject) {
+  let p: number;
   if (o.totalLanes >= 6) p = 4;
   else if (o.totalLanes > 3) {
     if (o.speed >= 30) p = 4;
