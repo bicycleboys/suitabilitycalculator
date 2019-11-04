@@ -1,9 +1,6 @@
-import { initializeApp } from "firebase/app";
-import add from 'firebase';
-import "firebase/database";
-import "firebase";
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/auth';
 
 export class fbdao{
 
@@ -77,11 +74,6 @@ export class fbdao{
       console.log(error);
     }
     var db = firebase.firestore();
-    var cityData = {
-      name: "Los Angeles",
-      state: "CA",
-      country: "USA"
-    }
     // Add a new document in collection "cities"
     db.collection("cities").doc("LA").set({
       name: "Los Angeles",
@@ -117,27 +109,30 @@ export class fbdao{
   };
 
   getList(){
-    var list = {};
+    var list = [];
     this.db.collection("Segments").get().then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
         // doc.data() is never undefined for query doc snapshots
         console.log(doc.id, " => ", doc.data());
-        list.add(doc.data());
+        list.push(doc.data());
       });
     });
     return list;
   };
 
   getElementBySegmentName(queryString){
-    var toReturn = {};
-    this.db.collection("Segments").where("SegmentDataObject.segmentName", "==", queryString)
+    var toReturn = [];
+    return this.db.collection("Segments").where("SegmentDataObject.segmentName", "==", queryString)
     .get().then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
-        toReturn.add(doc.data());
+        toReturn.push(doc.data());
         console.log(doc.id, " => ", doc.data());
+        console.log(toReturn);
       });
-    });
-    return toReturn;
+    }).then(function(result) {
+      return toReturn;  
+    })
+
   }
 
 };
