@@ -70,24 +70,21 @@ export class fbdao{
 
     try{
       var app = firebase.initializeApp(firebaseConfig);
+      firebase.firestore(app).enablePersistence().catch(function(err) {
+        if (err.code == 'failed-precondition') {
+          console.log("failed precondition");
+        } else if (err.code == 'unimplemented') {
+          console.log("unimplemented");
+        }
+      });
+      //set cache size to be as big as we need
+      firebase.firestore(app).settings({
+        cacheSizeBytes: firebase.firestore.CACHE_SIZE_UNLIMITED
+      });
     }catch(error){
       console.log(error);
     }
     var db = firebase.firestore();
-    // Add a new document in collection "cities"
-    db.collection("cities").doc("LA").set({
-      name: "Los Angeles",
-      state: "CA",
-      country: "USA"
-    })
-    .then(function() {
-      console.log("Document successfully written!");
-    })
-    .catch(function(error) {
-      console.error("Error writing document: ", error);
-    });
-
-
     this.db = db;
 
     //return db;
@@ -110,14 +107,15 @@ export class fbdao{
 
   getList(){
     var list = [];
-    this.db.collection("Segments").get().then(function(querySnapshot) {
+    return this.db.collection("Segments").get().then(function(querySnapshot) {
       querySnapshot.forEach(function(doc) {
-        // doc.data() is never undefined for query doc snapshots
         console.log(doc.id, " => ", doc.data());
         list.push(doc.data());
       });
+    }).then(function(result){
+        return list;
     });
-    return list;
+
   };
 
   getElementBySegmentName(queryString){
@@ -127,12 +125,48 @@ export class fbdao{
       querySnapshot.forEach(function(doc) {
         toReturn.push(doc.data());
         console.log(doc.id, " => ", doc.data());
-        console.log(toReturn);
       });
     }).then(function(result) {
-      return toReturn;  
+      return toReturn;
     })
 
+  }
+
+  getElementID(queryString){
+    var toReturn = [];
+    return this.db.collection("Segments").where("SegmentDataObject.segmentName", "==", queryString)
+    .get().then(function(querySnapshot) {
+      querySnapshot.forEach(function(doc) {
+        toReturn.push(doc.id);
+        console.log(doc.id, " => ", doc.data());
+      });
+    }).then(function(result) {
+      return toReturn;
+    })
+  }
+
+  getElementById(docID){
+    var docRef = this.db.collection("Segments").doc(docID);
+    var docData = null;
+    return docRef.get().then(function(doc) {
+      if (doc.exists) {
+        console.log("Document data:", doc.data());
+        docData = doc.data();
+      } else {
+        // doc.data() will be undefined in this case
+        console.log("No such document!");
+      }
+    }).then(function(result) {
+      return docData;
+    });
+  }
+
+  deleteElement(docID){
+    return this.db.collection("Segments").doc(docID).delete().then(function() {
+      console.log("Document successfully deleted!");
+    }).catch(function(error) {
+      console.error("Error removing document: ", error);
+    });
   }
 
 };

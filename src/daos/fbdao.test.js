@@ -35,33 +35,41 @@ test('get added object', ()=>{
   })
 });
 
+test('getDocID', ()=>{
+  let myfbdao = new fbdao();
+  myfbdao.db.collection("Segments").doc("ID").set({
+    segmentName: "test3",
+    otherData: 9000
+  });
+  let element= myfbdao.getElementById("ID");
+  expect(element).toBeDefined();
 
-test("is logic broken",()=>{
-  var firebaseConfig = {
-    apiKey: "AIzaSyChkACWp5aGd0s3ovbD7sRMugbSaljjyZU",
-    authDomain: "bicycleboys.firebaseapp.com",
-    databaseURL: "https://bicycleboys.firebaseio.com",
-    projectId: "bicycleboys",
-    storageBucket: "bicycleboys.appspot.com",
-    messagingSenderId: "691023297022",
-    appId: "1:691023297022:web:91ea734781e0029e99a8af",
-    measurementId: "G-ZRQ1KHK7PL"
-  };
-
-  try{
-    var app = firebase.initializeApp(firebaseConfig);
-  }catch(error){
-    console.log(error);
-  }
-  var db = firebase.firestore();
-  // Add a new document in collection "cities"
-  return db.collection("cities").doc("LA").set({
-    name: "Los Angeles",
-    state: "CA",
-    country: "USA"
+  return element.then((element)=>{
+    console.log(element);
+    expect(element.segmentName).toEqual("test3");
+    expect(element.otherData).toEqual(9000);
   })
-  // .then(function() {
-  //   console.log("Document successfully written!");
-  //   expect(true).toBeFalsy();
-  // })
+
+})
+
+test('delete', ()=>{
+  let myfbdao = new fbdao();
+  myfbdao.db.collection("Segments").doc("ToBeDeleted").set({
+    segmentName: "test4",
+    otherData: 404
+  });
+  let element= myfbdao.getElementById("ToBeDeleted");
+  return element.then((element)=>{
+    expect(element).toBeDefined();
+  }).then((element)=>{
+    myfbdao.deleteElement("ToBeDeleted")
+  }).then((element)=>{
+    element= myfbdao.getElementById("ToBeDeleted");
+    expect(element).toEqual(expect.not.objectContaining({
+      segmentName: "test4",
+      otherData: 404
+    }))
+  })
+
+
 })
