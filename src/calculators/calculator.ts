@@ -33,7 +33,7 @@ interface SegmentDataObject{
     devided?: boolean;
     vm?: number;
     phv?: number;
-    sr?: any;
+    runningSpeed?: any;
     laneCount?: number;
     pc?:number;
     name: string

@@ -11,7 +11,7 @@ test("Excel Example", ()=>{
     wbl: 5.0,
     wos: 8.5,
     curb: true,
-    ppk: 0.5,
+    ppk: 50,
     pc: 4.0,
     phv: 4.0
   }
