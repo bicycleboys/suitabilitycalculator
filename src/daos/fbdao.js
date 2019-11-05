@@ -169,4 +169,13 @@ export class fbdao{
     });
   }
 
+  updateElement(docID, fieldToUpdate, updatedValue){
+    var obj = {};
+    obj[fieldToUpdate] = updatedValue;
+    console.log(obj);
+    return this.db.collection("Segments").doc(docID).update(obj).then(function() {
+      console.log("Document Updated");
+    })
+  }
+
 };

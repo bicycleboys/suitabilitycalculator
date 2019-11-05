@@ -4,24 +4,24 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 test("constructor",()=>{
-    expect(new fbdao());
+  expect(new fbdao());
 });
 
 test('construct and immediately add',()=>{
-    let toAdd = {
-        segmentName: "test"
-    };
-    let scoresArray = ["A", 0.0];
-    let myfbdao = new fbdao();
-    //console.log(myfbdao);
-    //console.log(myfbdao.db);
-    myfbdao.add(toAdd, scoresArray);
+  let toAdd = {
+    segmentName: "test"
+  };
+  let scoresArray = ["A", 0.0];
+  let myfbdao = new fbdao();
+  //console.log(myfbdao);
+  //console.log(myfbdao.db);
+  myfbdao.add(toAdd, scoresArray);
 })
 
 test('get added object', ()=>{
   let toAdd = {
-      segmentName: "test2",
-      otherData: 10
+    segmentName: "test2",
+    otherData: 10
   }
   let myfbdao = new fbdao();
   let scoresArray = ["F", 98.6];
@@ -70,6 +70,25 @@ test('delete', ()=>{
       otherData: 404
     }))
   })
+})
 
-
+test('update', () => {
+  let myfbdao = new fbdao();
+  myfbdao.db.collection("Segments").doc("ToBeUpdated").set({
+    segmentName: "test5",
+    otherData: 5
+  });
+  let element = myfbdao.getElementById("ToBeUpdated");
+  return element.then((element=>{
+    return expect(element).toBeDefined();
+  })).then((element)=>{
+    return myfbdao.updateElement("ToBeUpdated", "otherData", 55);
+  }).then((element)=>{
+    return element = myfbdao.getElementById("ToBeUpdated");
+  }).then((element)=>{
+    return expect(element).toEqual({
+      segmentName: "test5",
+      otherData: 55
+    })
+  })
 })
