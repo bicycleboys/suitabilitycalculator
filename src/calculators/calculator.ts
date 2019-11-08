@@ -5,7 +5,8 @@ interface SegmentGrade{
 }
 
 interface NotCalculated{
-    name: string
+    name: string;
+    because: string;
 }
 
 type CalculatorResponse = SegmentGrade|NotCalculated;
@@ -16,7 +17,7 @@ interface SegmentDataObject{
     fb?: any;
     waa?: number;
     totalLanes?: number;
-    centerlines?: boolean;
+    centerline?: boolean;
     adt?: number;
     lanesAdjacent?: any;
     lanesCombinedWidth?: number;

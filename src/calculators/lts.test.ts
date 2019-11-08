@@ -29,7 +29,11 @@ test('inadequate data1', () => {
     name: 'test',
     segmentType: "mixed traffic"
   }
-  expect(lts.calculate(obj)).toEqual({name:"LTS"});
+  const out = {
+    name:'LTS',
+    because: expect.anything()
+  }
+  expect(lts.calculate(obj)).toMatchObject(out);
 })
 
 
@@ -39,7 +43,11 @@ test('inadequate data2', () => {
     segmentType: "mixed traffic",
     totalLanes: 3
   }
-  expect(lts.calculate(obj)).toEqual({name:"LTS"});
+  const out = {
+    name:'LTS',
+    because: expect.anything()
+  }
+  expect(lts.calculate(obj)).toMatchObject(out);
 })
 
 test('PowerPoint example', () => {
@@ -65,12 +73,12 @@ test('mixed traffic 6 lane example',()=>{
 });
 
 test('mixed traffic 2 lane, 30mph example',()=>{
-  let obj={
+  let obj:SegmentDataObject={
     name: 'test',
     segmentType: 'mixed traffic',
     totalLanes: 2,
     speed: 30,
-    markedCenterlines: true,
+    centerline: false,
     adt: 2500
   }
   expect(lts.calculate(obj)).toEqual({points:2,grade:'B', name: "LTS" });

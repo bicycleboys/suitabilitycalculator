@@ -10,13 +10,11 @@
 export function calculate(obj:SegmentDataObject):CalculatorResponse {
   //we expect obj to have fields for calculation
   //in this case, that's segmentType, right turn lane, lanecount, laneadjacent, lanewidth/parking&lanewidth, speed, blockagefreqency, markedCenterLines, ADT
-  if (!('segmentType' in obj)) {
-    return {name: "LTS"}; //NotCalculated object
-  }
+  if(!(obj.hasOwnProperty("segmentType"))) return {name: "LTS", because: "segmentType"} //NotCalculated
 
-  var grade: string, points: number;
+  var grade: string, points: number|string;
 
-  if(!(obj.hasOwnProperty("segmentType"))) return {name: "LTS"}
+
   switch (obj.segmentType) { // TODO: Should really be enums or something
     case 'stand-alone':
     case 'segregated':
@@ -32,7 +30,8 @@ export function calculate(obj:SegmentDataObject):CalculatorResponse {
       throw Error("improper segment type: "+obj.segmentType);
   }
 
-  if (isNaN(points)) return {name:"LTS"}
+  if (typeof(points)=='number'&&isNaN(points)) return {name:"LTS", because: ""}
+  if (typeof points=='string') return {name:"LTS", because:points}
 
   switch (points) { //semi-arbitrarily defined letter grades to match style of other calculators
     case 1: grade = 'A'; break;
@@ -110,21 +109,21 @@ function bikeLaneCalculate(o:SegmentDataObject) {
 
 function mixedTrafficCalculate(o: SegmentDataObject) {
   let p: number;
-  if (!('totalLanes' in o)) return NaN;
+  if (!('totalLanes' in o)) return 'totalLanes';
   if (o.totalLanes >= 6) p = 4;
   else if (o.totalLanes > 3) {
-    if(!('speed' in o)) return NaN;
+    if(!('speed' in o)) return 'speed';
     if (o.speed >= 30) p = 4;
     else p = 3;
   } else {
-    if(!('speed' in o)) return NaN;
+    if(!('speed' in o)) return 'speed';
     if (o.speed >= 35) p = 4;
     else {
       if (o.speed == 30) p = 3;
       else if (o.speed <= 25) p = 2;
 
-      if(!('centerlines' in o&&'adt' in o)) return NaN;
-      if (!o.centerlines && (o.adt <= 3000)) {
+      if(!('centerline' in o&&'adt' in o)) return 'centerline or adt';
+      if (!o.centerline && (o.adt <= 3000)) {
         p -= 1;
       }
     }

@@ -1,5 +1,5 @@
 export function calculate(o:SegmentDataObject):CalculatorResponse {
-    if (!requireProperties(o,'adt','ppk','curb','wos','wol','devided', 'wbl', 'wos', 'runningSpeed','laneCount','phv','pc')) return {name: "BLOS"};
+    if (!requireProperties(o,'adt','ppk','curb','wos','wol','devided', 'wbl', 'wos', 'runningSpeed','laneCount','phv','pc')) return {name: "BLOS", because: ""};
     let wosstar; //$w_{os}^*$, adjusted width of shoulder
     let wt; //$W_{t}$, space available for bikes
     let wv;
