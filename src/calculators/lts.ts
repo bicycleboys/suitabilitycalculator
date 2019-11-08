@@ -10,26 +10,29 @@
 export function calculate(obj:SegmentDataObject):CalculatorResponse {
   //we expect obj to have fields for calculation
   //in this case, that's segmentType, right turn lane, lanecount, laneadjacent, lanewidth/parking&lanewidth, speed, blockagefreqency, markedCenterLines, ADT
-  if (!obj.hasOwnProperty('segmentType')) {
+  if (!('segmentType' in obj)) {
     return {name: "LTS"}; //NotCalculated object
   }
 
   var grade: string, points: number;
 
+  if(!(obj.hasOwnProperty("segmentType"))) return {name: "LTS"}
   switch (obj.segmentType) { // TODO: Should really be enums or something
     case 'stand-alone':
     case 'segregated':
       points = 1;
       break;
     case 'bike lane':
-      points = bikeLaneCalculate(obj);
+      points = bikeLaneCalculate(obj);      
       break;
     case 'mixed traffic':
       points = mixedTrafficCalculate(obj);
       break;
     default:
-      throw Error("improper segment type");
+      throw Error("improper segment type: "+obj.segmentType);
   }
+
+  if (isNaN(points)) return {name:"LTS"}
 
   switch (points) { //semi-arbitrarily defined letter grades to match style of other calculators
     case 1: grade = 'A'; break;
@@ -47,17 +50,21 @@ function bikeLaneCalculate(o:SegmentDataObject) {
   let widthLTS: number;
   let speedLTS: number;
   let blockageLTS: number;
+  if (!('lanesAdjacent' in o)) return NaN;
   if (o.lanesAdjacent) {
     {//Lanes LTS block
+      if(!('laneCount' in o)) return NaN;
       if (o.laneCount < 2) lanesLTS = 1;
       else lanesLTS = 3;
     }
     { //Width LTS block
+      if(!('lanesCombinedWidth' in o)) return NaN;
       if (o.lanesCombinedWidth >= 15) widthLTS = 1;
       else if (o.lanesCombinedWidth > 13.5) widthLTS = 2;
       else widthLTS = 3;
     }
     { //Speed LTS block
+      if(!('speed' in o)) return NaN;
       if (o.speed <= 25) speedLTS = 1;
       else if (o.speed < 35) speedLTS = 2;
       else if (o.speed < 40) speedLTS = 3;
@@ -65,17 +72,21 @@ function bikeLaneCalculate(o:SegmentDataObject) {
     }
   } else {
     { //Lanes LTS block
+      if(!('laneCount' in o)) return NaN;
       if (o.laneCount == 1) lanesLTS = 1;
       else if (o.laneCount == 2) {
+        if(!('median' in o)) return NaN;
         if (o.median) lanesLTS = 2;
         else lanesLTS = 3;
       } else lanesLTS = 3;
     }
     { //Width LTS block
+      if(!('laneWidth' in o)) return NaN;
       if (o.laneWidth >= 6) widthLTS = 1;
       else widthLTS = 2;
     }
     { //Speed LTS block
+      if(!('speed' in o)) return NaN;
       if (o.speed <= 30) speedLTS = 1;
       else if (o.speed < 40) speedLTS = 3;
       else speedLTS = 4;
@@ -99,16 +110,20 @@ function bikeLaneCalculate(o:SegmentDataObject) {
 
 function mixedTrafficCalculate(o: SegmentDataObject) {
   let p: number;
+  if (!('totalLanes' in o)) return NaN;
   if (o.totalLanes >= 6) p = 4;
   else if (o.totalLanes > 3) {
+    if(!('speed' in o)) return NaN;
     if (o.speed >= 30) p = 4;
     else p = 3;
   } else {
+    if(!('speed' in o)) return NaN;
     if (o.speed >= 35) p = 4;
     else {
       if (o.speed == 30) p = 3;
       else if (o.speed <= 25) p = 2;
 
+      if(!('centerlines' in o&&'adt' in o)) return NaN;
       if (!o.centerlines && (o.adt <= 3000)) {
         p -= 1;
       }

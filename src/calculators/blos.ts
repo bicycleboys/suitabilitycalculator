@@ -1,4 +1,5 @@
-export function calculate(o:SegmentDataObject):SegmentGrade {
+export function calculate(o:SegmentDataObject):CalculatorResponse {
+    if (!requireProperties(o,'adt','ppk','curb','wos','wol','devided', 'wbl', 'wos', 'runningSpeed','laneCount','phv','pc')) return {name: "BLOS"};
     let wosstar; //$w_{os}^*$, adjusted width of shoulder
     let wt; //$W_{t}$, space available for bikes
     let wv;
@@ -44,4 +45,12 @@ export function calculate(o:SegmentDataObject):SegmentGrade {
         grade="E"
     }else grade="F"
     return {points:blos, grade: grade, name: "BLOS"};
+}
+
+function requireProperties(o:Object,...properties:string[]){
+    properties.forEach(p => {
+        if (!(p in o))
+            return false;
+    });
+    return true;
 }

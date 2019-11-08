@@ -24,6 +24,24 @@ test('bad segment type', () => {
   expect(() => { lts.calculate(obj) }).toThrow();
 })
 
+test('inadequate data1', () => {
+  let obj = {
+    name: 'test',
+    segmentType: "mixed traffic"
+  }
+  expect(lts.calculate(obj)).toEqual({name:"LTS"});
+})
+
+
+test('inadequate data2', () => {
+  let obj = {
+    name: 'test',
+    segmentType: "mixed traffic",
+    totalLanes: 3
+  }
+  expect(lts.calculate(obj)).toEqual({name:"LTS"});
+})
+
 test('PowerPoint example', () => {
   let obj = {
     name: 'test',
