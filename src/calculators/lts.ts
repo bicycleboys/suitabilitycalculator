@@ -33,6 +33,20 @@ export function calculate(obj:SegmentDataObject):CalculatorResponse {
   if (typeof(points)=='number'&&isNaN(points)) return {name:"LTS", because: ""}
   if (typeof points=='string') return {name:"LTS", because:points}
 
+  if(obj.unsignalized){
+    const up = unsignalized(obj)
+    if(typeof up == 'string') return {name:"LTS", because: up}
+    else
+      points = Math.max(points,up)
+  }
+
+  if(obj.RLCount>0){
+    const rli = rightLaneInterfacing(obj)
+    if(typeof rli == 'string') return {name:"LTS", because: rli}
+    else
+      points = Math.max(points,rli)
+  }
+
   switch (points) { //semi-arbitrarily defined letter grades to match style of other calculators
     case 1: grade = 'A'; break;
     case 2: grade = 'B'; break;
@@ -49,21 +63,21 @@ function bikeLaneCalculate(o:SegmentDataObject) {
   let widthLTS: number;
   let speedLTS: number;
   let blockageLTS: number;
-  if (!('lanesAdjacent' in o)) return NaN;
+  if (!('lanesAdjacent' in o)) return 'lanesAdjacent';
   if (o.lanesAdjacent) {
     {//Lanes LTS block
-      if(!('laneCount' in o)) return NaN;
+      if(!('laneCount' in o)) return 'laneCount';
       if (o.laneCount < 2) lanesLTS = 1;
       else lanesLTS = 3;
     }
     { //Width LTS block
-      if(!('lanesCombinedWidth' in o)) return NaN;
+      if(!('lanesCombinedWidth' in o)) return 'lanesCombinedWidth';
       if (o.lanesCombinedWidth >= 15) widthLTS = 1;
       else if (o.lanesCombinedWidth > 13.5) widthLTS = 2;
       else widthLTS = 3;
     }
     { //Speed LTS block
-      if(!('speed' in o)) return NaN;
+      if(!('speed' in o)) return 'speed';
       if (o.speed <= 25) speedLTS = 1;
       else if (o.speed < 35) speedLTS = 2;
       else if (o.speed < 40) speedLTS = 3;
@@ -71,27 +85,28 @@ function bikeLaneCalculate(o:SegmentDataObject) {
     }
   } else {
     { //Lanes LTS block
-      if(!('laneCount' in o)) return NaN;
+      if(!('laneCount' in o)) return 'laneCount';
       if (o.laneCount == 1) lanesLTS = 1;
       else if (o.laneCount == 2) {
-        if(!('median' in o)) return NaN;
+        if(!('median' in o)) return 'median';
         if (o.median) lanesLTS = 2;
         else lanesLTS = 3;
       } else lanesLTS = 3;
     }
     { //Width LTS block
-      if(!('laneWidth' in o)) return NaN;
+      if(!('laneWidth' in o)) return 'laneWidth';
       if (o.laneWidth >= 6) widthLTS = 1;
       else widthLTS = 2;
     }
     { //Speed LTS block
-      if(!('speed' in o)) return NaN;
+      if(!('speed' in o)) return 'speed';
       if (o.speed <= 30) speedLTS = 1;
       else if (o.speed < 40) speedLTS = 3;
       else speedLTS = 4;
     }
   }
 
+  if(!('blockage' in o)) return 'blockage';
   switch(o.blockage){
     case 'rarely':
       blockageLTS = 1;
@@ -129,4 +144,51 @@ function mixedTrafficCalculate(o: SegmentDataObject) {
     }
   }
   return p;
+}
+
+function rightLaneInterfacing(o:SegmentDataObject):number|string{
+  if(!('RLCount' in o)) return 'RLCount';
+  if(!('laneShift' in o)) return 'laneShift';
+  if(!('turningSpeed' in o)) return 'turningSpeed';
+  if(!('RLLength' in o)) return 'RLLength';
+  if(o.RLCount>1) return 4;
+  if(o.laneShift && o.turningSpeed<=15) return 3
+  if(!o.laneShift){
+    if (o.turningSpeed<=15 && o.RLLength<=150) return 2
+    else if (o.turningSpeed<=20) return 3
+  }
+  return 4
+}
+
+function unsignalized(o:SegmentDataObject):number|string{
+  if(!('island' in o)) return 'island';
+  if(!('xStreetWidth' in o)) return 'xStreetWidth';
+  if(!('speed' in o)) return 'speed';
+  if(o.island){
+    if(o.xStreetWidth>=6) return 4
+    else if (o.xStreetWidth>3){
+      if(o.speed>=40) return 4
+      else if (o.speed>=35) return 3
+      else return 2
+    }else{
+      if(o.speed>=40) return 3
+      else if (o.speed>=35) return 2
+      else return 1
+    }
+  }else{
+    if(o.xStreetWidth>=6) {
+      if (o.speed>=35) return 4
+      else if (o.speed>=30) return 3
+      else return 2
+    }else if (o.xStreetWidth>3){
+      if(o.speed>=40) return 4
+      else if (o.speed>=35) return 3
+      else if (o.speed>=30) return 2
+      else return 1
+    }else{
+      if(o.speed>=40) return 3
+      else if (o.speed>=35) return 2
+      else return 1
+    }
+  }
 }

@@ -37,6 +37,14 @@ interface SegmentDataObject{
     runningSpeed?: any;
     laneCount?: number;
     pc?:number;
+    island?: boolean;
+    unsignalized?: boolean;
+    xStreetWidth?: number;
+    squeezed?: boolean; //If cyclists are between driving lane and right turn lane at intersection approach
+    turningSpeed?: number;
+    RLCount?: number; //count of right turn lanes
+    laneShift?: string;
+    RLLength?:number;
     name: string
 }
 

@@ -83,3 +83,39 @@ test('mixed traffic 2 lane, 30mph example',()=>{
   }
   expect(lts.calculate(obj)).toEqual({points:2,grade:'B', name: "LTS" });
 })
+
+test('unsignalized crossing good',()=>{
+  let obj:SegmentDataObject={
+    name: 'test',
+    segmentType: 'bike lane',
+    laneCount:1,
+    xStreetWidth: 3,
+    laneWidth: 6,
+    lanesAdjacent:false,
+    speed: 30,
+    centerline: false,
+    adt: 2500,
+    unsignalized: true,
+    blockage: 'rarely',
+    island: true
+  }
+  expect(lts.calculate(obj)).toEqual({points:1,grade:'A', name: "LTS" });
+})
+
+test('unsignalized crossing bad',()=>{
+  let obj:SegmentDataObject={
+    name: 'test',
+    segmentType: 'bike lane',
+    laneCount:1,
+    xStreetWidth: 4,
+    laneWidth: 6,
+    lanesAdjacent:false,
+    speed: 30,
+    centerline: false,
+    adt: 2500,
+    unsignalized: true,
+    blockage: 'rarely',
+    island: false
+  }
+  expect(lts.calculate(obj)).toEqual({points:2,grade:'B', name: "LTS" });
+})

@@ -125,11 +125,57 @@
 
 
     <h5>Intersection Stuff</h5>
-    <p style="color: red;">
-      some stuff about unsignalized crossings that I don't fully understand, uses lanes and speed limit
+      <p>Is there a crossing island?</p>
+      <div>
+        <input type="radio" id="islandYes"
+              name="island" value="true">
+        <label for="islandYes">Yes</label>
+        <input type="radio" id="islandNo"
+              name="island" value="false">
+        <label for="islandNo">No</label>
+      </div>
+      </br>
+      <p>Do the bike facilities have to interface with an unsignalized crossing?</p>
+      <div>
+        <input type="radio" id="unsignalizedYes"
+              name="unsignalized" value="true">
+        <label for="unsignalizedYes">Yes</label>
+        <input type="radio" id="unsignalizedNo"
+              name="unsignalized" value="false">
+        <label for="unsignalizedNo">No</label>
+      </div>
+      </br>
+      <label for="xStreetWidth">Count of vehicle lanes in cross-street:
+        <input type="number"  name="xStreetWidth" value=" " /></label>
       <br />
-      right turn lane/bike lane interfacing at intersection approach</p>
-    <br />
+      
+      right turn lane/bike lane interfacing at intersection approach
+      <p>Is the bike lane between the traffic lane and the right turn lane or a marked lane within the right turn lane?</p>
+      <div>
+        <input type="radio" id="squeezedYes"
+              name="squeezed" value="true">
+        <label for="squeezedYes">Yes</label>
+        <input type="radio" id="squeezedNo"
+              name="squeezed" value="false">
+        <label for="squeezedNo">No</label>
+      </div>
+      </br>
+      <label for="turningSpeed">Speed of vehicles turning right from cyclist's direction of travel:
+        <input type="number"  name="turningSpeed" value=" " /></label>
+      <br/>
+      <label for="RLCount">How many right turn lanes are there?
+        <input type="number"  name="RLCount" value=" " /></label>
+      <br/>
+      <label for="RLLength">How long is the longest right turn lane (in feet)?
+        <input type="number"  name="RLLength" value=" " /></label>
+      <br/>
+      <label for="laneShift">Does the bike lane shift left or continue straight as the right lane appears?
+        <select name="laneShift" id="laneShift">
+          <option value="left">Shifts left</option>
+          <option value="abrupt">Continues straight</option>
+        </select></label>
+      <br/>
+
 
     <input id="submit" type="button" value="Calculate" />
   </form>
