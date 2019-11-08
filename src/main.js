@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    submit.addEventListener("click", (event) => {
+    submit.onclick = (event) => {
         doCalculate()
-    });
+    };
 })
