@@ -16,15 +16,15 @@ describe('test basic idb methods', () => {
         myIDBDao.add(toAdd, []);
     })
 
-    test('get after adding', () => {
+    test('get after adding', async () => {
         let toAdd = {
             name: "test2",
             otherData: 10
         }
         let myIDBDao = new IDBDao();
         let key = myIDBDao.add(toAdd, []);
-        myIDBDao.getInfo("test2").then(response =>
-            expect(response).toEqual({ name: "test2", otherData: 10 })).catch(e=>console.log("darn"));
+        const e = await key;
+        myIDBDao.getInfo(e).then(response => expect(response['data']).toEqual({ name: "test2", otherData: 10 }));
     })
 
     test('add 5 fast', () => {

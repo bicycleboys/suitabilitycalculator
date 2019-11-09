@@ -1,11 +1,14 @@
 import {openDB, DBSchema, IDBPDatabase} from 'idb'
+import { numberLiteralTypeAnnotation } from '@babel/types';
 
 interface MyDB extends DBSchema {
     'segments': {
       key: number;
       value: {
+          key?: number;
           data: SegmentDataObject;
           scores: CalculatorResponse[];
+          lastModified: Date;
       };
     };
   }
@@ -25,7 +28,9 @@ export class IDBDao implements Dao{
             upgrade(db,oldVersion,newVersion,transaction){
                 if(oldVersion==2&&newVersion==3){
                     db.clear("segments").then(()=>
-                    db.createObjectStore("segments",{autoIncrement: true}))
+                    db.createObjectStore("segments",{autoIncrement: true, keyPath: 'key'}))
+                }else{
+                    db.createObjectStore("segments",{autoIncrement: true, keyPath: 'key'})
                 }
             },
             blocked(){
@@ -36,23 +41,23 @@ export class IDBDao implements Dao{
     }
 
     async add(data: SegmentDataObject, scores: CalculatorResponse[]): Promise<any> {
-        return (await this.dbPromise.then(d=>d.put("segments",{data,scores})))
+        let dt: Date = new Date();
+        return (await this.dbPromise.then(d=>d.put("segments",{data,scores, lastModified:dt})))
     }
 
     async getList(){
-        return (await this.dbPromise).getAll("segments");
+        return (await this.dbPromise).getAll("segments") as unknown as Promise<{key:any, data:SegmentDataObject, scores:CalculatorResponse[], lastModified: Date}[]>;
     }
 
     async getInfo(key:any){
         try{
-            let res = (await this.dbPromise).get("segments",key);
-            res.then(e=>((e as any)['key']=key));
+            return (await this.dbPromise).get("segments",key) as unknown as Promise<{key:any, data:SegmentDataObject, scores:CalculatorResponse[], lastModified:Date}>;
         }catch(error){
             throw Error("Invalid Key")
         }
     }
 
     remove(key: any): void {
-        throw new Error("Method not implemented.");
+        this.dbPromise.then(e=>e.delete("segments",key))
     }
 }
