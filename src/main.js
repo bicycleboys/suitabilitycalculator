@@ -20,7 +20,7 @@ function doCalculate() {
 }
 /**
  * Displays the data passed in
- * @param SegmentGrade data 
+ * @param SegmentGrade data
  */
 function display(data){
     //data should have a grade which is a letter and a percentage/point score

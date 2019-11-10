@@ -1,13 +1,16 @@
-@import "@material/checkbox/mdc-checkbox"; // Required only for data table with row selection.
-@import "@material/data-table/mdc-data-table";
-@import "@material/dialog/mdc-dialog";
-@import "@material/button/mdc-button";
-@import "@material/textfield/mdc-text-field";
 
 body {
   background-color: lightblue;
 }
 
-label{
+label, p{
   color: blue;
 }
+
+
+
+@import "@material/checkbox/mdc-checkbox"; // Required only for data table with row selection.
+@import "@material/data-table/mdc-data-table";
+@import "@material/dialog/mdc-dialog";
+@import "@material/button/mdc-button";
+@import "@material/textfield/mdc-text-field";

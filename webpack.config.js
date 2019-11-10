@@ -8,22 +8,30 @@ module.exports = {
     main: './src/main.js'
   },
   module: {
-    
+
     rules: [
       {
-        test:/\.css$/,
-        use:['style-loader','css-loader']
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              importLoaders: 1,
+              modules: true
+            }
+          }
+        ]
       },
       {
         test: /\.tsx?$/,
         use: 'ts-loader',
         exclude: /node_modules/,
       },
-
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
+    extensions: ['.tsx', '.ts', '.js', '.css'],
   },
   output: {
     filename: 'main.js',
@@ -43,7 +51,7 @@ module.exports = {
       chunks: 'main',
       template: './src/form.html',
       filename: 'form.html'
-    })
+    }),
     //If you add new pages to src, also add them here
   ]
 };
