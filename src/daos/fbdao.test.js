@@ -4,7 +4,9 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 test("constructor",()=>{
-  expect(new fbdao());
+  let myfbdao = new fbdao();
+  expect(myfbdao);
+  myfbdao.closeConnection();
 });
 
 test('construct and immediately add',()=>{
@@ -16,6 +18,7 @@ test('construct and immediately add',()=>{
   //console.log(myfbdao);
   //console.log(myfbdao.db);
   myfbdao.add(toAdd, scoresArray);
+  myfbdao.closeConnection();
 })
 
 test('get added object', ()=>{
@@ -32,6 +35,7 @@ test('get added object', ()=>{
   return element.then((array)=>{
     expect(array[0].SegmentDataObject).toEqual({segmentName:"test2", otherData:10})
     expect(array[0].Scores).toEqual(["F", 98.6])
+    myfbdao.closeConnection();
   })
 });
 
@@ -48,6 +52,7 @@ test('getDocID', ()=>{
     console.log(element);
     expect(element.segmentName).toEqual("test3");
     expect(element.otherData).toEqual(9000);
+    myfbdao.closeConnection();
   })
 
 })
@@ -69,6 +74,7 @@ test('delete', ()=>{
       segmentName: "test4",
       otherData: 404
     }))
+    myfbdao.closeConnection();
   })
 })
 
@@ -86,6 +92,7 @@ test('update', () => {
   }).then((element)=>{
     return element = myfbdao.getElementById("ToBeUpdated");
   }).then((element)=>{
+    myfbdao.closeConnection();
     return expect(element).toEqual({
       segmentName: "test5",
       otherData: 55

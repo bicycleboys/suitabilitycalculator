@@ -126,4 +126,8 @@ export class fbdao{
     })
   }
 
+  closeConnection(){
+    //todo?
+  }
+
 };
