@@ -34,11 +34,13 @@
   "homepage": "https://github.com/bicycleboys/suitabilitycalculator#readme",
   "dependencies": {
     "babel-jest": "^24.9.0",
+    "firebase": "^7.3.0",
     "idb": "^4.0.5"
   },
   "jest": {
     "transform": {
-      "^.+\\.tsx?$": "ts-jest"
+      "^.+\\.tsx?$": "ts-jest",
+      "^.+\\.js$": "babel-jest"
     }
   }
 }
