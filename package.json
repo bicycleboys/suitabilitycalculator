@@ -6,15 +6,21 @@
   "main": "main.js",
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.6.0",
+    "@types/jest": "^24.0.21",
     "html-webpack-plugin": "^3.2.0",
     "jest": "^24.9.0",
+    "ts-jest": "^24.1.0",
+    "ts-loader": "^6.2.1",
+    "typescript": "^3.6.4",
     "webpack": "^4.41.2",
-    "webpack-cli": "^3.3.9"
+    "webpack-cli": "^3.3.9",
+    "webpack-dev-server": "^3.9.0"
   },
   "scripts": {
     "test": "jest",
     "build": "webpack --mode=development",
-    "build:production": "webpack --mode=production"
+    "build:production": "webpack --mode=production",
+    "serve": "webpack-dev-server"
   },
   "repository": {
     "type": "git",
@@ -28,5 +34,10 @@
   "homepage": "https://github.com/bicycleboys/suitabilitycalculator#readme",
   "dependencies": {
     "idb": "^4.0.5"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.tsx?$": "ts-jest"
+    }
   }
 }
