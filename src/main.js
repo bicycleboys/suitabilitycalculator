@@ -8,7 +8,7 @@ import * as plos from './calculators/plos'
 function doCalculate() {
     if(form.reportValidity()){
         var infoObject = gatherData(form);
-        resetForm();
+        //resetForm();
         var ltsData = lts.calculate(infoObject);
         var plosData = plos.calculate(infoObject);
         var blosData = blos.calculate(infoObject);
@@ -50,6 +50,8 @@ function gatherData(form){
     for( let element of elements ) {
         var name = element.name;
         var value = element.value;
+        if(value=="false") value=false;
+        if(value=="true") value=true;
         if( name ) {
             obj[ name ] = value;
         }
@@ -118,7 +120,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    submit.addEventListener("click", (event) => {
+    submit.onclick = (event) => {
         doCalculate()
-    });
+    };
 })
