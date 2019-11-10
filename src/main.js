@@ -1,6 +1,10 @@
 import * as lts from './calculators/lts'
 import * as blos from './calculators/blos'
 import * as plos from './calculators/plos'
+import {IDBDao} from './daos/idbdao';
+
+var myDao;
+
 
 /***
  * Checks form valididty and runs calculations
@@ -33,7 +37,8 @@ function display(data){
 }
 
 function doSave(infoObject, ...calculatedData){
-    //TODO implement saving
+    infoObject.pointsData = calculatedData;
+    myDao.add(infoObject);
 }
 
 
@@ -74,6 +79,10 @@ function resetForm(){
  * Runs once DOM has loaded
  */
 document.addEventListener('DOMContentLoaded', function () {
+    myDao = new IDBDao();
+
+    //console.log(myDao);
+    //myDao.add({segmentName: "test"});
     var type = document.getElementById("type");
     var blockage = document.getElementById("blockage");
     var submit = document.getElementById("submit");
