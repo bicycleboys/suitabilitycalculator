@@ -44,6 +44,10 @@
     "transform": {
       "^.+\\.tsx?$": "ts-jest",
       "^.+\\.js$": "babel-jest"
-    }
+    },
+    "setupFiles": [
+      "fake-indexeddb/auto"
+    ]
   }
+
 }
