@@ -1,16 +1,16 @@
 
-body {
-  background-color: lightblue;
+@import "../node_modules/@material/checkbox/dist/mdc.checkbox.css";
+@import "../node_modules/@material/data-table/dist/mdc.data-table.css";
+@import "../node_modules/@material/dialog/dist/mdc.dialog.css";
+@import "../node_modules/@material/button/dist/mdc.button.css";
+@import "../node_modules/@material/textfield/dist/mdc.textfield.css";
+@import "../node_modules/@material/form-field/dist/mdc.form-field.css";
+@import "../node_modules/@material/radio/dist/mdc.radio.css";
+@import "../node_modules/@material/select/dist/mdc.select.css";
+@import "../node_modules/@material/list/dist/mdc.list.css";
+@import "../node_modules/@material/menu-surface/dist/mdc.menu-surface.css";
+@import "../node_modules/@material/menu/dist/mdc.menu.css";
+
+.demo-width-class {
+  width: 400px;
 }
-
-label, p{
-  color: blue;
-}
-
-
-
-@import "@material/checkbox/mdc-checkbox"; // Required only for data table with row selection.
-@import "@material/data-table/mdc-data-table";
-@import "@material/dialog/mdc-dialog";
-@import "@material/button/mdc-button";
-@import "@material/textfield/mdc-text-field";

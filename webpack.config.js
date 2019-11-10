@@ -14,13 +14,7 @@ module.exports = {
         test: /\.css$/,
         use: [
           'style-loader',
-          {
-            loader: 'css-loader',
-            options: {
-              importLoaders: 1,
-              modules: true
-            }
-          }
+          'css-loader'
         ]
       },
       {
@@ -31,7 +25,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js', '.css'],
+    extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
     filename: 'main.js',

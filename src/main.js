@@ -1,6 +1,7 @@
 import * as lts from './calculators/lts'
 import * as blos from './calculators/blos'
 import * as plos from './calculators/plos'
+import "./styles.css";
 
 /***
  * Checks form valididty and runs calculations
