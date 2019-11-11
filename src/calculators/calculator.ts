@@ -5,7 +5,8 @@ interface SegmentGrade{
 }
 
 interface NotCalculated{
-    name: string
+    name: string;
+    because: string;
 }
 
 type CalculatorResponse = SegmentGrade|NotCalculated;
@@ -16,7 +17,7 @@ interface SegmentDataObject{
     fb?: any;
     waa?: number;
     totalLanes?: number;
-    centerlines?: boolean;
+    centerline?: boolean;
     adt?: number;
     lanesAdjacent?: any;
     lanesCombinedWidth?: number;
@@ -33,9 +34,17 @@ interface SegmentDataObject{
     devided?: boolean;
     vm?: number;
     phv?: number;
-    sr?: any;
+    runningSpeed?: any;
     laneCount?: number;
     pc?:number;
+    island?: boolean;
+    unsignalized?: boolean;
+    xStreetWidth?: number;
+    squeezed?: boolean; //If cyclists are between driving lane and right turn lane at intersection approach
+    turningSpeed?: number;
+    RLCount?: number; //count of right turn lanes
+    laneShift?: string;
+    RLLength?:number;
     name: string
 }
 

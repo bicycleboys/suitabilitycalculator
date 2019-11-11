@@ -24,6 +24,32 @@ test('bad segment type', () => {
   expect(() => { lts.calculate(obj) }).toThrow();
 })
 
+test('inadequate data1', () => {
+  let obj = {
+    name: 'test',
+    segmentType: "mixed traffic"
+  }
+  const out = {
+    name:'LTS',
+    because: expect.anything()
+  }
+  expect(lts.calculate(obj)).toMatchObject(out);
+})
+
+
+test('inadequate data2', () => {
+  let obj = {
+    name: 'test',
+    segmentType: "mixed traffic",
+    totalLanes: 3
+  }
+  const out = {
+    name:'LTS',
+    because: expect.anything()
+  }
+  expect(lts.calculate(obj)).toMatchObject(out);
+})
+
 test('PowerPoint example', () => {
   let obj = {
     name: 'test',
@@ -47,13 +73,49 @@ test('mixed traffic 6 lane example',()=>{
 });
 
 test('mixed traffic 2 lane, 30mph example',()=>{
-  let obj={
+  let obj:SegmentDataObject={
     name: 'test',
     segmentType: 'mixed traffic',
     totalLanes: 2,
     speed: 30,
-    markedCenterlines: true,
+    centerline: false,
     adt: 2500
+  }
+  expect(lts.calculate(obj)).toEqual({points:2,grade:'B', name: "LTS" });
+})
+
+test('unsignalized crossing good',()=>{
+  let obj:SegmentDataObject={
+    name: 'test',
+    segmentType: 'bike lane',
+    laneCount:1,
+    xStreetWidth: 3,
+    laneWidth: 6,
+    lanesAdjacent:false,
+    speed: 30,
+    centerline: false,
+    adt: 2500,
+    unsignalized: true,
+    blockage: 'rarely',
+    island: true
+  }
+  expect(lts.calculate(obj)).toEqual({points:1,grade:'A', name: "LTS" });
+})
+
+test('unsignalized crossing bad',()=>{
+  let obj:SegmentDataObject={
+    name: 'test',
+    segmentType: 'bike lane',
+    laneCount:1,
+    xStreetWidth: 4,
+    laneWidth: 6,
+    lanesAdjacent:false,
+    speed: 30,
+    centerline: false,
+    adt: 2500,
+    unsignalized: true,
+    blockage: 'rarely',
+    island: false
   }
   expect(lts.calculate(obj)).toEqual({points:2,grade:'B', name: "LTS" });
 })
