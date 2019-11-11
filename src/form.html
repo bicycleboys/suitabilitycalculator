@@ -111,15 +111,15 @@ color: blue;
 <div class="mdc-form-field">
   <label for="lanesAdjacent">Bike lane beetween on-street parking and driving lane:</label>
   <div class="mdc-checkbox">
-      <input type="checkbox" class="mdc-checkbox__native-control" name="lanesAdjacent" /> <!--class="if-bike-lane"-->
-      <div class="mdc-checkbox__background">
-        <svg class="mdc-checkbox__checkmark"
-        viewBox="0 0 24 24">
-        <path class="mdc-checkbox__checkmark-path"
-        fill="none"
-        d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-      </svg>
-      <div class="mdc-checkbox__mixedmark"></div>
+    <input type="checkbox" class="mdc-checkbox__native-control" name="lanesAdjacent" /> <!--class="if-bike-lane"-->
+    <div class="mdc-checkbox__background">
+      <svg class="mdc-checkbox__checkmark"
+      viewBox="0 0 24 24">
+      <path class="mdc-checkbox__checkmark-path"
+      fill="none"
+      d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+    </svg>
+    <div class="mdc-checkbox__mixedmark"></div>
   </div>
 </div>
 </div>
@@ -162,24 +162,50 @@ color: blue;
 </br>
 </br>
 <p>Is there a median between directions of travel (eg. a boulevard)</p> <!--(required if bike lane is not adjacent to parking)-->
-<div>
-  <input type="radio" id="medianYes"
-  name="median" value="true">
-  <label for="medianYes">Yes</label>
-  <input type="radio" id="medianNo"
-  name="median" value="false">
-  <label for="medianNo">No</label>
+<div class="mdc-form-field">
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="medianYes"
+    name="median" value="true">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="medianYes">Yes</label>
+  </div>
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="medianNo"
+    name="median" value="false">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="medianNo">No</label>
+  </div>
 </div>
+
 </br>
 </br>
 <p>Is there a marked centerline?</p> <!--if-mixed-traffic-->
-<div>
-  <input type="radio" id="centerlineYes"
-  name="centerline" value="true">
-  <label for="centerlineYes">Yes</label>
-  <input type="radio" id="centerlineNo"
-  name="centerline" value="false">
-  <label for="centerlineNo">No</label>
+<div class="mdc-form-field">
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="centerlineYes"
+    name="centerline" value="true">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="centerlineYes">Yes</label>
+  </div>
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="centerlineNo"
+    name="centerline" value="false">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="centerlineNo">No</label>
+  </div>
+</div>
 </div>
 </br>
 </br>
@@ -203,24 +229,48 @@ color: blue;
 <h5>Intersection Stuff</h5>
 </br>
 <p>Is there a crossing island?</p>
-<div>
-  <input type="radio" id="islandYes"
-  name="island" value="true">
-  <label for="islandYes">Yes</label>
-  <input type="radio" id="islandNo"
-  name="island" value="false">
-  <label for="islandNo">No</label>
+<div class="mdc-form-field">
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="islandYes"
+    name="island" value="true">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="islandYes">Yes</label>
+  </div>
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="islandNo"
+    name="island" value="false">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="islandNo">No</label>
+  </div>
 </div>
 </br>
 </br>
 <p>Do the bike facilities have to interface with an unsignalized crossing?</p>
-<div>
-  <input type="radio" id="unsignalizedYes"
-  name="unsignalized" value="true">
-  <label for="unsignalizedYes">Yes</label>
-  <input type="radio" id="unsignalizedNo"
-  name="unsignalized" value="false">
-  <label for="unsignalizedNo">No</label>
+<div class="mdc-form-field">
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="unsignalizedYes"
+    name="unsignalized" value="true">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="unsignalizedYes">Yes</label>
+  </div>
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="unsignalizedNo"
+    name="unsignalized" value="false">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="unsignalizedNo">No</label>
+  </div>
 </div>
 </br>
 </br>
@@ -231,13 +281,25 @@ color: blue;
 
 <h5>right turn lane/bike lane interfacing at intersection approach </h5>
 <p>Is the bike lane between the traffic lane and the right turn lane or a marked lane within the right turn lane?</p>
-<div>
-  <input type="radio" id="squeezedYes"
-  name="squeezed" value="true">
-  <label for="squeezedYes">Yes</label>
-  <input type="radio" id="squeezedNo"
-  name="squeezed" value="false">
-  <label for="squeezedNo">No</label>
+<div class="mdc-form-field">
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="squeezedYes"
+    name="squeezed" value="true">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="squeezedYes">Yes</label>
+  </div>
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="squeezedNo"
+    name="squeezed" value="false">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="squeezedNo">No</label>
+  </div>
 </div>
 </br>
 </br>
