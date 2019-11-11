@@ -99,3 +99,8 @@ test('update', () => {
     })
   })
 })
+
+afterAll(()=>{
+  let myfbdao = new fbdao();
+  myfbdao.closeConnection();
+})
