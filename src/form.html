@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <title>Bike Suitability Calculator</title>
   <script type="module" src="main.js"></script>
-
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <!--<style>
 
   body {
@@ -20,10 +20,21 @@ color: blue;
 </style>-->
 <link ref="stylesheet" type='text/css' href="styles.css">
 </head>
-
+<header class="mdc-top-app-bar">
+  <div class="mdc-top-app-bar__row">
+    <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+      <!--<button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>-->
+      <span class="mdc-top-app-bar__title">Bike Suitability Calculator</span>
+    </section>
+  </div>
+</header>
 <body>
+
   <form id="form">
   </br>
+</br>
+</br>
+</br>
   <label for="segmentName">Segment name:
     <input type="text" class="mdc-text-field__input" name="segmentName" size="35" placeholder="eg. Humboldt: Locust-Chambers" required /></label>
   </br>
@@ -108,11 +119,32 @@ color: blue;
   </select></label>
 </br>
 </br>
+<label for="lanesAdjacent">Bike lane beetween on-street parking and driving lane:</label>
 <div class="mdc-form-field">
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="lanesAdjacentYes"
+    name="curb" value="true">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="curbYes">Yes</label>
+  </div>
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="lanesAdjacentNo"
+    name="curb" value="false">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="curbNo">No</label>
+  </div>
+</div>
+<!--<div class="mdc-form-field">
   <label for="lanesAdjacent">Bike lane beetween on-street parking and driving lane:</label>
   <div class="mdc-checkbox">
     <input type="checkbox" class="mdc-checkbox__native-control" name="lanesAdjacent" /> <!--class="if-bike-lane"-->
-    <div class="mdc-checkbox__background">
+<!--    <div class="mdc-checkbox__background">
       <svg class="mdc-checkbox__checkmark"
       viewBox="0 0 24 24">
       <path class="mdc-checkbox__checkmark-path"
@@ -123,6 +155,7 @@ color: blue;
   </div>
 </div>
 </div>
+-->
 </br>
 </br>
 <label for="wbl">Width of bike lane in feet:

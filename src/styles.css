@@ -10,7 +10,15 @@
 @import "../node_modules/@material/list/dist/mdc.list.css";
 @import "../node_modules/@material/menu-surface/dist/mdc.menu-surface.css";
 @import "../node_modules/@material/menu/dist/mdc.menu.css";
+@import "../node_modules/@material/top-app-bar/dist/mdc.top-app-bar.css";
+@import "../node_modules/@material/icon-button/dist/mdc.icon-button.css";
+
+
 
 .demo-width-class {
   width: 400px;
+}
+
+body{
+    background-color: lightgrey;
 }

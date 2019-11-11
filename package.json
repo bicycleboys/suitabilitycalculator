@@ -17,6 +17,7 @@
     "@material/radio": "^4.0.0",
     "@material/select": "^4.0.0",
     "@material/textfield": "^4.0.0",
+    "@material/top-app-bar": "^4.0.0",
     "@types/jest": "^24.0.21",
     "css-loader": "^3.2.0",
     "fibers": "^4.0.2",
