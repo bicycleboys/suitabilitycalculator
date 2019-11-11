@@ -127,7 +127,7 @@ export class fbdao{
   }
 
   closeConnection(){
-    //todo?
+    this.db.terminate();
   }
 
 };
