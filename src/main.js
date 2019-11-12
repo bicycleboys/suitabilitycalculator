@@ -72,7 +72,6 @@ function gatherData(form){
             obj[ name ] = value;
         }
     }
-  }
 
   obj.lanesCombinedWidth = obj.adjacent? obj.width:NaN;
   obj.laneWidth = obj.adjacent?NaN:obj.width;
