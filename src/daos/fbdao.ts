@@ -2,7 +2,10 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-export class fbdao{
+
+export class FBDao implements Dao{
+
+  db: firebase.firestore.Firestore;
 
   constructor() {
     var firebaseConfig = {
@@ -18,7 +21,7 @@ export class fbdao{
 
     try{
       var app = firebase.initializeApp(firebaseConfig);
-      firebase.firestore(app).enablePersistence().catch(function(err) {
+      firebase.firestore(app).enablePersistence().catch(function(err: any) {
         if (err.code == 'failed-precondition') {
           console.log("failed precondition");
         } else if (err.code == 'unimplemented') {
@@ -34,69 +37,67 @@ export class fbdao{
     }
     var db = firebase.firestore();
     this.db = db;
-
-    //return db;
   }
 
-  add(SegmentDataObject, scoresArray){
+  add(SegmentDataObject:SegmentDataObject, scoresArray:CalculatorResponse[]){
     this.db.collection("Segments").add({
       SegmentDataObject: SegmentDataObject,
       Scores: scoresArray,
       Timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       //do we want to pull all of the info out of the SegmentDataObject? or just store it
     })
-    .then(function(docRef) {
+    .then(function(docRef:any) {
       console.log("Document written with ID: ", docRef.id);
     })
-    .catch(function(error) {
+    .catch(function(error:any) {
       console.error("Error adding document: ", error);
     });
   };
 
   getList(){
-    var list = [];
-    return this.db.collection("Segments").get().then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc) {
+    var list:any[] = [];
+    return this.db.collection("Segments").get().then(function(querySnapshot:any) {
+      querySnapshot.forEach(function(doc:any) {
         console.log(doc.id, " => ", doc.data());
         list.push(doc.data());
       });
-    }).then(function(result){
+    }).then(function(result:any){
         return list;
     });
 
   };
 
-  getElementBySegmentName(queryString){
-    var toReturn = [];
+  getElementBySegmentName(queryString:string){
+    var toReturn:any[] = [];
     return this.db.collection("Segments").where("SegmentDataObject.segmentName", "==", queryString)
-    .get().then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc) {
+    .get().then(function(querySnapshot:any) {
+      querySnapshot.forEach(function(doc:any) {
         toReturn.push(doc.data());
         console.log(doc.id, " => ", doc.data());
       });
-    }).then(function(result) {
+    }).then(function(result:any) {
       return toReturn;
     })
 
   }
 
-  getElementID(queryString){
-    var toReturn = [];
+  getElementID(queryString:string){
+    var toReturn:any[] = [];
     return this.db.collection("Segments").where("SegmentDataObject.segmentName", "==", queryString)
-    .get().then(function(querySnapshot) {
-      querySnapshot.forEach(function(doc) {
+    .get().then(function(querySnapshot:any) {
+      querySnapshot.forEach(function(doc:any) {
         toReturn.push(doc.id);
         console.log(doc.id, " => ", doc.data());
       });
-    }).then(function(result) {
+    }).then(function() {
       return toReturn;
     })
   }
 
-  getElementById(docID){
+  getElementById(docID:any){
     var docRef = this.db.collection("Segments").doc(docID);
-    var docData = null;
-    return docRef.get().then(function(doc) {
+    var docData: { key: any; data: SegmentDataObject; scores: CalculatorResponse[];} = null;
+    return docRef.get().then(function(doc:any) {
       if (doc.exists) {
         console.log("Document data:", doc.data());
         docData = doc.data();
@@ -104,21 +105,21 @@ export class fbdao{
         // doc.data() will be undefined in this case
         console.log("No such document!");
       }
-    }).then(function(result) {
+    }).then(function(result:any) {
       return docData;
     });
   }
 
-  deleteElement(docID){
+  deleteElement(docID:any){
     return this.db.collection("Segments").doc(docID).delete().then(function() {
       console.log("Document successfully deleted!");
-    }).catch(function(error) {
+    }).catch(function(error:any) {
       console.error("Error removing document: ", error);
     });
   }
 
-  updateElement(docID, fieldToUpdate, updatedValue){
-    var obj = {};
+  updateElement(docID:any, fieldToUpdate:any, updatedValue:any){
+    var obj:any = {};
     obj[fieldToUpdate] = updatedValue;
     console.log(obj);
     return this.db.collection("Segments").doc(docID).update(obj).then(function() {
@@ -128,6 +129,13 @@ export class fbdao{
 
   closeConnection(){
     this.db.terminate();
+  }
+
+  remove(key: any): void {
+    this.deleteElement(key);
+  }
+  getInfo(key: any): Promise<{ key: any; data: SegmentDataObject; scores: CalculatorResponse[]; }> {
+    return this.getElementById(key);
   }
 
 };
