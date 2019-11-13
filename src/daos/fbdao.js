@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-export class fbdao{
+export class FBDao{
 
   constructor() {
     var firebaseConfig = {
