@@ -34,7 +34,7 @@ function display(data){
 }
 
 function doSave(infoObject, ...calculatedData){
-    let saveDao = saveDao || new FBDao();
+    let saveDao = new FBDao();
     saveDao.add(infoObject,calculatedData);
 }
 
