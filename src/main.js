@@ -1,22 +1,7 @@
 import * as lts from './calculators/lts'
 import * as blos from './calculators/blos'
 import * as plos from './calculators/plos'
-
-//Idk where this needs to happen
-//but it needs to run before we do anything else with firebase
-var firebaseConfig = {
-  apiKey: "AIzaSyChkACWp5aGd0s3ovbD7sRMugbSaljjyZU",
-  authDomain: "bicycleboys.firebaseapp.com",
-  databaseURL: "https://bicycleboys.firebaseio.com",
-  projectId: "bicycleboys",
-  storageBucket: "bicycleboys.appspot.com",
-  messagingSenderId: "691023297022",
-  appId: "1:691023297022:web:91ea734781e0029e99a8af",
-  measurementId: "G-ZRQ1KHK7PL"
-};
-firebase.initializeApp(firebaseConfig);
-
-var db = firebase.database();
+import {FBDao} from './daos/fbdao'
 
 /***
 * Checks form valididty and runs calculations
@@ -49,7 +34,8 @@ function display(data){
 }
 
 function doSave(infoObject, ...calculatedData){
-  //TODO implement saving
+    let saveDao = saveDao || new FBDao();
+    saveDao.add(infoObject,calculatedData);
 }
 
 
