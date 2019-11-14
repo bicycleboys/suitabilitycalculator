@@ -1,7 +1,8 @@
 import * as lts from './calculators/lts'
 import * as blos from './calculators/blos'
 import * as plos from './calculators/plos'
-import {FBDao} from './daos/fbdao'
+import "./styles.css";
+import {FBDao} from './daos/fbdao.ts'
 
 /***
 * Checks form valididty and runs calculations
