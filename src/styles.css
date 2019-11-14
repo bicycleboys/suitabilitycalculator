@@ -20,7 +20,13 @@
 }
 
 .mdc-select{
+  width: 150px;
+}
+
+.mdc-select__native-control{
+  padding-top: 60px;
   width: 400px;
+  display:table-cell;
 }
 
 body{

@@ -34,6 +34,7 @@ color: blue;
   </br>
 </br>
 </br>
+</br>
 
 <label for="segmentName">Segment name:
   <input type="text" class="mdc-text-field__input" name="segmentName" size="35" placeholder="eg. Humboldt: Locust-Chambers" required /></label>
@@ -118,8 +119,10 @@ color: blue;
 </div>
 -->
 <div>
+  <label>Bike Facility Type</label>
+</br>
 <div class="mdc-select">
-  <i class="mdc-select__dropdown-icon"></i>
+   <i class="mdc-select__dropdown-icon"></i>
   <select name="segmentType" class="mdc-select__native-control" id="type" >
     <option value="" disabled selected></option>
     <option value="stand-alone">Stand-alone</option>
@@ -127,11 +130,9 @@ color: blue;
     <option value="bike lane">Bike lane</option>
     <option value="mixed traffic">Mixed Traffic</option>
   </select>
-  <label class="mdc-floating-label">Bike Facility Type</label>
   <div class="mdc-line-ripple"></div>
 </div>
 </div>
-</br>
 </br>
 
 
@@ -144,17 +145,19 @@ color: blue;
     <option value="frequently">Frequently</option>
   </select></label>
 -->
+<div>
+   <label>Bike Lane Blockage Frequency</label>
+ </br>
   <div class="mdc-select">
-    <i class="mdc-select__dropdown-icon"></i>
+     <i class="mdc-select__dropdown-icon"></i>
     <select name="blockage" id="blockage" class="if-bike-lane mdc-select__native-control">
       <option value="" disabled selected></option>
       <option value="rarely">Rarely</option>
       <option value="frequently">Frequently</option>
     </select>
-    <label class="mdc-floating-label">Bike Lane Blockage Frequency</label>
     <div class="mdc-line-ripple"></div>
   </div>
-</br>
+</div>
 </br>
 
 
@@ -306,7 +309,6 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
 
 
 <h5>Intersection Stuff</h5>
-</br>
 <p>Is there a crossing island?</p>
 <div class="mdc-form-field">
   <div class="mdc-radio">
@@ -401,11 +403,18 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
   <input type="number" class="mdc-text-field__input" name="RLLength" value=" " /></label>
 </br>
 
-<label for="laneShift" >Does the bike lane shift left or continue straight as the right lane appears?
-  <select name="laneShift" id="laneShift">
-    <option value="left">Shifts left</option>
-    <option value="abrupt">Continues straight</option>
-  </select></label>
+
+<div>
+  <label for="laneShift" >Does the bike lane shift left or continue straight as the right lane appears?
+ </br>
+  <div class="mdc-select">
+     <i class="mdc-select__dropdown-icon"></i>
+     <select name="laneShift" class= "mdc-select__native-control" id="laneShift">
+       <option value="left">Shifts left</option>
+       <option value="abrupt">Continues straight</option>
+     </select></label>
+    <div class="mdc-line-ripple"></div>
+  </div>
 </div>
 </br>
 </br>
