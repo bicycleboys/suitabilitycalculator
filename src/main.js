@@ -1,11 +1,15 @@
 import * as lts from './calculators/lts'
 import * as blos from './calculators/blos'
 import * as plos from './calculators/plos'
+<<<<<<< HEAD
 import "./styles.css";
+=======
+import {FBDao} from './daos/fbdao'
+>>>>>>> master
 
 /***
- * Checks form valididty and runs calculations
- */
+* Checks form valididty and runs calculations
+*/
 function doCalculate() {
     if(form.reportValidity()){
         var infoObject = gatherData(form);
@@ -20,29 +24,36 @@ function doCalculate() {
     }
 }
 /**
+<<<<<<< HEAD
  * Displays the data passed in
  * @param SegmentGrade data
  */
+=======
+* Displays the data passed in
+* @param {name:string,grade:string,points:number} data
+*/
+>>>>>>> master
 function display(data){
-    //data should have a grade which is a letter and a percentage/point score
-    var grade = document.createElement("p")
-    if(!data.grade){
-        throw Error("Cannot display "+data.name+" without a grade");
-    }
-    grade.textContent = `${data.name}: ${data.grade} (${data.points})`;
-    document.body.appendChild(grade);
+  //data should have a grade which is a letter and a percentage/point score
+  var grade = document.createElement("p")
+  if(!data.grade){
+    throw Error("Cannot display "+data.name+" without a grade");
+  }
+  grade.textContent = `${data.name}: ${data.grade} (${data.points})`;
+  document.body.appendChild(grade);
 }
 
 function doSave(infoObject, ...calculatedData){
-    //TODO implement saving
+    let saveDao = saveDao || new FBDao();
+    saveDao.add(infoObject,calculatedData);
 }
 
 
 /***
- * Creates a Segment Data Object from the fields of the passed-in-form
- * @param form form to gather data from
- * @returns {SegmentDataObject} object with all info about segment
- */
+* Creates a Segment Data Object from the fields of the passed-in-form
+* @param form form to gather data from
+* @returns {SegmentDataObject} object with all info about segment
+*/
 function gatherData(form){
     if (form==null) throw Error("Invalid form passed in");
     let obj = {};
@@ -58,29 +69,29 @@ function gatherData(form){
         }
     }
 
-    obj.lanesCombinedWidth = obj.adjacent? obj.width:NaN;
-    obj.laneWidth = obj.adjacent?NaN:obj.width;
+  obj.lanesCombinedWidth = obj.adjacent? obj.width:NaN;
+  obj.laneWidth = obj.adjacent?NaN:obj.width;
 
-    return obj;
+  return obj;
 }
 
 /***
- * Resets attached form (clears text values, resets dropdowns back to non-options)
- */
+* Resets attached form (clears text values, resets dropdowns back to non-options)
+*/
 function resetForm(){
-    form.reset();
-    type.selectedIndex = -1;
-    blockage.selectedIndex = -1;
+  form.reset();
+  type.selectedIndex = -1;
+  blockage.selectedIndex = -1;
 }
 
 /**
- * Runs once DOM has loaded
- */
+* Runs once DOM has loaded
+*/
 document.addEventListener('DOMContentLoaded', function () {
-    var type = document.getElementById("type");
-    var blockage = document.getElementById("blockage");
-    var submit = document.getElementById("submit");
-    var form = document.getElementById("form");
+  var type = document.getElementById("type");
+  var blockage = document.getElementById("blockage");
+  var submit = document.getElementById("submit");
+  var form = document.getElementById("form");
 
     var lastType = false;
     resetForm();
