@@ -1,11 +1,7 @@
 import * as lts from './calculators/lts'
 import * as blos from './calculators/blos'
 import * as plos from './calculators/plos'
-<<<<<<< HEAD
 import "./styles.css";
-=======
-import {FBDao} from './daos/fbdao'
->>>>>>> master
 
 /***
 * Checks form valididty and runs calculations
@@ -24,15 +20,9 @@ function doCalculate() {
     }
 }
 /**
-<<<<<<< HEAD
- * Displays the data passed in
- * @param SegmentGrade data
- */
-=======
 * Displays the data passed in
 * @param {name:string,grade:string,points:number} data
 */
->>>>>>> master
 function display(data){
   //data should have a grade which is a letter and a percentage/point score
   var grade = document.createElement("p")
