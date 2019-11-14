@@ -19,8 +19,18 @@
 
 .mdc-top-app-bar{
   background-color: rgba(var(--mdc-theme-primary), 0.87);
+  margin-bottom:2em;
 }
 
+
+.TopOfPage{
+  margin-top: 64px;
+  padding-top: 64px;
+}
+
+.mdc-radio{
+  padding-right: 40px;
+}
 .demo-width-class {
   width: 400px;
 }
@@ -41,8 +51,10 @@ body{
 
 p{
 margin-bottom: 2em; /* increase white space after a paragraph */
+
 }
 
 label{
-
+  margin-bottom:2em;
+  margin-top:2em;
 }
