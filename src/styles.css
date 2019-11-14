@@ -13,7 +13,13 @@
 @import "../node_modules/@material/top-app-bar/dist/mdc.top-app-bar.css";
 @import "../node_modules/@material/icon-button/dist/mdc.icon-button.css";
 
+:root {
+    --mdc-theme-primary: 0, 50, 50;
+}
 
+.mdc-top-app-bar{
+  background-color: rgba(var(--mdc-theme-primary), 0.87);
+}
 
 .demo-width-class {
   width: 400px;
