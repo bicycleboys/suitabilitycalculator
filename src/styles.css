@@ -21,6 +21,14 @@
   background-color: rgba(var(--mdc-theme-primary), 0.87);
 }
 
+label{
+  margin-bottom:2em;
+  margin-top:2em;
+}
+
+.mdc-radio{
+  padding-right: 40px;
+}
 .demo-width-class {
   width: 400px;
 }
