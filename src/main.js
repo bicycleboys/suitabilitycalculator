@@ -2,6 +2,7 @@ import * as lts from './calculators/lts'
 import * as blos from './calculators/blos'
 import * as plos from './calculators/plos'
 import "./styles.css";
+import {FBDao} from './daos/fbdao.ts'
 
 /***
 * Checks form valididty and runs calculations
@@ -34,7 +35,7 @@ function display(data){
 }
 
 function doSave(infoObject, ...calculatedData){
-    let saveDao = saveDao || new FBDao();
+    let saveDao = new FBDao();
     saveDao.add(infoObject,calculatedData);
 }
 
