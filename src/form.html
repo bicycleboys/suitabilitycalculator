@@ -24,17 +24,20 @@ color: blue;
 <body>
   <header class="mdc-top-app-bar">
     <div class="mdc-top-app-bar__row">
-      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+      <section class="mdc-top-app-bar__section fixed-top mdc-top-app-bar__section--align-start">
         <!--<button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>-->
         <span class="mdc-top-app-bar__title">Bike Suitability Calculator</span>
       </section>
     </div>
   </header>
 
-  <form id="form">
+  <form id="form" autocomplete="off">
   </br>
 </br>
-
+<div class='if-part'>
+</br>
+</br>
+</div>
 <label for="segmentName" class="TopOfPage">Segment name:
   <input type="text" class="mdc-text-field__input" name="segmentName" size="35" placeholder="eg. Humboldt: Locust-Chambers" required /></label>
 
@@ -58,7 +61,7 @@ color: blue;
       <div class="mdc-radio__outer-circle"></div>
       <div class="mdc-radio__inner-circle"></div>
     </div>
-    <label for="barrierYes">Yes</label>
+    <label class="radiobuttonLabel" for="barrierYes">Yes</label>
   </div>
   <div class="mdc-radio">
     <input type="radio" class="mdc-radio__native-control" id="barrierNo"
@@ -67,7 +70,7 @@ color: blue;
       <div class="mdc-radio__outer-circle"></div>
       <div class="mdc-radio__inner-circle"></div>
     </div>
-    <label for="barrierNo">No</label>
+    <label class="radiobuttonLabel" for="barrierNo">No</label>
   </div>
 </div>
 </br>
@@ -83,7 +86,7 @@ color: blue;
       <div class="mdc-radio__outer-circle"></div>
       <div class="mdc-radio__inner-circle"></div>
     </div>
-    <label for="curbYes">Yes</label>
+    <label class="radiobuttonLabel" for="curbYes">Yes</label>
   </div>
   <div class="mdc-radio">
     <input type="radio" class="mdc-radio__native-control" id="curbNo"
@@ -92,7 +95,7 @@ color: blue;
       <div class="mdc-radio__outer-circle"></div>
       <div class="mdc-radio__inner-circle"></div>
     </div>
-    <label for="curbNo">No</label>
+    <label class="radiobuttonLabel" for="curbNo">No</label>
   </div>
 </div>
 </br>
@@ -101,61 +104,96 @@ color: blue;
 
 
 <h5>Bike lane information</h5>
-</br>
-<!--
-<div>
-<div class="mdc-select">
-  <i class="mdc-select__dropdown-icon"></i>
-  <select name="segmentType" class="mdc-select__native-control" id="type" >
-    <option value="stand-alone">Stand-alone</option>
-    <option value="segregated">Segregated</option>
-    <option value="bike lane">Bike lane</option>
-    <option value="mixed traffic">Mixed Traffic</option>
-  </select>
-  <label for="segmentType" class="mdc-text-field__input">Bike facility type:</label>
-  <div class="mdc-line-ripple"></div>
-</div>
-</div>
--->
-<div>
-  <label>Bike Facility Type</label>
-</br>
-<div class="mdc-select">
-  <select name="segmentType" class="mdc-select__native-control" id="type" >
-    <option value="" disabled selected></option>
-    <option value="stand-alone">Stand-alone</option>
-    <option value="segregated">Segregated</option>
-    <option value="bike lane">Bike lane</option>
-    <option value="mixed traffic">Mixed Traffic</option>
-  </select>
-  <div class="mdc-line-ripple"></div>
-</div>
-</div>
-</br>
-
-
-
-
-<!--
-<label for="blockage" class="mdc-text-field__input">Bike lane blockage frequency:
-  <select name="blockage" id="blockage" class="if-bike-lane">
-    <option value="rarely">Rarely</option>
-    <option value="frequently">Frequently</option>
-  </select></label>
--->
-<div>
-   <label>Bike Lane Blockage Frequency</label>
- </br>
-  <div class="mdc-select">
-    <select name="blockage" id="blockage" class="if-bike-lane mdc-select__native-control">
-      <option value="" disabled selected></option>
-      <option value="rarely">Rarely</option>
-      <option value="frequently">Frequently</option>
-    </select>
+<div class="mdc-select mdc-select-1 bigboi">
+  <div class="mdc-select__anchor bigboi">
+    <i class="mdc-select__dropdown-icon"></i>
+    <div id="demo-selected-text" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="demo-label demo-selected-text"></div>
+    <span id="demo-label" class="mdc-floating-label mdc-floating-label--float-above">Bike Facility Type</span>
     <div class="mdc-line-ripple"></div>
+  </div>
+
+  <div class="mdc-select__menu mdc-menu mdc-menu-surface bigboi" role="listbox">
+    <ul class="mdc-list">
+      <li class="mdc-list-item mdc-list-item--selected" data-value="" role="option"></li>
+      <li class="mdc-list-item" data-value="stand-alone" role="option">
+        Stand-alone
+      </li>
+      <li class="mdc-list-item" data-value="segregated" role="option">
+        Segregated
+      </li>
+      <li class="mdc-list-item" data-value="bike lane" role="option">
+        Bike Lane
+      </li>
+      <li class="mdc-list-item mdc-list-item--disabled" data-value="mixed traffic" aria-selected="true" aria-disabled="true" role="option">
+        Mixed Traffic
+      </li>
+    </ul>
   </div>
 </div>
 </br>
+
+<!--
+<div>
+<label>Bike Facility Type</label>
+</br>
+<div class="mdc-select">
+<select name="segmentType" class="mdc-select__native-control" id="type" >
+<optgroup>
+<option value="" disabled selected></option>
+<option value="stand-alone">Stand-alone</option>
+<option value="segregated">Segregated</option>
+<option value="bike lane">Bike lane</option>
+<option value="mixed traffic">Mixed Traffic</option>
+</optgroup>
+</select>
+<div class="mdc-line-ripple"></div>
+</div>
+</div>
+</br>
+-->
+
+<!--
+I'm so close to getting the material design select to work, but on click nothing happens
+it looks pretty but it's useless
+-->
+<div class="mdc-select mdc-select-2">
+  <div class="mdc-select__anchor bigboi">
+    <i class="mdc-select__dropdown-icon"></i>
+    <div id="demo-selected-text" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="demo-label demo-selected-text"></div>
+    <span id="demo-label" class="mdc-floating-label mdc-floating-label--float-above">Bike Lane Blockage frequency</span>
+    <div class="mdc-line-ripple"></div>
+  </div>
+
+  <div class="mdc-select__menu mdc-menu mdc-menu-surface bigboi" role="listbox">
+    <ul class="mdc-list">
+      <li class="mdc-list-item mdc-list-item--selected" data-value="" role="option"></li>
+      <li class="mdc-list-item" data-value="frequently" role="option">
+        Frequently
+      </li>
+      <li class="mdc-list-item mdc-list-item--disabled" data-value="rarely" aria-selected="true" aria-disabled="true" role="option">
+        Rarely
+      </li>
+    </ul>
+  </div>
+</div>
+</br>
+
+
+<!--
+<div>
+<label>Bike Lane Blockage Frequency</label>
+</br>
+<div class="mdc-select">
+<select name="blockage" id="blockage" class="if-bike-lane mdc-select__native-control">
+<option value="" disabled selected></option>
+<option value="rarely">Rarely</option>
+<option value="frequently">Frequently</option>
+</select>
+<div class="mdc-line-ripple"></div>
+</div>
+</div>
+</br>
+-->
 
 
 <label for="lanesAdjacent">Bike lane beetween on-street parking and driving lane:</label>
@@ -167,7 +205,7 @@ color: blue;
       <div class="mdc-radio__outer-circle"></div>
       <div class="mdc-radio__inner-circle"></div>
     </div>
-    <label for="curbYes">Yes</label>
+    <label class="radiobuttonLabel" for="curbYes">Yes</label>
   </div>
   <div class="mdc-radio">
     <input type="radio" class="mdc-radio__native-control" id="lanesAdjacentNo"
@@ -176,7 +214,7 @@ color: blue;
       <div class="mdc-radio__outer-circle"></div>
       <div class="mdc-radio__inner-circle"></div>
     </div>
-    <label for="curbNo">No</label>
+    <label class="radiobuttonLabel" for="curbNo">No</label>
   </div>
 </div>
 </br>
@@ -220,13 +258,16 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
 
 
 <!--Car lane stuff (or mixed traffic)-->
-<label for="speed">Speed Limit (or prevailing speed if speed limit isn't followed) (miles per hour):
+<label for="speed runningSpeed">Speed Limit (or prevailing speed if speed limit isn't followed) (miles per hour):
   <input type="number"  name="speed"  value=" " class="if-bike-lane if-mixed mdc-text-field__input" /></label>
 </br>
 
+<!--
+should be able to use the for tag above to get both speed and running speed
 <label for="runningSpeed">Motorized vehicle running speed in miles per hour: !ask concurrently with posted speed limit
-  <input type="number" class="mdc-text-field__input" name="runningSpeed" value=" " /></label>
+<input type="number" class="mdc-text-field__input" name="runningSpeed" value=" " /></label>
 </br>
+-->
 
 <label for="laneCount">Number of travel lanes per direction: <!--TODO: verify lanes is positive-->
   <input type="number" class="if-bike-lane mdc-text-field__input"  name="laneCount" value=" " /></label>
@@ -245,7 +286,7 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
       <div class="mdc-radio__outer-circle"></div>
       <div class="mdc-radio__inner-circle"></div>
     </div>
-    <label for="medianYes">Yes</label>
+    <label class="radiobuttonLabel" for="medianYes">Yes</label>
   </div>
   <div class="mdc-radio">
     <input type="radio" class="mdc-radio__native-control" id="medianNo"
@@ -254,7 +295,7 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
       <div class="mdc-radio__outer-circle"></div>
       <div class="mdc-radio__inner-circle"></div>
     </div>
-    <label for="medianNo">No</label>
+    <label class="radiobuttonLabel" for="medianNo">No</label>
   </div>
 </div>
 </br>
@@ -271,7 +312,7 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
       <div class="mdc-radio__outer-circle"></div>
       <div class="mdc-radio__inner-circle"></div>
     </div>
-    <label for="centerlineYes">Yes</label>
+    <label class="radiobuttonLabel" for="centerlineYes">Yes</label>
   </div>
   <div class="mdc-radio">
     <input type="radio" class="mdc-radio__native-control" id="centerlineNo"
@@ -280,7 +321,7 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
       <div class="mdc-radio__outer-circle"></div>
       <div class="mdc-radio__inner-circle"></div>
     </div>
-    <label for="centerlineNo">No</label>
+    <label class="radiobuttonLabel" for="centerlineNo">No</label>
   </div>
 </div>
 </div>
@@ -293,14 +334,14 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
 </br>
 
 <label for="adt">Average daily vehicle traffic (in both directions):
-  <input type="number" class="mdc-text-field__input" name="adt" value=" " /></label>
+  <input type="number" class="mdc-text-field__input" name="adt" value=" " autocomplete="off"/></label>
 </br>
 
-<label for="pc">Pavement condition as a number between 1 and 5: !add info about which number is good
+<label for="pc">Pavement condition as a number between 1 and 5, 1 being very bad and 5 being very good:
   <input type="number" class="mdc-text-field__input" name="pc" value=" " /></label>
 </br>
 
-<label for="phv">Heavy vehicles in the midsection flow rate as a percentage: (0-100)!explain heavy vehicles definition
+<label for="phv">Heavy vehicles (e.g. Buses, Delivery Vehicles, Work Trucks) in the midsection flow rate as a percentage: (0-100)
   <input type="number" class="mdc-text-field__input" name="phv" value=" " /></label>
 </br>
 
@@ -315,7 +356,7 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
       <div class="mdc-radio__outer-circle"></div>
       <div class="mdc-radio__inner-circle"></div>
     </div>
-    <label for="islandYes">Yes</label>
+    <label class="radiobuttonLabel" for="islandYes">Yes</label>
   </div>
   <div class="mdc-radio">
     <input type="radio" class="mdc-radio__native-control" id="islandNo"
@@ -324,7 +365,7 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
       <div class="mdc-radio__outer-circle"></div>
       <div class="mdc-radio__inner-circle"></div>
     </div>
-    <label for="islandNo">No</label>
+    <label class="radiobuttonLabel" for="islandNo">No</label>
   </div>
 </div>
 </br>
@@ -340,7 +381,7 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
       <div class="mdc-radio__outer-circle"></div>
       <div class="mdc-radio__inner-circle"></div>
     </div>
-    <label for="unsignalizedYes">Yes</label>
+    <label class="radiobuttonLabel" for="unsignalizedYes">Yes</label>
   </div>
   <div class="mdc-radio">
     <input type="radio" class="mdc-radio__native-control" id="unsignalizedNo"
@@ -349,7 +390,7 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
       <div class="mdc-radio__outer-circle"></div>
       <div class="mdc-radio__inner-circle"></div>
     </div>
-    <label for="unsignalizedNo">No</label>
+    <label class="radiobuttonLabel" for="unsignalizedNo">No</label>
   </div>
 </div>
 </br>
@@ -371,7 +412,7 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
       <div class="mdc-radio__outer-circle"></div>
       <div class="mdc-radio__inner-circle"></div>
     </div>
-    <label for="squeezedYes">Yes</label>
+    <label class="radiobuttonLabel" for="squeezedYes">Yes</label>
   </div>
   <div class="mdc-radio">
     <input type="radio" class="mdc-radio__native-control" id="squeezedNo"
@@ -380,7 +421,7 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
       <div class="mdc-radio__outer-circle"></div>
       <div class="mdc-radio__inner-circle"></div>
     </div>
-    <label for="squeezedNo">No</label>
+    <label class="radiobuttonLabel" for="squeezedNo">No</label>
   </div>
 </div>
 </br>
@@ -388,35 +429,61 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
 
 
 <div>
-<label for="turningSpeed">Speed of vehicles turning right from cyclist's direction of travel:
-  <input type="number" class="mdc-text-field__input" name="turningSpeed" value=" " /></label>
+  <label for="turningSpeed">Speed of vehicles turning right from cyclist's direction of travel:
+    <input type="number" class="mdc-text-field__input" name="turningSpeed" value=" " /></label>
+  </br>
+
+  <label for="RLCount">How many right turn lanes are there?
+    <input type="number" class="mdc-text-field__input" name="RLCount" value=" " /></label>
+  </br>
+
+  <label for="RLLength">How long is the longest right turn lane (in feet)?
+    <input type="number" class="mdc-text-field__input" name="RLLength" value=" " /></label>
+  </br>
+
 </br>
-
-<label for="RLCount">How many right turn lanes are there?
-  <input type="number" class="mdc-text-field__input" name="RLCount" value=" " /></label>
-</br>
-
-<label for="RLLength">How long is the longest right turn lane (in feet)?
-  <input type="number" class="mdc-text-field__input" name="RLLength" value=" " /></label>
-</br>
-
-
-<div>
-  <label for="laneShift" >Does the bike lane shift left or continue straight as the right lane appears?
- </br>
-  <div class="mdc-select">
-     <select name="laneShift" class= "mdc-select__native-control" id="laneShift">
-       <option value="left">Shifts left</option>
-       <option value="abrupt">Continues straight</option>
-     </select></label>
+<div class="mdc-select mdc-select-3">
+  <div class="mdc-select__anchor bigboi">
+    <i class="mdc-select__dropdown-icon"></i>
+    <div id="demo-selected-text" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="demo-label demo-selected-text"></div>
+    <span id="demo-label" class="mdc-floating-label mdc-floating-label--float-above">What happens to the bike lane as the right turn lane appears?</span>
     <div class="mdc-line-ripple"></div>
   </div>
+
+  <div class="mdc-select__menu mdc-menu mdc-menu-surface bigboi" role="listbox">
+    <ul class="mdc-list">
+      <li class="mdc-list-item mdc-list-item--selected" data-value="" role="option"></li>
+      <li class="mdc-list-item" data-value="abrupt" role="option">
+        Continues Straight
+      </li>
+      <li class="mdc-list-item mdc-list-item--disabled" data-value="left" aria-selected="true" aria-disabled="true" role="option">
+        Shifts Left
+      </li>
+    </ul>
+  </div>
 </div>
 </br>
+<!--
+<div>
+<label for="laneShift" >Does the bike lane shift left or continue straight as the right lane appears?
+</br>
+<div class="mdc-select">
+<select name="laneShift" class= "mdc-select__native-control" id="laneShift">
+<option value="left">Shifts left</option>
+<option value="abrupt">Continues straight</option>
+</select></label>
+<div class="mdc-line-ripple"></div>
+</div>
+</div>
+</br>
+-->
 </br>
 
 
-<input id="submit" type="button" class="mdc-button" value="Calculate" />
+<button id="submit" type="button" class="mdc-button turnItTeal mdc-button--raised mdc-button--outlined" value="Calculate">
+  <div class="mdc-button__ripple"></div>
+  <span class="mdc-button__label">Sumbit</span>
+</button>
 </form>
 </body>
 
