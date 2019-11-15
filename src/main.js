@@ -1,7 +1,8 @@
 import * as lts from './calculators/lts'
 import * as blos from './calculators/blos'
 import * as plos from './calculators/plos'
-import {FBDao} from './daos/fbdao'
+import "./styles.css";
+import {FBDao} from './daos/fbdao.ts'
 
 
 if ('serviceWorker' in navigator) {
@@ -53,7 +54,7 @@ function display(data){
 }
 
 function doSave(infoObject, ...calculatedData){
-    let saveDao = saveDao || new FBDao();
+    let saveDao = new FBDao();
     saveDao.add(infoObject,calculatedData);
 }
 

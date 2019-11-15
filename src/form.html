@@ -6,188 +6,418 @@
   <meta charset="utf-8">
   <title>Bike Suitability Calculator</title>
   <script type="module" src="main.js"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <!--<style>
+
+  body {
+  background-color: lightblue;
+}
+label, p{
+color: blue;
+}
+
+
+</style>-->
+<link ref="stylesheet" type='text/css' href="styles.css">
 </head>
 
 <body>
-  <form id="form">
-    <br />
-    <label for="segmentName">Segment name:
-      <input type="text" name="segmentName" size="35" placeholder="eg. Humboldt: Locust-Chambers" required /></label>
-    <br />
-
-    <!--Sidewalk Stuff-->
-    <label for="waa">Width of sidewalk at the most narrow place in the segment:
-      <input type="number"  name="waa" value=" " /></label>
-    </br>
-    <label for="wbuf">Width of buffer between roadway and sidewalk in feet:
-      <input type="number"  name="wbuf" value=" " step="0.5" /></label>
-    </br>
-    <p>Is there a continuous barrier at least 3 feet high for the length of the segment? (ex: a concrete barrier)</p>
-    <div>
-      <input type="radio" id="barrierYes"
-            name="fb" value="true">
-      <label for="barrierYes">Yes</label>
-      <input type="radio" id="barrierNo"
-            name="fb" value="false">
-      <label for="barrierNo">No</label>
+  <header class="mdc-top-app-bar">
+    <div class="mdc-top-app-bar__row">
+      <section class="mdc-top-app-bar__section mdc-top-app-bar__section--align-start">
+        <!--<button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>-->
+        <span class="mdc-top-app-bar__title">Bike Suitability Calculator</span>
+      </section>
     </div>
-    </br>
-      <p>Is there a curb present?</p>
-      <div>
-        <input type="radio" id="curbYes"
-              name="curb" value="true">
-        <label for="curbYes">Yes</label>
-        <input type="radio" id="curbNo"
-              name="curb" value="false">
-        <label for="curbNo">No</label>
-      </div>
-      </br>
+  </header>
 
-    <!--Bike lane stuff-->
-    <label for="segmentType">Bike facility type:
-      <select  name="segmentType" id="type" >
-        <option value="stand-alone">Stand-alone</option>
-        <option value="segregated">Segregated</option>
-        <option value="bike lane">Bike lane</option>
-        <option value="mixed traffic">Mixed Traffic</option>
-      </select></label>
-    <br />
-    <label for="blockage">Bike lane blockage frequency:
-        <select name="blockage" id="blockage" class="if-bike-lane">
-          <option value="rarely">Rarely</option>
-          <option value="frequently">Frequently</option>
-        </select></label>
-      <br/>
-    <label for="lanesAdjacent">Bike lane beetween on-street parking and driving lane:
-      <input type="checkbox" name="lanesAdjacent" /> <!--class="if-bike-lane"-->
-    </label>
-    <br/>
-    <label for="wbl">Width of bike lane in feet:
-        <input type="number"  name="wbl" value=" " step="0.5" /> </label>
-    </br>
-    <label for="wos">Width of paved outside shoulder in feet:
-        <input type="number"  name="wos" value = " " step="0.5" /> </label>
-      </br>
+  <form id="form">
+  </br>
+</br>
 
-    <!--Parking lane stuff-->
-    <label for="width">Sum of bike lane and parking lane width or just bike lane width if not adjacent (ft):
-      <input type="number" class="if-bike-lane"  name="width" value=" " step="0.5" /></label>
-    <br />
-    <label for="ppk">Parking occupancy as a percentage (0-100):
-        <input type="number"  name="ppk" value = " " /> </label>
-      </br>
+<label for="segmentName" class="TopOfPage">Segment name:
+  <input type="text" class="mdc-text-field__input" name="segmentName" size="35" placeholder="eg. Humboldt: Locust-Chambers" required /></label>
 
-    <!--Car lane stuff (or mixed traffic)-->
-    <label for="speed">Speed Limit (or prevailing speed if speed limit isn't followed) (miles per hour):
-      <input type="number" name="speed"  value=" " class="if-bike-lane if-mixed" /></label>
-    <br />
-    <label for="runningSpeed">Motorized vehicle running speed in miles per hour: !ask concurrently with posted speed limit
-        <input type="number"  name="runningSpeed" value=" " /></label>
-      </br>
-    <label for="laneCount">Number of travel lanes per direction: <!--TODO: verify lanes is positive-->
-      <input type="number" class="if-bike-lane"  name="laneCount" value=" " /></label>
-      <br/>
-    <label for="wol">Width of outside lane in feet:
-        <input type="number"  name="wol" value = " " step="0.5" /> </label>
-      </br>
-      <p>Is there a median between directions of travel (eg. a boulevard)</p> <!--(required if bike lane is not adjacent to parking)-->
-      <div>
-        <input type="radio" id="medianYes"
-              name="median" value="true">
-        <label for="medianYes">Yes</label>
-        <input type="radio" id="medianNo"
-              name="median" value="false">
-        <label for="medianNo">No</label>
-      </div>
-      </br>
-    <p>Is there a marked centerline?</p> <!--if-mixed-traffic-->
-      <div>
-        <input type="radio" id="centerlineYes"
-              name="centerline" value="true">
-        <label for="centerlineYes">Yes</label>
-        <input type="radio" id="centerlineNo"
-              name="centerline" value="false">
-        <label for="centerlineNo">No</label>
-      </div>
-      </br>
-    <label for="totalLanes">Total number of lanes in both directions:
-      <input type="number"  name="totalLanes" class="if-mixed-traffic"/></label>
-      <br/>
-    <label for="adt">Average daily vehicle traffic (in both directions):
-      <input type="number"  name="adt" value=" " /></label>
-    <br />
-    <label for="pc">Pavement condition as a number between 1 and 5: !add info about which number is good
-        <input type="number"  name="pc" value=" " /></label>
-      </br>
-      <label for="phv">Heavy vehicles in the midsection flow rate as a percentage: (0-100)!explain heavy vehicles definition
-          <input type="number"  name="phv" value=" " /></label>
-        </br>
+</br>
+<!--Sidewalk Stuff-->
+
+<label for="waa">Width of sidewalk at the most narrow place in the segment:
+  <input type="number" class="mdc-text-field__input" name="waa" value=" " /></label>
+</br>
+
+<label for="wbuf">Width of buffer between roadway and sidewalk in feet:
+  <input type="number" class="mdc-text-field__input" name="wbuf" value=" " step="0.5" /></label>
+</br>
+
+<p>Is there a continuous barrier at least 3 feet high for the length of the segment? (ex: a concrete barrier)</p>
+<div class="mdc-form-field">
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="barrierYes"
+    name="fb" value="true">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="barrierYes">Yes</label>
+  </div>
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="barrierNo"
+    name="fb" value="false">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="barrierNo">No</label>
+  </div>
+</div>
+</br>
+</br>
 
 
-    <h5>Intersection Stuff</h5>
-      <p>Is there a crossing island?</p>
-      <div>
-        <input type="radio" id="islandYes"
-              name="island" value="true">
-        <label for="islandYes">Yes</label>
-        <input type="radio" id="islandNo"
-              name="island" value="false">
-        <label for="islandNo">No</label>
-      </div>
-      </br>
-      <p>Do the bike facilities have to interface with an unsignalized crossing?</p>
-      <div>
-        <input type="radio" id="unsignalizedYes"
-              name="unsignalized" value="true">
-        <label for="unsignalizedYes">Yes</label>
-        <input type="radio" id="unsignalizedNo"
-              name="unsignalized" value="false">
-        <label for="unsignalizedNo">No</label>
-      </div>
-      </br>
-      <label for="xStreetWidth">Count of vehicle lanes in cross-street:
-        <input type="number"  name="xStreetWidth" value=" " /></label>
-      <br />
-      
-      right turn lane/bike lane interfacing at intersection approach
-      <p>Is the bike lane between the traffic lane and the right turn lane or a marked lane within the right turn lane?</p>
-      <div>
-        <input type="radio" id="squeezedYes"
-              name="squeezed" value="true">
-        <label for="squeezedYes">Yes</label>
-        <input type="radio" id="squeezedNo"
-              name="squeezed" value="false">
-        <label for="squeezedNo">No</label>
-      </div>
-      </br>
-      <label for="turningSpeed">Speed of vehicles turning right from cyclist's direction of travel:
-        <input type="number"  name="turningSpeed" value=" " /></label>
-      <br/>
-      <label for="RLCount">How many right turn lanes are there?
-        <input type="number"  name="RLCount" value=" " /></label>
-      <br/>
-      <label for="RLLength">How long is the longest right turn lane (in feet)?
-        <input type="number"  name="RLLength" value=" " /></label>
-      <br/>
-      <label for="laneShift">Does the bike lane shift left or continue straight as the right lane appears?
-        <select name="laneShift" id="laneShift">
-          <option value="left">Shifts left</option>
-          <option value="abrupt">Continues straight</option>
-        </select></label>
-      <br/>
+<p>Is there a curb present?</p>
+<div class="mdc-form-field">
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="curbYes"
+    name="curb" value="true">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="curbYes">Yes</label>
+  </div>
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="curbNo"
+    name="curb" value="false">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="curbNo">No</label>
+  </div>
+</div>
+</br>
+</br>
 
 
-    <input id="submit" type="button" value="Calculate" />
-  </form>
 
-  <!-- The core Firebase JS SDK is always required and must be listed first
-<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-app.js"></script>
+<h5>Bike lane information</h5>
+</br>
+<!--
+<div>
+<div class="mdc-select">
+  <i class="mdc-select__dropdown-icon"></i>
+  <select name="segmentType" class="mdc-select__native-control" id="type" >
+    <option value="stand-alone">Stand-alone</option>
+    <option value="segregated">Segregated</option>
+    <option value="bike lane">Bike lane</option>
+    <option value="mixed traffic">Mixed Traffic</option>
+  </select>
+  <label for="segmentType" class="mdc-text-field__input">Bike facility type:</label>
+  <div class="mdc-line-ripple"></div>
+</div>
+</div>
+-->
+<div>
+  <label>Bike Facility Type</label>
+</br>
+<div class="mdc-select">
+  <select name="segmentType" class="mdc-select__native-control" id="type" >
+    <option value="" disabled selected></option>
+    <option value="stand-alone">Stand-alone</option>
+    <option value="segregated">Segregated</option>
+    <option value="bike lane">Bike lane</option>
+    <option value="mixed traffic">Mixed Traffic</option>
+  </select>
+  <div class="mdc-line-ripple"></div>
+</div>
+</div>
+</br>
 
- <!--TODO: Add SDKs for Firebase products that you want to use
-     https://firebase.google.com/docs/web/setup#available-libraries ->
-<script src="https://www.gstatic.com/firebasejs/7.2.2/firebase-analytics.js"></script> -->
 
-<script src="main.js"></script>
+
+
+<!--
+<label for="blockage" class="mdc-text-field__input">Bike lane blockage frequency:
+  <select name="blockage" id="blockage" class="if-bike-lane">
+    <option value="rarely">Rarely</option>
+    <option value="frequently">Frequently</option>
+  </select></label>
+-->
+<div>
+   <label>Bike Lane Blockage Frequency</label>
+ </br>
+  <div class="mdc-select">
+    <select name="blockage" id="blockage" class="if-bike-lane mdc-select__native-control">
+      <option value="" disabled selected></option>
+      <option value="rarely">Rarely</option>
+      <option value="frequently">Frequently</option>
+    </select>
+    <div class="mdc-line-ripple"></div>
+  </div>
+</div>
+</br>
+
+
+<label for="lanesAdjacent">Bike lane beetween on-street parking and driving lane:</label>
+<div class="mdc-form-field">
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="lanesAdjacentYes"
+    name="lanesAdjacent" value="true">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="curbYes">Yes</label>
+  </div>
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="lanesAdjacentNo"
+    name="lanesAdjacent" value="false">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="curbNo">No</label>
+  </div>
+</div>
+</br>
+</br>
+
+<!--<div class="mdc-form-field">
+<label for="lanesAdjacent">Bike lane beetween on-street parking and driving lane:</label>
+<div class="mdc-checkbox">
+<input type="checkbox" class="mdc-checkbox__native-control" name="lanesAdjacent" /> <!--class="if-bike-lane"-->
+<!--    <div class="mdc-checkbox__background">
+<svg class="mdc-checkbox__checkmark"
+viewBox="0 0 24 24">
+<path class="mdc-checkbox__checkmark-path"
+fill="none"
+d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
+</svg>
+<div class="mdc-checkbox__mixedmark"></div>
+</div>
+</div>
+</div>
+-->
+
+
+<label for="wbl">Width of bike lane in feet:
+  <input type="number" class="mdc-text-field__input" name="wbl" value=" " step="0.5" /> </label>
+</br>
+
+<label for="wos">Width of paved outside shoulder in feet:
+  <input type="number" class="mdc-text-field__input" name="wos" value = " " step="0.5" /> </label>
+</br>
+
+<!--Parking lane stuff-->
+
+<label for="width">Sum of bike lane and parking lane width or just bike lane width if not adjacent (ft):
+  <input type="number" class="if-bike-lane mdc-text-field__input"  name="width" value=" " step="0.5" /></label>
+</br>
+
+<label for="ppk">Parking occupancy as a percentage (0-100):
+  <input type="number" class="mdc-text-field__input" name="ppk" value = " " /> </label>
+</br>
+
+
+<!--Car lane stuff (or mixed traffic)-->
+<label for="speed">Speed Limit (or prevailing speed if speed limit isn't followed) (miles per hour):
+  <input type="number"  name="speed"  value=" " class="if-bike-lane if-mixed mdc-text-field__input" /></label>
+</br>
+
+<label for="runningSpeed">Motorized vehicle running speed in miles per hour: !ask concurrently with posted speed limit
+  <input type="number" class="mdc-text-field__input" name="runningSpeed" value=" " /></label>
+</br>
+
+<label for="laneCount">Number of travel lanes per direction: <!--TODO: verify lanes is positive-->
+  <input type="number" class="if-bike-lane mdc-text-field__input"  name="laneCount" value=" " /></label>
+</br>
+
+<label for="wol">Width of outside lane in feet:
+  <input type="number" class="mdc-text-field__input" name="wol" value = " " step="0.5" /> </label>
+</br>
+
+<p>Is there a median between directions of travel (eg. a boulevard)</p> <!--(required if bike lane is not adjacent to parking)-->
+<div class="mdc-form-field">
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="medianYes"
+    name="median" value="true">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="medianYes">Yes</label>
+  </div>
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="medianNo"
+    name="median" value="false">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="medianNo">No</label>
+  </div>
+</div>
+</br>
+</br>
+
+
+
+<p>Is there a marked centerline?</p> <!--if-mixed-traffic-->
+<div class="mdc-form-field">
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="centerlineYes"
+    name="centerline" value="true">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="centerlineYes">Yes</label>
+  </div>
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="centerlineNo"
+    name="centerline" value="false">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="centerlineNo">No</label>
+  </div>
+</div>
+</div>
+</br>
+</br>
+
+
+<label for="totalLanes">Total number of lanes in both directions:
+  <input type="number"  name="totalLanes" class="if-mixed-traffic mdc-text-field__input"/></label>
+</br>
+
+<label for="adt">Average daily vehicle traffic (in both directions):
+  <input type="number" class="mdc-text-field__input" name="adt" value=" " /></label>
+</br>
+
+<label for="pc">Pavement condition as a number between 1 and 5: !add info about which number is good
+  <input type="number" class="mdc-text-field__input" name="pc" value=" " /></label>
+</br>
+
+<label for="phv">Heavy vehicles in the midsection flow rate as a percentage: (0-100)!explain heavy vehicles definition
+  <input type="number" class="mdc-text-field__input" name="phv" value=" " /></label>
+</br>
+
+
+<h5>Intersection Stuff</h5>
+<p>Is there a crossing island?</p>
+<div class="mdc-form-field">
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="islandYes"
+    name="island" value="true">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="islandYes">Yes</label>
+  </div>
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="islandNo"
+    name="island" value="false">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="islandNo">No</label>
+  </div>
+</div>
+</br>
+</br>
+
+
+<p>Do the bike facilities have to interface with an unsignalized crossing?</p>
+<div class="mdc-form-field">
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="unsignalizedYes"
+    name="unsignalized" value="true">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="unsignalizedYes">Yes</label>
+  </div>
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="unsignalizedNo"
+    name="unsignalized" value="false">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="unsignalizedNo">No</label>
+  </div>
+</div>
+</br>
+</br>
+
+
+<label for="xStreetWidth">Count of vehicle lanes in cross-street:
+  <input type="number" class="mdc-text-field__input" name="xStreetWidth" value=" " /></label>
+  <br />
+</br>
+
+<h5>right turn lane/bike lane interfacing at intersection approach </h5>
+<p>Is the bike lane between the traffic lane and the right turn lane or a marked lane within the right turn lane?</p>
+<div class="mdc-form-field">
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="squeezedYes"
+    name="squeezed" value="true">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="squeezedYes">Yes</label>
+  </div>
+  <div class="mdc-radio">
+    <input type="radio" class="mdc-radio__native-control" id="squeezedNo"
+    name="squeezed" value="false">
+    <div class="mdc-radio__background">
+      <div class="mdc-radio__outer-circle"></div>
+      <div class="mdc-radio__inner-circle"></div>
+    </div>
+    <label for="squeezedNo">No</label>
+  </div>
+</div>
+</br>
+</br>
+
+
+<div>
+<label for="turningSpeed">Speed of vehicles turning right from cyclist's direction of travel:
+  <input type="number" class="mdc-text-field__input" name="turningSpeed" value=" " /></label>
+</br>
+
+<label for="RLCount">How many right turn lanes are there?
+  <input type="number" class="mdc-text-field__input" name="RLCount" value=" " /></label>
+</br>
+
+<label for="RLLength">How long is the longest right turn lane (in feet)?
+  <input type="number" class="mdc-text-field__input" name="RLLength" value=" " /></label>
+</br>
+
+
+<div>
+  <label for="laneShift" >Does the bike lane shift left or continue straight as the right lane appears?
+ </br>
+  <div class="mdc-select">
+     <select name="laneShift" class= "mdc-select__native-control" id="laneShift">
+       <option value="left">Shifts left</option>
+       <option value="abrupt">Continues straight</option>
+     </select></label>
+    <div class="mdc-line-ripple"></div>
+  </div>
+</div>
+</br>
+</br>
+
+
+<input id="submit" type="button" class="mdc-button" value="Calculate" />
+</form>
 </body>
 
 </html>
