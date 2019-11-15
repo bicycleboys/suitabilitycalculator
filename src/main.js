@@ -3,13 +3,15 @@ import * as blos from './calculators/blos'
 import * as plos from './calculators/plos'
 import "./styles.css";
 import {FBDao} from './daos/fbdao.ts'
-
+import {MDCMenu} from '@material/menu';
+import {MDCSelect} from '@material/select';
 /***
 * Checks form valididty and runs calculations
 */
 function doCalculate() {
     if(form.reportValidity()){
         var infoObject = gatherData(form);
+        console.log(infoObject);
         //resetForm();
         var ltsData = lts.calculate(infoObject);
         var plosData = plos.calculate(infoObject);
@@ -71,16 +73,16 @@ function gatherData(form){
 */
 function resetForm(){
   form.reset();
-  type.selectedIndex = -1;
-  blockage.selectedIndex = -1;
+  //type.selectedIndex = -1;
+  //blockage.selectedIndex = -1;
 }
 
 /**
 * Runs once DOM has loaded
 */
 document.addEventListener('DOMContentLoaded', function () {
-  var type = document.getElementById("type");
-  var blockage = document.getElementById("blockage");
+  //var type = document.getElementById("type");
+  //var blockage = document.getElementById("blockage");
   var submit = document.getElementById("submit");
   var form = document.getElementById("form");
 
@@ -88,7 +90,23 @@ document.addEventListener('DOMContentLoaded', function () {
     resetForm();
     //Clear selection dropdowns so we don't accidentally record inaccurate data
 
-    type.addEventListener("input", function (e) {
+    const select1 = new MDCSelect(document.querySelector('.mdc-select-1'));
+    const select2 = new MDCSelect(document.querySelector('.mdc-select-2'));
+    const select3 = new MDCSelect(document.querySelector('.mdc-select-3'));
+
+    select1.listen('MDCSelect:change', () => {
+      console.log(`Selected option at index ${select1.selectedIndex} with value "${select1.value}"`);
+    });
+
+    select2.listen('MDCSelect:change', () => {
+      console.log(`Selected option at index ${select2.selectedIndex} with value "${select2.value}"`);
+    });
+
+    select3.listen('MDCSelect:change', () => {
+      console.log(`Selected option at index ${select3.selectedIndex} with value "${select3.value}"`);
+    });
+
+    /* type.addEventListener("input", function (e) {
         if (lastType) {
             switch (lastType) {
                 case "bike lane":
@@ -121,7 +139,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 });
                 break;
         }
-    });
+    });*/
 
     submit.onclick = (event) => {
         doCalculate()
