@@ -1,6 +1,6 @@
 
 
-export function calculate(o:SegmentDataObject):SegmentGrade {
+export function calculate(o:SegmentDataObject):CalculatorResponse {
     let wosstar;
     let wt;
     let wv;
@@ -28,6 +28,9 @@ export function calculate(o:SegmentDataObject):SegmentGrade {
     plos = plos.toFixed(2);
     plos = parseFloat(plos);
 
+    if(isNaN(plos)){
+        return {name: "PLOS", because: ""}
+    }
 
     let grade;
     if(plos<=2){
