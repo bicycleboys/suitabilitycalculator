@@ -3,7 +3,8 @@
 <html lang="en" dir="ltr">
 
 <head>
-  <meta charset="utf-8">
+  <meta charset="utf-8" >
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Bike Suitability Calculator</title>
   <script type="module" src="main.js"></script>
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
@@ -22,7 +23,7 @@ color: blue;
 </head>
 
 <body>
-  <header class="mdc-top-app-bar">
+  <header class="mdc-top-app-bar mdc-top-app-bar--short">
     <div class="mdc-top-app-bar__row">
       <section class="mdc-top-app-bar__section fixed-top mdc-top-app-bar__section--align-start">
         <!--<button class="material-icons mdc-top-app-bar__navigation-icon mdc-icon-button">menu</button>-->
@@ -33,11 +34,10 @@ color: blue;
 
   <form id="form" autocomplete="off">
   </br>
+
 </br>
-<div class='if-part'>
 </br>
-</br>
-</div>
+
 <label for="segmentName" class="TopOfPage">Segment name:
   <input type="text" class="mdc-text-field__input" name="segmentName" size="35" placeholder="eg. Humboldt: Locust-Chambers" required /></label>
 
@@ -104,6 +104,8 @@ color: blue;
 
 
 <h5>Bike lane information</h5>
+
+<!--
 <div class="mdc-select mdc-select-1 bigboi">
   <div class="mdc-select__anchor bigboi">
     <i class="mdc-select__dropdown-icon"></i>
@@ -131,8 +133,8 @@ color: blue;
   </div>
 </div>
 </br>
+-->
 
-<!--
 <div>
 <label>Bike Facility Type</label>
 </br>
@@ -150,12 +152,14 @@ color: blue;
 </div>
 </div>
 </br>
--->
+
 
 <!--
 I'm so close to getting the material design select to work, but on click nothing happens
 it looks pretty but it's useless
 -->
+
+<!--
 <div class="mdc-select mdc-select-2">
   <div class="mdc-select__anchor bigboi">
     <i class="mdc-select__dropdown-icon"></i>
@@ -177,9 +181,10 @@ it looks pretty but it's useless
   </div>
 </div>
 </br>
+-->
 
 
-<!--
+
 <div>
 <label>Bike Lane Blockage Frequency</label>
 </br>
@@ -193,7 +198,7 @@ it looks pretty but it's useless
 </div>
 </div>
 </br>
--->
+
 
 
 <label for="lanesAdjacent">Bike lane beetween on-street parking and driving lane:</label>
@@ -439,6 +444,7 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
     <input type="number" class="mdc-text-field__input" name="RLLength" value=" " /></label>
   </br>
 
+<!--
 </br>
 <div class="mdc-select mdc-select-3">
   <div class="mdc-select__anchor bigboi">
@@ -461,12 +467,14 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
   </div>
 </div>
 </br>
-<!--
+-->
+
 <div>
 <label for="laneShift" >Does the bike lane shift left or continue straight as the right lane appears?
 </br>
 <div class="mdc-select">
 <select name="laneShift" class= "mdc-select__native-control" id="laneShift">
+  <option value="" disabled selected></option>
 <option value="left">Shifts left</option>
 <option value="abrupt">Continues straight</option>
 </select></label>
@@ -474,7 +482,7 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
 </div>
 </div>
 </br>
--->
+
 </br>
 
 
