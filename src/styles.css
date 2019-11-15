@@ -17,14 +17,14 @@ it was being rude*/
 
 
 @media only screen and (min-width: 750px){
-/*small screen only stuff goes here*/
-.if-part{display:none;}
+  /*small screen only stuff goes here*/
+  .if-part{display:none;}
 
-.radiobuttonLabel{
-  font-size: 30px;
-}
+  .radiobuttonLabel{
+    font-size: 30px;
+  }
 
-optgroup { font-size:30px; }
+  optgroup { font-size:30px; }
 
 }
 
@@ -35,21 +35,21 @@ optgroup { font-size:30px; }
   }
   .if-part{display:initial;}
 }
- .mdc-list-item{
-   font-size: 30px;
- }
+.mdc-list-item{
+  font-size: 30px;
+}
 
- .bigboi{
-   width: 800px;
- }
+.bigboi{
+  width: 800px;
+}
 
 .mdc-select__native-control {
-    -webkit-appearance: none;
-    -moz-appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 :root {
-    --mdc-theme-primary: 0, 50, 50;
+  --mdc-theme-primary: 0, 50, 50;
 }
 
 .mdc-top-app-bar{
@@ -81,11 +81,11 @@ optgroup { font-size:30px; }
 }
 
 body{
-    background-color: lightgrey;
+  background-color: lightgrey;
 }
 
 p{
-margin-bottom: 1em; /* increase white space after a paragraph */
+  margin-bottom: 1em; /* increase white space after a paragraph */
 
 }
 
@@ -95,21 +95,21 @@ label{
 }
 
 input[type="radio"] {
-    -ms-transform: scale(1.5); /* IE 9 */
-    -webkit-transform: scale(1.5); /* Chrome, Safari, Opera */
-    transform: scale(1.5);
+  -ms-transform: scale(1.5); /* IE 9 */
+  -webkit-transform: scale(1.5); /* Chrome, Safari, Opera */
+  transform: scale(1.5);
 }
 
 
 
 /* everything under here is from the button class, edited slightly */
 /**
- * @license
- * Copyright Google LLC All Rights Reserved.
- *
- * Use of this source code is governed by an MIT-style license that can be
- * found in the LICENSE file at https://github.com/material-components/material-components-web/blob/master/LICENSE
- */
+* @license
+* Copyright Google LLC All Rights Reserved.
+*
+* Use of this source code is governed by an MIT-style license that can be
+* found in the LICENSE file at https://github.com/material-components/material-components-web/blob/master/LICENSE
+*/
 .mdc-touch-target-wrapper {
   display: inline;
 }
@@ -136,9 +136,9 @@ input[type="radio"] {
   /* @alternate */
   line-height: inherit;
   -webkit-user-select: none;
-     -moz-user-select: none;
-      -ms-user-select: none;
-          user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
   -webkit-appearance: none;
   overflow: visible;
   vertical-align: middle;
@@ -190,7 +190,7 @@ input[type="radio"] {
   left: 0;
   height: 48px;
   -webkit-transform: translateY(-50%);
-          transform: translateY(-50%);
+  transform: translateY(-50%);
 }
 .mdc-button:not(:disabled) {
   color: #008080;
@@ -268,7 +268,7 @@ svg.mdc-button__icon {
 }
 @supports not (-ms-ime-align: auto) {
   .mdc-button--raised:not(:disabled),
-.mdc-button--unelevated:not(:disabled) {
+  .mdc-button--unelevated:not(:disabled) {
     /* @alternate */
     background-color: #008080;
   }
@@ -321,32 +321,32 @@ svg.mdc-button__icon {
 @-webkit-keyframes mdc-ripple-fg-radius-in {
   from {
     -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     -webkit-transform: translate(var(--mdc-ripple-fg-translate-start, 0)) scale(1);
-            transform: translate(var(--mdc-ripple-fg-translate-start, 0)) scale(1);
+    transform: translate(var(--mdc-ripple-fg-translate-start, 0)) scale(1);
   }
   to {
     -webkit-transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
-            transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
+    transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
   }
 }
 
 @keyframes mdc-ripple-fg-radius-in {
   from {
     -webkit-animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-            animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     -webkit-transform: translate(var(--mdc-ripple-fg-translate-start, 0)) scale(1);
-            transform: translate(var(--mdc-ripple-fg-translate-start, 0)) scale(1);
+    transform: translate(var(--mdc-ripple-fg-translate-start, 0)) scale(1);
   }
   to {
     -webkit-transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
-            transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
+    transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
   }
 }
 @-webkit-keyframes mdc-ripple-fg-opacity-in {
   from {
     -webkit-animation-timing-function: linear;
-            animation-timing-function: linear;
+    animation-timing-function: linear;
     opacity: 0;
   }
   to {
@@ -356,7 +356,7 @@ svg.mdc-button__icon {
 @keyframes mdc-ripple-fg-opacity-in {
   from {
     -webkit-animation-timing-function: linear;
-            animation-timing-function: linear;
+    animation-timing-function: linear;
     opacity: 0;
   }
   to {
@@ -366,7 +366,7 @@ svg.mdc-button__icon {
 @-webkit-keyframes mdc-ripple-fg-opacity-out {
   from {
     -webkit-animation-timing-function: linear;
-            animation-timing-function: linear;
+    animation-timing-function: linear;
     opacity: var(--mdc-ripple-fg-opacity, 0);
   }
   to {
@@ -376,7 +376,7 @@ svg.mdc-button__icon {
 @keyframes mdc-ripple-fg-opacity-out {
   from {
     -webkit-animation-timing-function: linear;
-            animation-timing-function: linear;
+    animation-timing-function: linear;
     opacity: var(--mdc-ripple-fg-opacity, 0);
   }
   to {
@@ -414,16 +414,16 @@ svg.mdc-button__icon {
 }
 .mdc-button.mdc-ripple-upgraded .mdc-button__ripple::before {
   -webkit-transform: scale(var(--mdc-ripple-fg-scale, 1));
-          transform: scale(var(--mdc-ripple-fg-scale, 1));
+  transform: scale(var(--mdc-ripple-fg-scale, 1));
 }
 .mdc-button.mdc-ripple-upgraded .mdc-button__ripple::after {
   top: 0;
   /* @noflip */
   left: 0;
   -webkit-transform: scale(0);
-          transform: scale(0);
+  transform: scale(0);
   -webkit-transform-origin: center center;
-          transform-origin: center center;
+  transform-origin: center center;
 }
 .mdc-button.mdc-ripple-upgraded--unbounded .mdc-button__ripple::after {
   top: var(--mdc-ripple-top, 0);
@@ -432,13 +432,13 @@ svg.mdc-button__icon {
 }
 .mdc-button.mdc-ripple-upgraded--foreground-activation .mdc-button__ripple::after {
   -webkit-animation: mdc-ripple-fg-radius-in 225ms forwards, mdc-ripple-fg-opacity-in 75ms forwards;
-          animation: mdc-ripple-fg-radius-in 225ms forwards, mdc-ripple-fg-opacity-in 75ms forwards;
+  animation: mdc-ripple-fg-radius-in 225ms forwards, mdc-ripple-fg-opacity-in 75ms forwards;
 }
 .mdc-button.mdc-ripple-upgraded--foreground-deactivation .mdc-button__ripple::after {
   -webkit-animation: mdc-ripple-fg-opacity-out 150ms;
-          animation: mdc-ripple-fg-opacity-out 150ms;
+  animation: mdc-ripple-fg-opacity-out 150ms;
   -webkit-transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
-          transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
+  transform: translate(var(--mdc-ripple-fg-translate-end, 0)) scale(var(--mdc-ripple-fg-scale, 1));
 }
 .mdc-button .mdc-button__ripple::before,
 .mdc-button .mdc-button__ripple::after {
@@ -497,8 +497,8 @@ svg.mdc-button__icon {
 }
 @supports not (-ms-ime-align: auto) {
   .mdc-button--raised .mdc-button__ripple::before, .mdc-button--raised .mdc-button__ripple::after,
-.mdc-button--unelevated .mdc-button__ripple::before,
-.mdc-button--unelevated .mdc-button__ripple::after {
+  .mdc-button--unelevated .mdc-button__ripple::before,
+  .mdc-button--unelevated .mdc-button__ripple::after {
     /* @alternate */
     background-color: var(--mdc-theme-on-primary, #fff);
   }
