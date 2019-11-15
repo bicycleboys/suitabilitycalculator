@@ -86,6 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
     resetForm();
     //Clear selection dropdowns so we don't accidentally record inaccurate data
 
+  /*
     const select1 = new MDCSelect(document.querySelector('.mdc-select-1'));
     const select2 = new MDCSelect(document.querySelector('.mdc-select-2'));
     const select3 = new MDCSelect(document.querySelector('.mdc-select-3'));
@@ -101,7 +102,7 @@ document.addEventListener('DOMContentLoaded', function () {
     select3.listen('MDCSelect:change', () => {
       console.log(`Selected option at index ${select3.selectedIndex} with value "${select3.value}"`);
     });
-
+*/
 
     submit.onclick = (event) => {
         doCalculate()
