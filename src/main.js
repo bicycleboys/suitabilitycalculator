@@ -104,9 +104,6 @@ function resetForm() {
 document.addEventListener('DOMContentLoaded', function () {
   var submit = document.getElementById("submit");
   var form = document.getElementById("form");
-
-  var lastType = false;
-  resetForm();
   //Clear selection dropdowns so we don't accidentally record inaccurate data
 
   /*
