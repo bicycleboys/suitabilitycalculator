@@ -10,7 +10,7 @@
 export function calculate(obj:SegmentDataObject):CalculatorResponse {
   //we expect obj to have fields for calculation
   //in this case, that's segmentType, right turn lane, lanecount, laneadjacent, lanewidth/parking&lanewidth, speed, blockagefreqency, markedCenterLines, ADT
-  if(obj.segmentType=="") return {name: "LTS", because: "segmentType"} //NotCalculated
+  if(!("segmentType" in obj)||obj.segmentType=="") return {name: "LTS", because: "segmentType"} //NotCalculated
 
   var grade: string, points: number|string;
 
