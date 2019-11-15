@@ -1,5 +1,6 @@
 export function calculate(o:SegmentDataObject):CalculatorResponse {
-    if (!requireProperties(o,'adt','ppk','curb','wos','wol','devided', 'wbl', 'wos', 'runningSpeed','laneCount','phv','pc')) return {name: "BLOS", because: ""};
+    let properties:NotCalculated|null = requireProperties(o,'adt','ppk','curb','wos','wol','devided', 'wbl', 'wos', 'runningSpeed','laneCount','phv','pc')
+    if(properties != null) return properties;
     let wosstar; //$w_{os}^*$, adjusted width of shoulder
     let wt; //$W_{t}$, space available for bikes
     let wv;
@@ -32,6 +33,10 @@ export function calculate(o:SegmentDataObject):CalculatorResponse {
     blos = ((.760) + c1 + c2 +c3 +c4).toFixed(2);
     blos = parseFloat(blos);
 
+    if(isNaN(blos)){
+        return {name: "BLOS", because: ""}
+    }
+
     let grade;
     if(blos<=2){
         grade="A"
@@ -47,10 +52,10 @@ export function calculate(o:SegmentDataObject):CalculatorResponse {
     return {points:blos, grade: grade, name: "BLOS"};
 }
 
-function requireProperties(o:Object,...properties:string[]){
+function requireProperties(o:Object,...properties:string[]):NotCalculated|null{
     properties.forEach(p => {
         if (!(p in o))
-            return false;
+            return {name:"BLOS", because: p}
     });
-    return true;
+    return null;
 }
