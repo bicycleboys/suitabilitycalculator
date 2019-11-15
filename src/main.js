@@ -148,20 +148,35 @@ document.addEventListener('DOMContentLoaded', function () {
 
     window.fill = ()=>{
       function setNameValue(name, value){
-        let el = document.getElementsByName(name)[0]
-        el.value = value;
+        let el = document.getElementsByName(name)
+        if(el.length==1){
+          el[0].value = value;
+        }else{
+          for(let e of el){
+            if (e.value==value)
+              if ("checked" in e) e.checked = true
+              else console.log(e)
+          }
+        }
       }
       setNameValue("segmentName","Test")
       setNameValue("laneCount", 1)
-      setNameValue("median","devidedNo")
+      setNameValue("median", "false")
       setNameValue("runningSpeed", 30)
       setNameValue("adt", 12000)
       setNameValue("wol",11)
       setNameValue("wbl",5.0)
       setNameValue("wos",8.5)
-      setNameValue("curb","curbYes")
+      setNameValue("curb","true")
       setNameValue("ppk",50)
       setNameValue("pc",4.0)
       setNameValue("phv",4.0)
+      setNameValue("wbuf",5.0)
+      setNameValue("waa",6.0)
+      setNameValue("fb","false")
+      setNameValue("segmentType","mixed traffic")
+      setNameValue("totalLanes",2)
+      setNameValue("runningSpeed",30)
+      setNameValue("centerline","false")
     }
 })
