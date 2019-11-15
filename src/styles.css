@@ -56,11 +56,12 @@ it was being rude*/
   width: 150px;
 }
 
-.mdc-select__native-control{
+/*.mdc-select__native-control{
   padding-top: 60px;
   width: 400px;
   display:table-cell;
 }
+*/
 
 body{
   background-color: lightgrey;
