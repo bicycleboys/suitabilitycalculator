@@ -126,4 +126,24 @@ document.addEventListener('DOMContentLoaded', function () {
     submit.onclick = (event) => {
         doCalculate()
     };
+
+
+    window.fill = ()=>{
+      function setNameValue(name, value){
+        let el = document.getElementsByName(name)[0]
+        el.value = value;
+      }
+      setNameValue("segmentName","Test")
+      setNameValue("laneCount", 1)
+      setNameValue("median","devidedNo")
+      setNameValue("runningSpeed", 30)
+      setNameValue("adt", 12000)
+      setNameValue("wol",11)
+      setNameValue("wbl",5.0)
+      setNameValue("wos",8.5)
+      setNameValue("curb","curbYes")
+      setNameValue("ppk",50)
+      setNameValue("pc",4.0)
+      setNameValue("phv",4.0)
+    }
 })

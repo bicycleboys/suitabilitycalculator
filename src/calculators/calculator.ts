@@ -31,7 +31,7 @@ interface SegmentDataObject{
     ppk?: number;
     wol?: any;
     wbl?: any;
-    devided?: boolean;
+    //devided?: boolean; now median
     vm?: number;
     phv?: number;
     runningSpeed?: any;
@@ -45,7 +45,7 @@ interface SegmentDataObject{
     RLCount?: number; //count of right turn lanes
     laneShift?: string;
     RLLength?:number;
-    name: string
+    segmentName: string
 }
 
 interface Calculator{

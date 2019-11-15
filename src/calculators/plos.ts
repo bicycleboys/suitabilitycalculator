@@ -16,7 +16,7 @@ export function calculate(o:SegmentDataObject):SegmentGrade {
     else wosstar = o.wos;
     if (ppk == 0.0) wt = o.wol + o.wbl + wosstar;
     else wt = o.wol + o.wbl;
-    if (o.devided || vm > 160) wv = wt;
+    if (o.median || vm > 160) wv = wt;
     else wv = wt * (2 - .005 * vm);
     if (ppk < .25 || o.parkingStriped) w1 = o.wbl + wosstar;
     else w1 = 10.0;
