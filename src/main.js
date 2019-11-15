@@ -9,14 +9,14 @@ import {MDCSelect} from '@material/select';
 * Checks form valididty and runs calculations
 */
 function doCalculate() {
-    if(form.reportValidity()){
+    if (form.reportValidity()) {
         var infoObject = gatherData(form);
         console.log(infoObject);
         //resetForm();
         var ltsData = lts.calculate(infoObject);
         var plosData = plos.calculate(infoObject);
         var blosData = blos.calculate(infoObject);
-        doSave(infoObject,ltsData,blosData,plosData);
+        doSave(infoObject, ltsData, blosData, plosData);
         display(ltsData);
         display(blosData);
         display(plosData);
@@ -24,21 +24,34 @@ function doCalculate() {
 }
 /**
 * Displays the data passed in
-* @param {name:string,grade:string,points:number} data
+* @param CalculatorResponse data
 */
-function display(data){
-  //data should have a grade which is a letter and a percentage/point score
-  var grade = document.createElement("p")
-  if(!data.grade){
-    throw Error("Cannot display "+data.name+" without a grade");
-  }
-  grade.textContent = `${data.name}: ${data.grade} (${data.points})`;
-  document.body.appendChild(grade);
+function display(data) {
+    //interface SegmentGrade{
+    //     points: number
+    //     grade: string
+    //     name: string
+    // }
+
+    // interface NotCalculated{
+    //     name: string;
+    //     because: string;
+    // }
+    var responseDisplay = document.createElement("p")
+    if (data.hasOwnProperty("because")) {
+        responseDisplay.textContent = `${data.name} not calculated because ${data.because} was missing`;
+    } else {
+        if (!data.grade) {
+            throw Error("Cannot display " + data.name + " without a grade");
+        }
+        responseDisplay.textContent = `${data.name}: ${data.grade} (${data.points})`;
+    }
+    document.body.appendChild(responseDisplay);
 }
 
-function doSave(infoObject, ...calculatedData){
+function doSave(infoObject, ...calculatedData) {
     let saveDao = new FBDao();
-    saveDao.add(infoObject,calculatedData);
+    saveDao.add(infoObject, calculatedData);
 }
 
 
@@ -47,25 +60,25 @@ function doSave(infoObject, ...calculatedData){
 * @param form form to gather data from
 * @returns {SegmentDataObject} object with all info about segment
 */
-function gatherData(form){
-    if (form==null) throw Error("Invalid form passed in");
+function gatherData(form) {
+    if (form == null) throw Error("Invalid form passed in");
     let obj = {};
-    let elements = form.querySelectorAll( "input, select, textarea" );
+    let elements = form.querySelectorAll("input, select, textarea");
 
-    for( let element of elements ) {
+    for (let element of elements) {
         var name = element.name;
         var value = element.value;
-        if(value=="false") value=false;
-        if(value=="true") value=true;
-        if( name ) {
-            obj[ name ] = value;
+        if (value == "false") value = false;
+        if (value == "true") value = true;
+        if (name) {
+            obj[name] = value;
         }
     }
 
-  obj.lanesCombinedWidth = obj.adjacent? obj.width:NaN;
-  obj.laneWidth = obj.adjacent?NaN:obj.width;
+    obj.lanesCombinedWidth = obj.adjacent ? obj.width : NaN;
+    obj.laneWidth = obj.adjacent ? NaN : obj.width;
 
-  return obj;
+    return obj;
 }
 
 /***
@@ -73,16 +86,12 @@ function gatherData(form){
 */
 function resetForm(){
   form.reset();
-  //type.selectedIndex = -1;
-  //blockage.selectedIndex = -1;
 }
 
 /**
 * Runs once DOM has loaded
 */
 document.addEventListener('DOMContentLoaded', function () {
-  //var type = document.getElementById("type");
-  //var blockage = document.getElementById("blockage");
   var submit = document.getElementById("submit");
   var form = document.getElementById("form");
 
@@ -106,40 +115,6 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log(`Selected option at index ${select3.selectedIndex} with value "${select3.value}"`);
     });
 
-    /* type.addEventListener("input", function (e) {
-        if (lastType) {
-            switch (lastType) {
-                case "bike lane":
-                    document.querySelectorAll(".if-bike-lane").forEach(function (e) {
-                        e.removeAttribute("required");
-                    });
-                    break;
-                case "mixed traffic":
-                    document.querySelectorAll(".if-mixed").forEach(function (e) {
-                        e.removeAttribute("required");
-                    });
-                    break;
-            }
-        }
-        lastType = type.value;
-        switch (type.value) {
-            case "stand-alone":
-            case "segregated":
-                break;
-            case "bike lane":
-                var req = document.querySelectorAll(".if-bike-lane");
-                req.forEach(function (e) {
-                    e.setAttribute("required", "");
-                });
-                break;
-            case "mixed traffic":
-                var req = document.querySelectorAll(".if-mixed");
-                req.forEach(function (e) {
-                    e.setAttribute("required", "");
-                });
-                break;
-        }
-    });*/
 
     submit.onclick = (event) => {
         doCalculate()
