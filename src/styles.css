@@ -16,8 +16,18 @@ it was being rude*/
 @import "../node_modules/@material/icon-button/dist/mdc.icon-button.css";
 
 
-@media only screen and (min-width: 750px){
-  /*small screen only stuff goes here*/
+@media only screen and (min-width: 751px){
+  /*larger screen only stuff goes here*/
+
+  label.TopOfPage{
+    margin-top: 6em;
+    padding-top: 6em;
+  }
+  .if-part{display:block;}
+}
+
+@media only screen and (max-width: 750px) {
+  /*small screen stuff goes here*/
   .if-part{display:none;}
 
   .radiobuttonLabel{
@@ -25,15 +35,6 @@ it was being rude*/
   }
 
   optgroup { font-size:30px; }
-
-}
-
-@media only screen and (max-width: 751px) {
-  label.TopOfPage{
-    margin-top: 6em;
-    padding-top: 6em;
-  }
-  .if-part{display:initial;}
 }
 .mdc-list-item{
   font-size: 30px;
