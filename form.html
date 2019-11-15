@@ -258,16 +258,14 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
 
 
 <!--Car lane stuff (or mixed traffic)-->
-<label for="speed runningSpeed">Speed Limit (or prevailing speed if speed limit isn't followed) (miles per hour):
+<label for="speed">Speed Limit:
   <input type="number"  name="speed"  value=" " class="if-bike-lane if-mixed mdc-text-field__input" /></label>
 </br>
 
-<!--
-should be able to use the for tag above to get both speed and running speed
-<label for="runningSpeed">Motorized vehicle running speed in miles per hour: !ask concurrently with posted speed limit
+
+<label for="runningSpeed">Prevailing speed:
 <input type="number" class="mdc-text-field__input" name="runningSpeed" value=" " /></label>
 </br>
--->
 
 <label for="laneCount">Number of travel lanes per direction: <!--TODO: verify lanes is positive-->
   <input type="number" class="if-bike-lane mdc-text-field__input"  name="laneCount" value=" " /></label>
