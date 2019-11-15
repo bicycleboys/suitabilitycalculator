@@ -35,6 +35,9 @@ module.exports = {
     contentBase: outPath
   },
   plugins: [
+    new HtmlWebpackPlugin({   
+      favicon: './src/favicon.ico'
+    }),
     new HtmlWebpackPlugin({ //add index.html to build
       inject: false,
       template: './src/index.html',
