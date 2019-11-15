@@ -77,7 +77,7 @@ test('mixed traffic 2 lane, 30mph example',()=>{
     segmentName: 'test',
     segmentType: 'mixed traffic',
     totalLanes: 2,
-    speed: 30,
+    runningSpeed: 30,
     centerline: false,
     adt: 2500
   }
