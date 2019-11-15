@@ -73,16 +73,12 @@ function gatherData(form){
 */
 function resetForm(){
   form.reset();
-  //type.selectedIndex = -1;
-  //blockage.selectedIndex = -1;
 }
 
 /**
 * Runs once DOM has loaded
 */
 document.addEventListener('DOMContentLoaded', function () {
-  //var type = document.getElementById("type");
-  //var blockage = document.getElementById("blockage");
   var submit = document.getElementById("submit");
   var form = document.getElementById("form");
 
@@ -106,40 +102,6 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log(`Selected option at index ${select3.selectedIndex} with value "${select3.value}"`);
     });
 
-    /* type.addEventListener("input", function (e) {
-        if (lastType) {
-            switch (lastType) {
-                case "bike lane":
-                    document.querySelectorAll(".if-bike-lane").forEach(function (e) {
-                        e.removeAttribute("required");
-                    });
-                    break;
-                case "mixed traffic":
-                    document.querySelectorAll(".if-mixed").forEach(function (e) {
-                        e.removeAttribute("required");
-                    });
-                    break;
-            }
-        }
-        lastType = type.value;
-        switch (type.value) {
-            case "stand-alone":
-            case "segregated":
-                break;
-            case "bike lane":
-                var req = document.querySelectorAll(".if-bike-lane");
-                req.forEach(function (e) {
-                    e.setAttribute("required", "");
-                });
-                break;
-            case "mixed traffic":
-                var req = document.querySelectorAll(".if-mixed");
-                req.forEach(function (e) {
-                    e.setAttribute("required", "");
-                });
-                break;
-        }
-    });*/
 
     submit.onclick = (event) => {
         doCalculate()
