@@ -50,6 +50,12 @@ module.exports = {
       template: './src/form.html',
       filename: 'form.html'
     }),
+    new HtmlWebpackPlugin({ //add result.html to build
+      inject: "head",
+      chunks: 'result',
+      template: './src/result.html',
+      filename: 'result.html'
+    }),
     //If you add new pages to src, also add them here
     new WorkboxPlugin.GenerateSW({
       // these options encourage the ServiceWorkers to get in there fast
