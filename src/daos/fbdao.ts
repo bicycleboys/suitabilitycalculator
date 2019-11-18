@@ -21,7 +21,7 @@ export class FBDao implements Dao{
 
     try{
       var app = firebase.initializeApp(firebaseConfig);
-      firebase.firestore(app).enablePersistence().catch(function(err: any) {
+      firebase.firestore(app).enablePersistence({synchronizeTabs:true}).catch(function(err: any) {
         if (err.code == 'failed-precondition') {
           console.log("failed precondition");
         } else if (err.code == 'unimplemented') {
