@@ -2,7 +2,9 @@ import * as lts from './calculators/lts'
 import * as blos from './calculators/blos'
 import * as plos from './calculators/plos'
 import "./styles.css";
-import {FBDao} from './daos/fbdao.ts'
+import { FBDao } from './daos/fbdao.ts'
+import { MDCMenu } from '@material/menu';
+import { MDCSelect } from '@material/select';
 
 
 if ('serviceWorker' in navigator) {
@@ -27,35 +29,53 @@ if ('serviceWorker' in navigator) {
 * Checks form valididty and runs calculations
 */
 function doCalculate() {
-    if(form.reportValidity()){
-        var infoObject = gatherData(form);
-        //resetForm();
-        var ltsData = lts.calculate(infoObject);
-        var plosData = plos.calculate(infoObject);
-        var blosData = blos.calculate(infoObject);
-        doSave(infoObject,ltsData,blosData,plosData);
-        display(ltsData);
-        display(blosData);
-        display(plosData);
-    }
+  if (form.reportValidity()) {
+    var infoObject = gatherData(form);
+    console.log(infoObject);
+    //resetForm();
+    var ltsData = lts.calculate(infoObject);
+    var plosData = plos.calculate(infoObject);
+    var blosData = blos.calculate(infoObject);
+    try {
+      doSave(infoObject, ltsData, blosData, plosData);
+    } catch (e) { console.log(e) }
+    try {
+      display(ltsData);
+      display(blosData);
+      display(plosData);
+    } catch (e) { console.log(e) }
+  }
 }
 /**
 * Displays the data passed in
-* @param {name:string,grade:string,points:number} data
+* @param CalculatorResponse data
 */
-function display(data){
-  //data should have a grade which is a letter and a percentage/point score
-  var grade = document.createElement("p")
-  if(!data.grade){
-    throw Error("Cannot display "+data.name+" without a grade");
+function display(data) {
+  //interface SegmentGrade{
+  //     points: number
+  //     grade: string
+  //     name: string
+  // }
+
+  // interface NotCalculated{
+  //     name: string;
+  //     because: string;
+  // }
+  var responseDisplay = document.createElement("p")
+  if (data.hasOwnProperty("because")) {
+    responseDisplay.textContent = `${data.name} not calculated because ${data.because} was missing`;
+  } else {
+    if (!data.grade) {
+      throw Error("Cannot display " + data.name + " without a grade");
+    }
+    responseDisplay.textContent = `${data.name}: ${data.grade} (${data.points})`;
   }
-  grade.textContent = `${data.name}: ${data.grade} (${data.points})`;
-  document.body.appendChild(grade);
+  document.body.appendChild(responseDisplay);
 }
 
-function doSave(infoObject, ...calculatedData){
-    let saveDao = new FBDao();
-    saveDao.add(infoObject,calculatedData);
+function doSave(infoObject, ...calculatedData) {
+  let saveDao = new FBDao();
+  saveDao.add(infoObject, calculatedData);
 }
 
 
@@ -64,23 +84,29 @@ function doSave(infoObject, ...calculatedData){
 * @param form form to gather data from
 * @returns {SegmentDataObject} object with all info about segment
 */
-function gatherData(form){
-    if (form==null) throw Error("Invalid form passed in");
-    let obj = {};
-    let elements = form.querySelectorAll( "input, select, textarea" );
+function gatherData(form) {
+  if (form == null) throw Error("Invalid form passed in");
+  let obj = {};
+  let elements = form.querySelectorAll("input, select, textarea");
 
-    for( let element of elements ) {
-        var name = element.name;
-        var value = element.value;
-        if(value=="false") value=false;
-        if(value=="true") value=true;
-        if( name ) {
-            obj[ name ] = value;
-        }
+  for (let element of elements) {
+    var name = element.name;
+    var value = element.value;
+    if (element.type == "radio"){
+      if (!element.checked) continue;
     }
+    if (element.type == "number"){
+      value = parseFloat(value);
+    }
+    if (value == "false") value = false;
+    if (value == "true") value = true;
+    if (name) {
+      obj[name] = value;
+    }
+  }
 
-  obj.lanesCombinedWidth = obj.adjacent? obj.width:NaN;
-  obj.laneWidth = obj.adjacent?NaN:obj.width;
+  obj.lanesCombinedWidth = obj.adjacent ? obj.width : NaN;
+  obj.laneWidth = obj.adjacent ? NaN : obj.width;
 
   return obj;
 }
@@ -88,61 +114,72 @@ function gatherData(form){
 /***
 * Resets attached form (clears text values, resets dropdowns back to non-options)
 */
-function resetForm(){
+function resetForm() {
   form.reset();
-  type.selectedIndex = -1;
-  blockage.selectedIndex = -1;
 }
 
 /**
 * Runs once DOM has loaded
 */
 document.addEventListener('DOMContentLoaded', function () {
-  var type = document.getElementById("type");
-  var blockage = document.getElementById("blockage");
   var submit = document.getElementById("submit");
   var form = document.getElementById("form");
+  //Clear selection dropdowns so we don't accidentally record inaccurate data
 
-    var lastType = false;
-    resetForm();
-    //Clear selection dropdowns so we don't accidentally record inaccurate data
+  /*
+    const select1 = new MDCSelect(document.querySelector('.mdc-select-1'));
+    const select2 = new MDCSelect(document.querySelector('.mdc-select-2'));
+    const select3 = new MDCSelect(document.querySelector('.mdc-select-3'));
 
-    type.addEventListener("input", function (e) {
-        if (lastType) {
-            switch (lastType) {
-                case "bike lane":
-                    document.querySelectorAll(".if-bike-lane").forEach(function (e) {
-                        e.removeAttribute("required");
-                    });
-                    break;
-                case "mixed traffic":
-                    document.querySelectorAll(".if-mixed").forEach(function (e) {
-                        e.removeAttribute("required");
-                    });
-                    break;
-            }
+  select1.listen('MDCSelect:change', () => {
+    console.log(`Selected option at index ${select1.selectedIndex} with value "${select1.value}"`);
+  });
+
+  select2.listen('MDCSelect:change', () => {
+    console.log(`Selected option at index ${select2.selectedIndex} with value "${select2.value}"`);
+  });
+
+  select3.listen('MDCSelect:change', () => {
+    console.log(`Selected option at index ${select3.selectedIndex} with value "${select3.value}"`);
+  });*/
+
+
+  submit.onclick = (event) => {
+    doCalculate()
+  };
+
+
+  window.fill = () => {
+    function setNameValue(name, value) {
+      let el = document.getElementsByName(name)
+      if (el.length == 1) {
+        el[0].value = value;
+      } else {
+        for (let e of el) {
+          if (e.value == value)
+            if ("checked" in e) e.checked = true
+            else console.log(e)
         }
-        lastType = type.value;
-        switch (type.value) {
-            case "stand-alone":
-            case "segregated":
-                break;
-            case "bike lane":
-                var req = document.querySelectorAll(".if-bike-lane");
-                req.forEach(function (e) {
-                    e.setAttribute("required", "");
-                });
-                break;
-            case "mixed traffic":
-                var req = document.querySelectorAll(".if-mixed");
-                req.forEach(function (e) {
-                    e.setAttribute("required", "");
-                });
-                break;
-        }
-    });
-
-    submit.onclick = (event) => {
-        doCalculate()
-    };
+      }
+    }
+    setNameValue("segmentName", "Test")
+    setNameValue("laneCount", 1)
+    setNameValue("median", "false")
+    setNameValue("runningSpeed", 30)
+    setNameValue("adt", 12000)
+    setNameValue("wol", 11)
+    setNameValue("wbl", 5.0)
+    setNameValue("wos", 8.5)
+    setNameValue("curb", "true")
+    setNameValue("ppk", 50)
+    setNameValue("pc", 4.0)
+    setNameValue("phv", 4.0)
+    setNameValue("wbuf", 5.0)
+    setNameValue("waa", 6.0)
+    setNameValue("fb", "false")
+    setNameValue("segmentType", "mixed traffic")
+    setNameValue("totalLanes", 2)
+    setNameValue("runningSpeed", 30)
+    setNameValue("centerline", "false")
+  }
 })

@@ -10,7 +10,7 @@
 export function calculate(obj:SegmentDataObject):CalculatorResponse {
   //we expect obj to have fields for calculation
   //in this case, that's segmentType, right turn lane, lanecount, laneadjacent, lanewidth/parking&lanewidth, speed, blockagefreqency, markedCenterLines, ADT
-  if(!(obj.hasOwnProperty("segmentType"))) return {name: "LTS", because: "segmentType"} //NotCalculated
+  if(!("segmentType" in obj)||obj.segmentType=="") return {name: "LTS", because: "segmentType"} //NotCalculated
 
   var grade: string, points: number|string;
 
@@ -77,10 +77,11 @@ function bikeLaneCalculate(o:SegmentDataObject) {
       else widthLTS = 3;
     }
     { //Speed LTS block
-      if(!('speed' in o)) return 'speed';
-      if (o.speed <= 25) speedLTS = 1;
-      else if (o.speed < 35) speedLTS = 2;
-      else if (o.speed < 40) speedLTS = 3;
+      if(!('speed' in o)&&!('runningSpeed' in o))  return 'speed';
+      let s = o.runningSpeed||o.speed;
+      if (s <= 25) speedLTS = 1;
+      else if (s < 35) speedLTS = 2;
+      else if (s < 40) speedLTS = 3;
       else speedLTS = 4;
     }
   } else {
@@ -99,9 +100,10 @@ function bikeLaneCalculate(o:SegmentDataObject) {
       else widthLTS = 2;
     }
     { //Speed LTS block
-      if(!('speed' in o)) return 'speed';
-      if (o.speed <= 30) speedLTS = 1;
-      else if (o.speed < 40) speedLTS = 3;
+      if(!('speed' in o)&&!('runningSpeed' in o))  return 'speed';
+      let s = o.runningSpeed||o.speed;
+      if (s <= 30) speedLTS = 1;
+      else if (s < 40) speedLTS = 3;
       else speedLTS = 4;
     }
   }
@@ -127,15 +129,17 @@ function mixedTrafficCalculate(o: SegmentDataObject) {
   if (!('totalLanes' in o)) return 'totalLanes';
   if (o.totalLanes >= 6) p = 4;
   else if (o.totalLanes > 3) {
-    if(!('speed' in o)) return 'speed';
-    if (o.speed >= 30) p = 4;
+    if(!('speed' in o)&&!('runningSpeed' in o))  return 'speed';
+      let s = o.runningSpeed||o.speed;
+    if (s >= 30) p = 4;
     else p = 3;
   } else {
-    if(!('speed' in o)) return 'speed';
-    if (o.speed >= 35) p = 4;
+    if(!('speed' in o)&&!('runningSpeed' in o))  return 'speed';
+      let s = o.runningSpeed||o.speed;
+    if (s >= 35) p = 4;
     else {
-      if (o.speed == 30) p = 3;
-      else if (o.speed <= 25) p = 2;
+      if (s == 30) p = 3;
+      else if (s <= 25) p = 2;
 
       if(!('centerline' in o&&'adt' in o)) return 'centerline or adt';
       if (!o.centerline && (o.adt <= 3000)) {
@@ -163,31 +167,32 @@ function rightLaneInterfacing(o:SegmentDataObject):number|string{
 function unsignalized(o:SegmentDataObject):number|string{
   if(!('island' in o)) return 'island';
   if(!('xStreetWidth' in o)) return 'xStreetWidth';
-  if(!('speed' in o)) return 'speed';
+  if(!('speed' in o)&&!('runningSpeed' in o))  return 'speed';
+      let s = o.runningSpeed||o.speed;
   if(o.island){
     if(o.xStreetWidth>=6) return 4
     else if (o.xStreetWidth>3){
-      if(o.speed>=40) return 4
-      else if (o.speed>=35) return 3
+      if(s>=40) return 4
+      else if (s>=35) return 3
       else return 2
     }else{
-      if(o.speed>=40) return 3
-      else if (o.speed>=35) return 2
+      if(s>=40) return 3
+      else if (s>=35) return 2
       else return 1
     }
   }else{
     if(o.xStreetWidth>=6) {
-      if (o.speed>=35) return 4
-      else if (o.speed>=30) return 3
+      if (s>=35) return 4
+      else if (s>=30) return 3
       else return 2
     }else if (o.xStreetWidth>3){
-      if(o.speed>=40) return 4
-      else if (o.speed>=35) return 3
-      else if (o.speed>=30) return 2
+      if(s>=40) return 4
+      else if (s>=35) return 3
+      else if (s>=30) return 2
       else return 1
     }else{
-      if(o.speed>=40) return 3
-      else if (o.speed>=35) return 2
+      if(s>=40) return 3
+      else if (s>=35) return 2
       else return 1
     }
   }

@@ -1,5 +1,6 @@
 export function calculate(o:SegmentDataObject):CalculatorResponse {
-    if (!requireProperties(o,'adt','ppk','curb','wos','wol','devided', 'wbl', 'wos', 'runningSpeed','laneCount','phv','pc')) return {name: "BLOS", because: ""};
+    let properties:NotCalculated|null = requireProperties(o,'adt','ppk','curb','wos','wol','devided', 'wbl', 'wos', 'runningSpeed','laneCount','phv','pc')
+    if(properties != null) return properties;
     let wosstar; //$w_{os}^*$, adjusted width of shoulder
     let wt; //$W_{t}$, space available for bikes
     let wv;
@@ -17,7 +18,7 @@ export function calculate(o:SegmentDataObject):CalculatorResponse {
     else wosstar = o.wos;
     if (ppk == 0.0) wt = o.wol + o.wbl + wosstar;
     else wt = o.wol + o.wbl;
-    if (o.devided || vm > 160) wv = wt;
+    if (o.median || vm > 160) wv = wt;
     else wv = wt * (2 - .005 * vm);
     if (o.wbl + o.wos < 4.0) we = Math.max(wv - (10 * ppk), 0.0);
     else we = Math.max(wv + o.wbl + o.wos - (20 * ppk), 0.0);
@@ -31,6 +32,10 @@ export function calculate(o:SegmentDataObject):CalculatorResponse {
     c4 = (7.066 / Math.pow(o.pc, 2));
     blos = ((.760) + c1 + c2 +c3 +c4).toFixed(2);
     blos = parseFloat(blos);
+
+    if(isNaN(blos)){
+        return {name: "BLOS", because: ""}
+    }
 
     let grade;
     if(blos<=2){
@@ -47,10 +52,10 @@ export function calculate(o:SegmentDataObject):CalculatorResponse {
     return {points:blos, grade: grade, name: "BLOS"};
 }
 
-function requireProperties(o:Object,...properties:string[]){
+function requireProperties(o:Object,...properties:string[]):NotCalculated|null{
     properties.forEach(p => {
         if (!(p in o))
-            return false;
+            return {name:"BLOS", because: p}
     });
-    return true;
+    return null;
 }
