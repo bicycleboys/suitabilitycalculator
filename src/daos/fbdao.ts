@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-export type documentElement = { key: any; data: SegmentDataObject; Scores: CalculatorResponse[]; Timestamp: number; };
+export type documentElement = { key: any; SegmentDataObject: SegmentDataObject; Scores: CalculatorResponse[]; Timestamp: number; };
 
 export class FBDao implements Dao {
 
@@ -147,7 +147,7 @@ export class FBDao implements Dao {
       let obj:any = {}
       obj.key=r.key;
       obj.scores = r.Scores;
-      obj.data=r.data;
+      obj.data=r.SegmentDataObject;
       return obj;
     });
   }

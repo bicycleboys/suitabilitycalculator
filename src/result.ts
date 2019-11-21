@@ -4,6 +4,7 @@ import "./styles.css";
 var dao:FBDao;
 
 function fillPage(data:documentElement){
+    fillName(data.SegmentDataObject.segmentName);
     fillScores(data.Scores);
     addTime(data.Timestamp);
 }
@@ -13,9 +14,16 @@ function fillScores(scores: CalculatorResponse[]){
     scoreDiv.innerHTML = "";
     for(let s of scores){
         const scoreBox = document.createElement("div")
-        scoreBox.className = "scoreBox"
+        scoreBox.className = "scoreBox "
         const name = document.createElement("h2")
         name.innerHTML = s.name;
+        const infoLink = document.createElement("a")
+        infoLink.href="./"+s.name+".html"
+        infoLink.innerText = "🛈";
+        name.appendChild(infoLink);
+
+        console.log(name)
+
         scoreBox.appendChild(name)
         
         if(scoreIsNotCalculated(s)){
@@ -31,6 +39,8 @@ function fillScores(scores: CalculatorResponse[]){
             points.id = "points"
             points.innerText = "Points: "+s.points;
             scoreBox.appendChild(points);
+            
+            scoreBox.className = scoreBox.className+" "+s.grade;
         }
         scoreDiv.appendChild(scoreBox);
     }
@@ -39,6 +49,11 @@ function fillScores(scores: CalculatorResponse[]){
 function addTime(timestamp:any){
     const timeDiv = document.getElementById("timestamp");
     timeDiv.innerHTML = "<p> Logged:  "+timestamp.toDate()+"</p>";
+}
+
+function fillName(name: string){
+    const nameDiv = document.getElementById("segmentName")
+    nameDiv.innerText = name;
 }
 
 
@@ -57,7 +72,7 @@ function setKey(k:any){
         console.log(err)
         let p = document.createElement("p");
         p.innerText = "That's a fake id!\n"
-        document.appendChild(p);
+        document.body.appendChild(p);
     })
 }
 
