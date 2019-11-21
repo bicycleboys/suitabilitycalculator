@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-export type documentElement = { key: any; SegmentDataObject: SegmentDataObject; Scores: CalculatorResponse[]; Timestamp: number; };
+export type documentElement = { key: string; SegmentDataObject: SegmentDataObject; Scores: CalculatorResponse[]; Timestamp: number; };
 
 export class FBDao implements Dao {
 
@@ -47,8 +47,8 @@ export class FBDao implements Dao {
     this.db = db;
   }
 
-  add(SegmentDataObject: SegmentDataObject, scoresArray: CalculatorResponse[]) {
-    this.db.collection(this.segmentName).add({
+  add(SegmentDataObject: SegmentDataObject, scoresArray: CalculatorResponse[]):Promise<string> {
+    return this.db.collection(this.segmentName).add({
       SegmentDataObject: SegmentDataObject,
       Scores: scoresArray,
       Timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -56,6 +56,7 @@ export class FBDao implements Dao {
     })
       .then(function (docRef: any) {
         console.log("Document written with ID: ", docRef.id);
+        return docRef.id
       })
       .catch(function (error: any) {
         console.error("Error adding document: ", error);

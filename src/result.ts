@@ -77,9 +77,9 @@ function setKey(k:any){
 }
 
 document.addEventListener('DOMContentLoaded', function () {
-    const path = window.decodeURIComponent(window.location.pathname);
-    const page = path === '/' ? 'view1' : path.slice(1);
-    console.log(page);
+    const search = window.location.search.slice(1);
+    console.log(search);
+    setKey(search);
 
     (window as any).setKey = setKey;
 })

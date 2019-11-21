@@ -37,13 +37,15 @@ function doCalculate(form:any) {
     var plosData = plos.calculate(infoObject);
     var blosData = blos.calculate(infoObject);
     try {
-      doSave(infoObject, ltsData, blosData, plosData);
+      doSave(infoObject, ltsData, blosData, plosData).then(id=>{
+        window.location.href = "./result.html?"+id;
+      });
     } catch (e) { console.log(e) }
-    try {
-      display(ltsData);
-      display(blosData);
-      display(plosData);
-    } catch (e) { console.log(e) }
+    // try {
+    //   display(ltsData);
+    //   display(blosData);
+    //   display(plosData);
+    // } catch (e) { console.log(e) }
   }
 }
 /**
@@ -74,9 +76,9 @@ function display(data:CalculatorResponse) {
   document.body.appendChild(responseDisplay);
 }
 
-function doSave(infoObject:any, ...calculatedData:CalculatorResponse[]) {
+function doSave(infoObject:any, ...calculatedData:CalculatorResponse[]):Promise<string> {
   let saveDao = new FBDao();
-  saveDao.add(infoObject, calculatedData);
+  return saveDao.add(infoObject, calculatedData);
 }
 
 
