@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
+export type documentElement = { key: any; data: SegmentDataObject; scores: CalculatorResponse[]; };
 
 export class FBDao implements Dao {
 
@@ -96,11 +97,11 @@ export class FBDao implements Dao {
 
   getElementById(docID: any) {
     var docRef = this.db.collection("Segments").doc(docID);
-    var docData: { key: any; data: SegmentDataObject; scores: CalculatorResponse[]; } = null;
-    return docRef.get().then(function (doc: any) {
+    var docData: documentElement = null;
+    return docRef.get().then(function (doc) {
       if (doc.exists) {
         console.log("Document data:", doc.data());
-        docData = doc.data();
+        docData = (doc.data() as documentElement);
       } else {
         // doc.data() will be undefined in this case
         console.log("No such document!");

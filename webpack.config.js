@@ -7,7 +7,7 @@ const outPath = path.resolve(__dirname, 'build');
 module.exports = {
   entry: {
     main: './src/main.js',
-    result: './src/result.js'
+    result: './src/result.ts'
   },
   module: {
 
@@ -30,8 +30,8 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
-    filename: 'main.js',
-    path: outPath,
+    filename: '[name].js',
+    path: outPath
   },
   devServer: {
     contentBase: outPath
@@ -47,13 +47,13 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({ //add form.html to build
       inject: "head",
-      chunks: 'main',
+      chunks: ['main'],
       template: './src/form.html',
       filename: 'form.html'
     }),
     new HtmlWebpackPlugin({ //add result.html to build
       inject: "head",
-      chunks: 'result',
+      chunks: ['result'],
       template: './src/result.html',
       filename: 'result.html'
     }),
