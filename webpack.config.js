@@ -1,13 +1,14 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const outPath = path.resolve(__dirname, 'build');
 
 module.exports = {
   entry: {
     main: './src/main.ts',
-    result: './src/result.ts'
+    result: './src/result.ts',
   },
   module: {
 
@@ -64,5 +65,8 @@ module.exports = {
       // clientsClaim: true,
       // skipWaiting: true,
     }),
+    new CopyPlugin([
+      {from: "./", to: outPath+"/manifest.json" },
+    ]),
   ]
 };
