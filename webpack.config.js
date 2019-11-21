@@ -45,6 +45,11 @@ module.exports = {
       template: './src/index.html',
       filename: 'index.html'
     }),
+    new HtmlWebpackPlugin({ //add LTS.html to build
+      inject: false,
+      template: './src/LTS.html',
+      filename: 'LTS.html'
+    }),
     new HtmlWebpackPlugin({ //add form.html to build
       inject: "head",
       chunks: ['main'],
