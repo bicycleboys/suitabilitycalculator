@@ -9,7 +9,7 @@ export class FBDao implements Dao {
   db: firebase.firestore.Firestore;
   segmentName: string;
 
-  constructor(testing:boolean = false) {
+  constructor(testing: boolean = false) {
     var firebaseConfig = {
       apiKey: "AIzaSyChkACWp5aGd0s3ovbD7sRMugbSaljjyZU",
       authDomain: "bicycleboys.firebaseapp.com",
@@ -21,24 +21,24 @@ export class FBDao implements Dao {
       measurementId: "G-ZRQ1KHK7PL"
     };
 
-    if(testing){
+    if (testing) {
       this.segmentName = "SegmentsTest"
-    }else{
+    } else {
       this.segmentName = "Segments"
     }
 
     try {
       var app = firebase.initializeApp(firebaseConfig);
+      //set cache size to be as big as we need
+      firebase.firestore(app).settings({
+        cacheSizeBytes: firebase.firestore.CACHE_SIZE_UNLIMITED
+      });
       firebase.firestore(app).enablePersistence({ synchronizeTabs: true }).catch(function (err: any) {
         if (err.code == 'failed-precondition') {
           console.log("failed precondition");
         } else if (err.code == 'unimplemented') {
           console.log("unimplemented");
         }
-      });
-      //set cache size to be as big as we need
-      firebase.firestore(app).settings({
-        cacheSizeBytes: firebase.firestore.CACHE_SIZE_UNLIMITED
       });
     } catch (error) {
       console.log(error);
@@ -47,7 +47,7 @@ export class FBDao implements Dao {
     this.db = db;
   }
 
-  add(SegmentDataObject: SegmentDataObject, scoresArray: CalculatorResponse[]):Promise<string> {
+  add(SegmentDataObject: SegmentDataObject, scoresArray: CalculatorResponse[]): Promise<string> {
     return this.db.collection(this.segmentName).add({
       SegmentDataObject: SegmentDataObject,
       Scores: scoresArray,
@@ -55,7 +55,7 @@ export class FBDao implements Dao {
       //do we want to pull all of the info out of the SegmentDataObject? or just store it
     })
       .then(function (docRef: any) {
-        console.log("Document written with ID: ", docRef.id);
+        // console.log("Document written with ID: ", docRef.id);
         return docRef.id
       })
       .catch(function (error: any) {
@@ -82,7 +82,7 @@ export class FBDao implements Dao {
       .get().then(function (querySnapshot: any) {
         querySnapshot.forEach(function (doc: any) {
           toReturn.push(doc.data());
-          console.log(doc.id, " => ", doc.data());
+          //console.log(doc.id, " => ", doc.data());
         });
       }).then(function (result: any) {
         return toReturn;
@@ -96,7 +96,7 @@ export class FBDao implements Dao {
       .get().then(function (querySnapshot: any) {
         querySnapshot.forEach(function (doc: any) {
           toReturn.push(doc.id);
-          console.log(doc.id, " => ", doc.data());
+          //console.log(doc.id, " => ", doc.data());
         });
       }).then(function () {
         return toReturn;
@@ -108,7 +108,7 @@ export class FBDao implements Dao {
     var docData: documentElement = null;
     return docRef.get().then(function (doc) {
       if (doc.exists) {
-        console.log("Document data:", doc.data());
+        //console.log("Document data:", doc.data());
         docData = (doc.data() as documentElement);
       } else {
         // doc.data() will be undefined in this case
@@ -144,11 +144,11 @@ export class FBDao implements Dao {
     this.deleteElement(key);
   }
   getInfo(key: any): Promise<{ key: any; data: SegmentDataObject; scores: CalculatorResponse[]; }> {
-    return this.getElementById(key).then(r=>{
-      let obj:any = {}
-      obj.key=r.key;
+    return this.getElementById(key).then(r => {
+      let obj: any = {}
+      obj.key = r.key;
       obj.scores = r.Scores;
-      obj.data=r.SegmentDataObject;
+      obj.data = r.SegmentDataObject;
       return obj;
     });
   }

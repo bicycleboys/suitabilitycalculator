@@ -31,7 +31,6 @@ if ('serviceWorker' in navigator) {
 function doCalculate(form:any) {
   if (form.reportValidity()) {
     var infoObject:SegmentDataObject = gatherData(form);
-    console.log(infoObject);
     //resetForm();
     var ltsData = lts.calculate(infoObject);
     var plosData = plos.calculate(infoObject);
@@ -162,7 +161,7 @@ document.addEventListener('DOMContentLoaded', function () {
           let e = el[name];
           if (e.value == value)
             if ("checked" in e) e.checked = true
-            else console.log(e)
+            else console.error("attempted to set checked on", e)
         }
       }
     }

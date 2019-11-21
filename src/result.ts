@@ -22,8 +22,6 @@ function fillScores(scores: CalculatorResponse[]){
         infoLink.innerText = "🛈";
         name.appendChild(infoLink);
 
-        console.log(name)
-
         scoreBox.appendChild(name)
         
         if(scoreIsNotCalculated(s)){
@@ -78,7 +76,6 @@ function setKey(k:any){
 
 document.addEventListener('DOMContentLoaded', function () {
     const search = window.location.search.slice(1);
-    console.log(search);
     setKey(search);
 
     (window as any).setKey = setKey;
