@@ -2,7 +2,7 @@ import * as lts from './calculators/lts'
 import * as blos from './calculators/blos'
 import * as plos from './calculators/plos'
 import "./styles.css";
-import { FBDao } from './daos/fbdao.ts'
+import { FBDao } from './daos/fbdao'
 import { MDCMenu } from '@material/menu';
 import { MDCSelect } from '@material/select';
 
@@ -28,9 +28,9 @@ if ('serviceWorker' in navigator) {
 /***
 * Checks form valididty and runs calculations
 */
-function doCalculate() {
+function doCalculate(form:any) {
   if (form.reportValidity()) {
-    var infoObject = gatherData(form);
+    var infoObject:SegmentDataObject = gatherData(form);
     console.log(infoObject);
     //resetForm();
     var ltsData = lts.calculate(infoObject);
@@ -50,7 +50,7 @@ function doCalculate() {
 * Displays the data passed in
 * @param CalculatorResponse data
 */
-function display(data) {
+function display(data:CalculatorResponse) {
   //interface SegmentGrade{
   //     points: number
   //     grade: string
@@ -62,7 +62,8 @@ function display(data) {
   //     because: string;
   // }
   var responseDisplay = document.createElement("p")
-  if (data.hasOwnProperty("because")) {
+  var isNotCalculated = ((d:CalculatorResponse):d is NotCalculated=>{return d.hasOwnProperty("because")})
+  if (isNotCalculated(data)) {
     responseDisplay.textContent = `${data.name} not calculated because ${data.because} was missing`;
   } else {
     if (!data.grade) {
@@ -73,7 +74,7 @@ function display(data) {
   document.body.appendChild(responseDisplay);
 }
 
-function doSave(infoObject, ...calculatedData) {
+function doSave(infoObject:any, ...calculatedData:CalculatorResponse[]) {
   let saveDao = new FBDao();
   saveDao.add(infoObject, calculatedData);
 }
@@ -84,10 +85,10 @@ function doSave(infoObject, ...calculatedData) {
 * @param form form to gather data from
 * @returns {SegmentDataObject} object with all info about segment
 */
-function gatherData(form) {
+function gatherData(form: any):SegmentDataObject {
   if (form == null) throw Error("Invalid form passed in");
   let obj = {};
-  let elements = form.querySelectorAll("input, select, textarea");
+  let elements:any[] = form.querySelectorAll("input, select, textarea");
 
   for (let element of elements) {
     var name = element.name;
@@ -101,20 +102,20 @@ function gatherData(form) {
     if (value == "false") value = false;
     if (value == "true") value = true;
     if (name) {
-      obj[name] = value;
+      (obj as any)[name] = value;
     }
   }
 
-  obj.lanesCombinedWidth = obj.adjacent ? obj.width : NaN;
-  obj.laneWidth = obj.adjacent ? NaN : obj.width;
+  (obj as any).lanesCombinedWidth = (obj as any).adjacent ? (obj as any).width : NaN;
+  (obj as any).laneWidth = (obj as any).adjacent ? NaN : (obj as any).width;
 
-  return obj;
+  return (obj as SegmentDataObject);
 }
 
 /***
 * Resets attached form (clears text values, resets dropdowns back to non-options)
 */
-function resetForm() {
+function resetForm(form:any) {
   form.reset();
 }
 
@@ -145,17 +146,18 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
   submit.onclick = (event) => {
-    doCalculate()
+    doCalculate(form)
   };
 
 
-  window.fill = () => {
-    function setNameValue(name, value) {
-      let el = document.getElementsByName(name)
+  (window as any).fill = () => {
+    function setNameValue(name:string, value:any) {
+      let el:NodeListOf<HTMLInputElement> = (document.getElementsByName(name) as NodeListOf<HTMLInputElement>)
       if (el.length == 1) {
         el[0].value = value;
       } else {
-        for (let e of el) {
+        for (let name in el) {
+          let e = el[name];
           if (e.value == value)
             if ("checked" in e) e.checked = true
             else console.log(e)
