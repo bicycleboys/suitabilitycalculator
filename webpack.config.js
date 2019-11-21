@@ -6,7 +6,7 @@ const outPath = path.resolve(__dirname, 'build');
 
 module.exports = {
   entry: {
-    main: './src/main.js',
+    main: './src/main.ts',
     result: './src/result.ts'
   },
   module: {
