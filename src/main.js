@@ -5,6 +5,8 @@ import "./styles.css";
 import {FBDao} from './daos/fbdao.ts'
 import {MDCMenu} from '@material/menu';
 import {MDCSelect} from '@material/select';
+import {MDCDialog} from '@material/dialog';
+
 /***
 * Checks form valididty and runs calculations
 */
@@ -94,6 +96,12 @@ function resetForm(){
 document.addEventListener('DOMContentLoaded', function () {
   var submit = document.getElementById("submit");
   var form = document.getElementById("form");
+  var helpHeavyVehicles = document.getElementById("heavyVehiclesButton");
+  var unsignalizedButton = document.getElementById("unsignalizedButton");
+  var ratingButton = document.getElementById("ratingButton");
+  const dialog1 = new MDCDialog(document.querySelector('.mdc-dialog1'));
+  const dialog2 = new MDCDialog(document.querySelector(".mdc-dialog2"));
+  const dialog3 = new MDCDialog(document.querySelector(".mdc-dialog3"));
 
     var lastType = false;
     resetForm();
@@ -116,7 +124,15 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log(`Selected option at index ${select3.selectedIndex} with value "${select3.value}"`);
     });
 */
-
+    ratingButton.onclick = (event) => {
+      dialog3.open()
+    }
+    unsignalizedButton.onclick = (event) => {
+      dialog2.open()
+    };
+    helpHeavyVehicles.onclick = (event) => {
+      dialog1.open()
+    };
     submit.onclick = (event) => {
         doCalculate()
     };

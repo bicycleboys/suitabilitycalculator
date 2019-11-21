@@ -109,7 +109,7 @@ color: blue;
 
 
 <div class="mdc-card">
-<h5>Bike lane information</h5>
+<h4>Bike lane information</h4>
 </div>
 </br>
 <!--
@@ -372,19 +372,27 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
 </br>
 
 <div class="mdc-card">
-<label for="pc">Pavement condition as a number between 1 and 5, 1 being very bad and 5 being very good:
+
+<label for="pc">Pavement condition as a number between 1 and 5:
+<button type="button" class="mdc-button" id="ratingButton">
+    <span class="mdc-button__label">Help</span>
+  </button>
   <input type="number" class="mdc-text-field__input" name="pc" value=" " /></label>
 </div>
 </br>
 
 <div class="mdc-card">
-<label for="phv">Heavy vehicles (e.g. Buses, Delivery Vehicles, Work Trucks) in the midsection flow rate as a percentage: (0-100)
+<label for="phv">Heavy vehicles in the midsection flow rate as a percentage: (0-100)
+  <button type="button" class="mdc-button" id="heavyVehiclesButton">
+    <span class="mdc-button__label">Help</span>
+  </button>
   <input type="number" class="mdc-text-field__input" name="phv" value=" " /></label>
+
 </div>
 </br>
 
 <div class="mdc-card">
-<h5>Intersection Stuff</h5>
+<h4>Intersection Stuff</h4>
 </div>
 </br>
 
@@ -415,8 +423,14 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
 </br>
 
 <div class="mdc-card">
-<p>Do the bike facilities have to interface with an unsignalized crossing?</p>
+  <div>
+<p>Do the bike facilities have to interface with an unsignalized crossing?
+<button type="button" class="mdc-button" id="unsignalizedButton">
+  <span class="mdc-button__label">Help</span>
+  </p>
+</div>
 <div class="mdc-form-field">
+
   <div class="mdc-radio">
     <input type="radio" class="mdc-radio__native-control" id="unsignalizedYes"
     name="unsignalized" value="true">
@@ -447,7 +461,7 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
 </br>
 
 <div class="mdc-card">
-<h5>right turn lane/bike lane interfacing at intersection approach </h5>
+<h4>right turn lane/bike lane interfacing at intersection approach </h4>
 </div>
 </br>
 <div class="mdc-card">
@@ -539,6 +553,82 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
   <span class="mdc-button__label">Sumbit</span>
 </button>
 </form>
+
+<div class="mdc-dialog mdc-dialog1"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Definition<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        Heavy vehicles are things like busses, construction trucks, and semi trailers. Default value is 4%.
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">
+          <span class="mdc-button__label">Done</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-dialog mdc-dialog2"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Definition<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        An unsignalized crossing is one without any traffic control-- no traffic lights, stop signs, or yield signs.
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">
+          <span class="mdc-button__label">Done</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+<div class="mdc-dialog mdc-dialog3"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Rating Scale<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        5: Perfect or near perfect pavement
+        4: Occasional bumps and cracks, still good to ride on
+        3: Pavement in need of some upkeep, potholes exist
+        2: Pavement needs upkeep, has lots of potholes and discontiuities
+        1: Pavement in dire need of repair
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">
+          <span class="mdc-button__label">Done</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
 </body>
 
 </html>
