@@ -515,3 +515,31 @@ svg.mdc-button__icon {
 }
 
 /*# sourceMappingURL=mdc.button.css.map*/
+
+
+/* Results page stuff */
+
+.scoreBox {
+  display: inline-block;
+  margin: .2em;
+  background-color:#EEEEEE;
+  border-radius: 5px;
+  padding-left: .5em;
+  padding-right: .5em;
+}
+
+.scoreBox.a {
+  background-color: #a0ffa9;
+}
+.scoreBox.b{
+  background-color: #b4ffa0;
+}
+.scoreBox.c{
+  background-color: #fffba0;
+}
+.scoreBox.d{
+  background-color: #ffe4a0;
+}
+.scoreBox.f{
+  background-color: #ffa1a0;
+}

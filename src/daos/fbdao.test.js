@@ -4,7 +4,7 @@ import 'firebase/firestore';
 import 'firebase/auth';
 
 test("constructor",()=>{
-  let myfbdao = new FBDao();
+  let myfbdao = new FBDao(true);
   expect(myfbdao);
 
 });
@@ -14,7 +14,7 @@ test('construct and immediately add',()=>{
     segmentName: "test"
   };
   let scoresArray = ["A", 0.0];
-  let myfbdao = new FBDao();
+  let myfbdao = new FBDao(true);
   //console.log(myfbdao);
   //console.log(myfbdao.db);
   myfbdao.add(toAdd, scoresArray);
@@ -26,7 +26,7 @@ test('get added object', ()=>{
     segmentName: "test2",
     otherData: 10
   }
-  let myfbdao = new FBDao();
+  let myfbdao = new FBDao(true);
   let scoresArray = ["F", 98.6];
   myfbdao.add(toAdd, scoresArray);
   let element = myfbdao.getElementBySegmentName("test2");
@@ -40,8 +40,8 @@ test('get added object', ()=>{
 });
 
 test('getDocID', ()=>{
-  let myfbdao = new FBDao();
-  myfbdao.db.collection("Segments").doc("ID").set({
+  let myfbdao = new FBDao(true);
+  myfbdao.db.collection("SegmentsTest").doc("ID").set({
     segmentName: "test3",
     otherData: 9000
   });
@@ -58,7 +58,7 @@ test('getDocID', ()=>{
 })
 
 test('delete', ()=>{
-  let myfbdao = new FBDao();
+  let myfbdao = new FBDao(true);
   myfbdao.db.collection("Segments").doc("ToBeDeleted").set({
     segmentName: "test4",
     otherData: 404
@@ -79,8 +79,8 @@ test('delete', ()=>{
 })
 
 test('update', () => {
-  let myfbdao = new FBDao();
-  myfbdao.db.collection("Segments").doc("ToBeUpdated").set({
+  let myfbdao = new FBDao(true);
+  myfbdao.db.collection("SegmentsTest").doc("ToBeUpdated").set({
     segmentName: "test5",
     otherData: 5
   });
@@ -101,6 +101,6 @@ test('update', () => {
 })
 
 afterAll(()=>{
-  let myfbdao = new FBDao();
+  let myfbdao = new FBDao(true);
   myfbdao.closeConnection();
 })

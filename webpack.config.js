@@ -6,7 +6,8 @@ const outPath = path.resolve(__dirname, 'build');
 
 module.exports = {
   entry: {
-    main: './src/main.js'
+    main: './src/main.ts',
+    result: './src/result.ts'
   },
   module: {
 
@@ -29,8 +30,8 @@ module.exports = {
     extensions: ['.tsx', '.ts', '.js'],
   },
   output: {
-    filename: 'main.js',
-    path: outPath,
+    filename: '[name].js',
+    path: outPath
   },
   devServer: {
     contentBase: outPath
@@ -46,9 +47,15 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({ //add form.html to build
       inject: "head",
-      chunks: 'main',
+      chunks: ['main'],
       template: './src/form.html',
       filename: 'form.html'
+    }),
+    new HtmlWebpackPlugin({ //add result.html to build
+      inject: "head",
+      chunks: ['result'],
+      template: './src/result.html',
+      filename: 'result.html'
     }),
     //If you add new pages to src, also add them here
     new WorkboxPlugin.GenerateSW({
