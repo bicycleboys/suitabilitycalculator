@@ -2,13 +2,14 @@ import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-export type documentElement = { key: any; data: SegmentDataObject; scores: CalculatorResponse[]; };
+export type documentElement = { key: any; data: SegmentDataObject; Scores: CalculatorResponse[]; Timestamp: number; };
 
 export class FBDao implements Dao {
 
   db: firebase.firestore.Firestore;
+  segmentName: string;
 
-  constructor() {
+  constructor(testing:boolean = false) {
     var firebaseConfig = {
       apiKey: "AIzaSyChkACWp5aGd0s3ovbD7sRMugbSaljjyZU",
       authDomain: "bicycleboys.firebaseapp.com",
@@ -19,6 +20,12 @@ export class FBDao implements Dao {
       appId: "1:691023297022:web:91ea734781e0029e99a8af",
       measurementId: "G-ZRQ1KHK7PL"
     };
+
+    if(testing){
+      this.segmentName = "SegmentsTest"
+    }else{
+      this.segmentName = "Segments"
+    }
 
     try {
       var app = firebase.initializeApp(firebaseConfig);
@@ -41,7 +48,7 @@ export class FBDao implements Dao {
   }
 
   add(SegmentDataObject: SegmentDataObject, scoresArray: CalculatorResponse[]) {
-    this.db.collection("Segments").add({
+    this.db.collection(this.segmentName).add({
       SegmentDataObject: SegmentDataObject,
       Scores: scoresArray,
       Timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -57,7 +64,7 @@ export class FBDao implements Dao {
 
   getList() {
     var list: any[] = [];
-    return this.db.collection("Segments").get().then(function (querySnapshot: any) {
+    return this.db.collection(this.segmentName).get().then(function (querySnapshot: any) {
       querySnapshot.forEach(function (doc: any) {
         console.log(doc.id, " => ", doc.data());
         list.push(doc.data());
@@ -70,7 +77,7 @@ export class FBDao implements Dao {
 
   getElementBySegmentName(queryString: string) {
     var toReturn: any[] = [];
-    return this.db.collection("Segments").where("SegmentDataObject.segmentName", "==", queryString)
+    return this.db.collection(this.segmentName).where("SegmentDataObject.segmentName", "==", queryString)
       .get().then(function (querySnapshot: any) {
         querySnapshot.forEach(function (doc: any) {
           toReturn.push(doc.data());
@@ -84,7 +91,7 @@ export class FBDao implements Dao {
 
   getElementID(queryString: string) {
     var toReturn: any[] = [];
-    return this.db.collection("Segments").where("SegmentDataObject.segmentName", "==", queryString)
+    return this.db.collection(this.segmentName).where("SegmentDataObject.segmentName", "==", queryString)
       .get().then(function (querySnapshot: any) {
         querySnapshot.forEach(function (doc: any) {
           toReturn.push(doc.id);
@@ -96,7 +103,7 @@ export class FBDao implements Dao {
   }
 
   getElementById(docID: any) {
-    var docRef = this.db.collection("Segments").doc(docID);
+    var docRef = this.db.collection(this.segmentName).doc(docID);
     var docData: documentElement = null;
     return docRef.get().then(function (doc) {
       if (doc.exists) {
@@ -112,7 +119,7 @@ export class FBDao implements Dao {
   }
 
   deleteElement(docID: any) {
-    return this.db.collection("Segments").doc(docID).delete().then(function () {
+    return this.db.collection(this.segmentName).doc(docID).delete().then(function () {
       console.log("Document successfully deleted!");
     }).catch(function (error: any) {
       console.error("Error removing document: ", error);
@@ -123,7 +130,7 @@ export class FBDao implements Dao {
     var obj: any = {};
     obj[fieldToUpdate] = updatedValue;
     console.log(obj);
-    return this.db.collection("Segments").doc(docID).update(obj).then(function () {
+    return this.db.collection(this.segmentName).doc(docID).update(obj).then(function () {
       console.log("Document Updated");
     })
   }
@@ -136,7 +143,13 @@ export class FBDao implements Dao {
     this.deleteElement(key);
   }
   getInfo(key: any): Promise<{ key: any; data: SegmentDataObject; scores: CalculatorResponse[]; }> {
-    return this.getElementById(key);
+    return this.getElementById(key).then(r=>{
+      let obj:any = {}
+      obj.key=r.key;
+      obj.scores = r.Scores;
+      obj.data=r.data;
+      return obj;
+    });
   }
 
 };
