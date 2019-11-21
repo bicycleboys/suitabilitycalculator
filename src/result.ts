@@ -1,10 +1,11 @@
 import {FBDao, documentElement} from './daos/fbdao';
-import { domainToASCII } from 'url';
+import "./styles.css";
 
 var dao:FBDao;
 
 function fillPage(data:documentElement){
-    fillScores(data.scores);
+    fillScores(data.Scores);
+    addTime(data.Timestamp);
 }
 
 function fillScores(scores: CalculatorResponse[]){
@@ -12,6 +13,7 @@ function fillScores(scores: CalculatorResponse[]){
     scoreDiv.innerHTML = "";
     for(let s of scores){
         const scoreBox = document.createElement("div")
+        scoreBox.className = "scoreBox"
         const name = document.createElement("h2")
         name.innerHTML = s.name;
         scoreBox.appendChild(name)
@@ -21,11 +23,24 @@ function fillScores(scores: CalculatorResponse[]){
             no.innerHTML = "Not Calculated";
             scoreBox.appendChild(no)
         }else{
-
+            const grade = document.createElement("h5");
+            grade.id = "grade"
+            grade.innerText = "Grade: "+s.grade;
+            scoreBox.appendChild(grade);
+            const points = document.createElement("h5");
+            points.id = "points"
+            points.innerText = "Points: "+s.points;
+            scoreBox.appendChild(points);
         }
         scoreDiv.appendChild(scoreBox);
     }
 }
+
+function addTime(timestamp:any){
+    const timeDiv = document.getElementById("timestamp");
+    timeDiv.innerHTML = "<p> Logged:  "+timestamp.toDate()+"</p>";
+}
+
 
 function scoreIsNotCalculated(score: CalculatorResponse):score is NotCalculated{
     return "because" in score
@@ -38,7 +53,6 @@ function setKey(k:any){
     let element = dao.getElementById(k);
     element.then(res=>{
         fillPage(res);
-        console.log(res);
     }).catch(err=>{
         console.log(err)
         let p = document.createElement("p");
