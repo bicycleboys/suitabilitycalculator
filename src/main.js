@@ -103,13 +103,22 @@ document.addEventListener('DOMContentLoaded', function () {
   var bufferButton = document.getElementById("bufferButton");
   var sidewalkWidthButton = document.getElementById("sidewalkWidthButton");
   var barrierButton = document.getElementById("barrierButton");
+  var facilityButton = document.getElementById("facilityButton");
+  var occupancyButton = document.getElementById("occupancyButton");
+  var medianButton = document.getElementById("medianButton");
+  var islandButton = document.getElementById("islandButton");
+  var rightTurnsButton = document.getElementById("#rightTurnsButton");
   const dialog1 = new MDCDialog(document.querySelector('.mdc-dialog1'));
   const dialog2 = new MDCDialog(document.querySelector(".mdc-dialog2"));
   const dialog3 = new MDCDialog(document.querySelector(".mdc-dialog3"));
   const dialog4 = new MDCDialog(document.querySelector(".mdc-dialog4"));
   const dialog5 = new MDCDialog(document.querySelector(".mdc-dialog5"));
   const dialog6 = new MDCDialog(document.querySelector(".mdc-dialog6"));
-
+  const dialog7 = new MDCDialog(document.querySelector(".mdc-dialog7"));
+  const dialog8 = new MDCDialog(document.querySelector(".mdc-dialog8"));
+  const dialog9 = new MDCDialog(document.querySelector(".mdc-dialog9"));
+  const dialog10 = new MDCDialog(document.querySelector(".mdc-dialog10"));
+  const dialog11 = new MDCDialog(document.querySelector(".mdc-dialog11"));
   //const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
     var lastType = false;
     resetForm();
@@ -132,7 +141,23 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log(`Selected option at index ${select3.selectedIndex} with value "${select3.value}"`);
     });
 */
+    rightTurnsButton.onclick = (event) => {
+      dialog11.open()
+    }
+    islandButton.onclick = (event) => {
+      dialog10.open()
+    }
+    medianButton.onclick = (event) => {
+      dialog9.open()
+    }
 
+    occupancyButton.onclick = (event) => {
+      dialog8.open()
+    }
+
+    facilityButton.onclick = (event) => {
+      dialog7.open()
+    }
 
     barrierButton.onclick = (event) => {
       dialog6.open()
