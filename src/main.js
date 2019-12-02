@@ -78,8 +78,8 @@ function gatherData(form) {
         }
     }
 
-    obj.lanesCombinedWidth = obj.adjacent ? obj.width : NaN;
-    obj.laneWidth = obj.adjacent ? NaN : obj.width;
+    obj.lanesCombinedWidth = obj.adjacent ? obj.wbl + obj.parkingWidth : NaN;
+    obj.laneWidth = obj.adjacent ? NaN : obj.wbl;
 
     return obj;
 }
