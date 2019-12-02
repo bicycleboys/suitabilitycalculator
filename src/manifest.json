@@ -13,10 +13,10 @@
         "sizes": "512x512"
       }
     ],
-    "start_url": "/form.html",
+    "start_url": "/suitabilitycalculator/form.html",
     "background_color": "#3367D6",
     "display": "standalone",
-    "scope": "/",
+    "scope": "/suitabilitycalculator/",
     "theme_color": "#3367D6"
   }
   
