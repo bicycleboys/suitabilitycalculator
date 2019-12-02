@@ -18,7 +18,7 @@ export function calculate(o:SegmentDataObject):CalculatorResponse {
     else wosstar = o.wos;
     if (ppk == 0.0) wt = o.wol + o.wbl + wosstar;
     else wt = o.wol + o.wbl;
-    if (o.devided || vm > 160) wv = wt;
+    if (o.median || vm > 160) wv = wt;
     else wv = wt * (2 - .005 * vm);
     if (o.wbl + o.wos < 4.0) we = Math.max(wv - (10 * ppk), 0.0);
     else we = Math.max(wv + o.wbl + o.wos - (20 * ppk), 0.0);

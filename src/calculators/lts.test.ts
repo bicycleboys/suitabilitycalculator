@@ -2,7 +2,7 @@ import * as lts from './lts';
 
 test('simple - stand alone', () => {
   let obj = {
-    name: 'test',
+    segmentName: 'test',
     segmentType: "stand-alone"
   }
   expect(lts.calculate(obj)).toEqual({ grade: 'A', points: 1, name: "LTS" });
@@ -10,7 +10,7 @@ test('simple - stand alone', () => {
 
 test('simple - segregated', () => {
   let obj = {
-    name: 'test',
+    segmentName: 'test',
     segmentType: "segregated"
   }
   expect(lts.calculate(obj)).toEqual({ grade: 'A', points: 1, name: "LTS" });
@@ -18,7 +18,7 @@ test('simple - segregated', () => {
 
 test('bad segment type', () => {
   let obj = {
-    name: 'test',
+    segmentName: 'test',
     segmentType: "bikelane"
   }
   expect(() => { lts.calculate(obj) }).toThrow();
@@ -26,7 +26,7 @@ test('bad segment type', () => {
 
 test('inadequate data1', () => {
   let obj = {
-    name: 'test',
+    segmentName: 'test',
     segmentType: "mixed traffic"
   }
   const out = {
@@ -39,7 +39,7 @@ test('inadequate data1', () => {
 
 test('inadequate data2', () => {
   let obj = {
-    name: 'test',
+    segmentName: 'test',
     segmentType: "mixed traffic",
     totalLanes: 3
   }
@@ -52,7 +52,7 @@ test('inadequate data2', () => {
 
 test('PowerPoint example', () => {
   let obj = {
-    name: 'test',
+    segmentName: 'test',
     segmentType: "bike lane",
     lanesAdjacent: true,
     laneCount: 1,
@@ -65,7 +65,7 @@ test('PowerPoint example', () => {
 
 test('mixed traffic 6 lane example',()=>{
   let obj={
-    name: 'test',
+    segmentName: 'test',
     segmentType: "mixed traffic",
     totalLanes: 6
   }
@@ -74,10 +74,10 @@ test('mixed traffic 6 lane example',()=>{
 
 test('mixed traffic 2 lane, 30mph example',()=>{
   let obj:SegmentDataObject={
-    name: 'test',
+    segmentName: 'test',
     segmentType: 'mixed traffic',
     totalLanes: 2,
-    speed: 30,
+    runningSpeed: 30,
     centerline: false,
     adt: 2500
   }
@@ -86,7 +86,7 @@ test('mixed traffic 2 lane, 30mph example',()=>{
 
 test('unsignalized crossing good',()=>{
   let obj:SegmentDataObject={
-    name: 'test',
+    segmentName: 'test',
     segmentType: 'bike lane',
     laneCount:1,
     xStreetWidth: 3,
@@ -104,7 +104,7 @@ test('unsignalized crossing good',()=>{
 
 test('unsignalized crossing bad',()=>{
   let obj:SegmentDataObject={
-    name: 'test',
+    segmentName: 'test',
     segmentType: 'bike lane',
     laneCount:1,
     xStreetWidth: 4,
