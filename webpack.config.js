@@ -69,6 +69,8 @@ module.exports = {
       // and not allow any straggling "old" SWs to hang around
       clientsClaim: true,
       skipWaiting: true,
+      navigateFallback: 'result.html',
+      navigateFallbackWhitelist: [/^\/result.html/] //kinda hacky but what are you gonna do
     }),
     new CopyPlugin([
       {from: "src/manifest.json", to: outPath+"/manifest.json" },
