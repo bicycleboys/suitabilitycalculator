@@ -48,19 +48,22 @@ export class FBDao implements Dao {
   }
 
   add(SegmentDataObject: SegmentDataObject, scoresArray: CalculatorResponse[]): Promise<string> {
-    return this.db.collection(this.segmentName).add({
+    //https://github.com/firebase/firebase-js-sdk/issues/2030#issuecomment-516152577
+    const doc = this.db.collection(this.segmentName).doc()
+    doc.set({
       SegmentDataObject: SegmentDataObject,
       Scores: scoresArray,
       Timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       //do we want to pull all of the info out of the SegmentDataObject? or just store it
     })
-      .then(function (docRef: any) {
-        // console.log("Document written with ID: ", docRef.id);
-        return docRef.id
-      })
-      .catch(function (error: any) {
-        console.error("Error adding document: ", error);
-      });
+    .then(function () {
+      // console.log("Document written with ID: ", doc.id);
+      return doc.id
+    })
+    .catch(function (error: any) {
+      console.error("Error adding document: ", error);
+    });
+    return new Promise((resolve)=>resolve(doc.id))
   };
 
   getList() {
