@@ -1,10 +1,10 @@
 import * as blos from './blos';
 
 test("Excel Example", ()=>{
-  let object = {
-      name: "test",
+  let object:SegmentDataObject = {
+    segmentName: "test",
     laneCount: 1,
-    devided: false,
+    median: false,
     runningSpeed: 30.0,
     adt: 12000,
     wol: 11.0,
