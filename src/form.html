@@ -63,7 +63,7 @@ color: blue;
 
 <!--Sidewalk Stuff-->
 <div class="mdc-card">
-<label for="waa">Width of sidewalk at the most narrow place in the segment in feet:
+<label for="waa">Width of sidewalk at the most narrow place in the segment in feet (typically 0-16ft):
   <button type="button" class="mdc-button" id="sidewalkWidthButton">
     <span class="mdc-button__label">Help</span>
   </button>
@@ -73,7 +73,7 @@ color: blue;
 
 
 <div class="mdc-card">
-<label for="wbuf">Width of buffer between roadway and sidewalk in feet:
+<label for="wbuf">Width of buffer between roadway and sidewalk in feet (typically 0-12ft):
   <button type="button" class="mdc-button" id="bufferButton">
     <span class="mdc-button__label">Help</span>
   </button>
@@ -145,35 +145,7 @@ color: blue;
 <h4>Bike lane information</h4>
 </div>
 </br>
-<!--
-<div class="mdc-select mdc-select-1 bigboi">
-  <div class="mdc-select__anchor bigboi">
-    <i class="mdc-select__dropdown-icon"></i>
-    <div id="demo-selected-text" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="demo-label demo-selected-text"></div>
-    <span id="demo-label" class="mdc-floating-label mdc-floating-label--float-above">Bike Facility Type</span>
-    <div class="mdc-line-ripple"></div>
-  </div>
 
-  <div class="mdc-select__menu mdc-menu mdc-menu-surface bigboi" role="listbox">
-    <ul class="mdc-list">
-      <li class="mdc-list-item mdc-list-item--selected" data-value="" role="option"></li>
-      <li class="mdc-list-item" data-value="stand-alone" role="option">
-        Stand-alone
-      </li>
-      <li class="mdc-list-item" data-value="segregated" role="option">
-        Segregated
-      </li>
-      <li class="mdc-list-item" data-value="bike lane" role="option">
-        Bike Lane
-      </li>
-      <li class="mdc-list-item mdc-list-item--disabled" data-value="mixed traffic" aria-selected="true" aria-disabled="true" role="option">
-        Mixed Traffic
-      </li>
-    </ul>
-  </div>
-</div>
-</br>
--->
 <div class="mdc-card">
 <div>
 
@@ -198,35 +170,6 @@ color: blue;
 </div>
 </br>
 
-
-<!--
-I'm so close to getting the material design select to work, but on click nothing happens
-it looks pretty but it's useless
--->
-
-<!--
-<div class="mdc-select mdc-select-2">
-  <div class="mdc-select__anchor bigboi">
-    <i class="mdc-select__dropdown-icon"></i>
-    <div id="demo-selected-text" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="demo-label demo-selected-text"></div>
-    <span id="demo-label" class="mdc-floating-label mdc-floating-label--float-above">Bike Lane Blockage frequency</span>
-    <div class="mdc-line-ripple"></div>
-  </div>
-
-  <div class="mdc-select__menu mdc-menu mdc-menu-surface bigboi" role="listbox">
-    <ul class="mdc-list">
-      <li class="mdc-list-item mdc-list-item--selected" data-value="" role="option"></li>
-      <li class="mdc-list-item" data-value="frequently" role="option">
-        Frequently
-      </li>
-      <li class="mdc-list-item mdc-list-item--disabled" data-value="rarely" aria-selected="true" aria-disabled="true" role="option">
-        Rarely
-      </li>
-    </ul>
-  </div>
-</div>
-</br>
--->
 
 
 <div class="mdc-card">
@@ -273,41 +216,28 @@ it looks pretty but it's useless
 </div>
 </br>
 
-<!--<div class="mdc-form-field">
-<label for="lanesAdjacent">Bike lane beetween on-street parking and driving lane:</label>
-<div class="mdc-checkbox">
-<input type="checkbox" class="mdc-checkbox__native-control" name="lanesAdjacent" /> <!--class="if-bike-lane"-->
-<!--    <div class="mdc-checkbox__background">
-<svg class="mdc-checkbox__checkmark"
-viewBox="0 0 24 24">
-<path class="mdc-checkbox__checkmark-path"
-fill="none"
-d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-</svg>
-<div class="mdc-checkbox__mixedmark"></div>
-</div>
-</div>
-</div>
--->
 
 <div class="mdc-card">
-<label for="wbl">Width of bike lane in feet:
+<label for="wbl">Width of bike lane in feet (typically 0-7ft):
   <input type="number" class="mdc-text-field__input" name="wbl" value=" " step="0.5" /> </label>
 </div>
 </br>
 
 <div class="mdc-card">
-<label for="wos">Width of paved outside shoulder in feet:
+<label for="wos">Width of paved outside shoulder in feet (typically 0-10ft):
   <input type="number" class="mdc-text-field__input" name="wos" value = " " step="0.5" /> </label>
 </div>
 </br>
 <!--Parking lane stuff-->
 
+<!--
+We can calculate this
 <div class="mdc-card">
 <label for="width">Sum of bike lane and parking lane width or just bike lane width if not adjacent, in feet:
   <input type="number" class="if-bike-lane mdc-text-field__input"  name="width" value=" " step="0.5" /></label>
 </div>
 </br>
+-->
 
 <div class="mdc-card">
 <label for="ppk">Parking occupancy as a percentage (0-100):
@@ -326,25 +256,28 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
 
 <!--Car lane stuff (or mixed traffic)-->
 <div class="mdc-card">
-<label for="speed">Speed Limit in Miles per Hour:
+<label for="speed">Speed Limit in Miles per Hour (typically 5-55mph):
   <input type="number"  name="speed"  value=" " class="if-bike-lane if-mixed mdc-text-field__input" /></label>
 </div>
 </br>
 
 <div class="mdc-card">
-<label for="runningSpeed">Prevailing speed in Miles per Hour:
+<label for="runningSpeed">Prevailing speed in Miles per Hour (typically 5-55mph):
 <input type="number" class="mdc-text-field__input" name="runningSpeed" value=" " /></label>
 </div>
 </br>
 
 <div class="mdc-card">
-<label for="laneCount">Number of travel lanes per direction: <!--TODO: verify lanes is positive-->
+<label for="laneCount">Number of travel lanes in the direction of travel (typically 1-4):
+  <button type="button" class="mdc-button" id="#travelLanesButton">
+    <span class="mdc-button__label">Help</span>
+  </button> <!--TODO: verify lanes is positive-->
   <input type="number" class="if-bike-lane mdc-text-field__input"  name="laneCount" value=" " /></label>
 </div>
 </br>
 
 <div class="mdc-card">
-<label for="wol">Width of outside lane in feet:
+<label for="wol">Width of outside lane in feet (typically 9-16ft):
   <input type="number" class="mdc-text-field__input" name="wol" value = " " step="0.5" /> </label>
 </div>
 </br>
@@ -408,7 +341,10 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
 </br>
 
 <div class="mdc-card">
-<label for="totalLanes">Total number of lanes in both directions:
+<label for="totalLanes">Total number of lanes in both directions (typically 1-6):
+  <button type="button" class="mdc-button" id="#travelLanesButtonAgain">
+    <span class="mdc-button__label">Help</span>
+  </button>
   <input type="number"  name="totalLanes" class="if-mixed-traffic mdc-text-field__input"/></label>
 </div>
 </br>
@@ -507,7 +443,7 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
 </br>
 
 <div class="mdc-card">
-<label for="xStreetWidth">Count of vehicle lanes in cross-street:
+<label for="xStreetWidth">Count of vehicle lanes in cross-street (typically 1-6):
   <input type="number" class="mdc-text-field__input" name="xStreetWidth" value=" " /></label>
 </div>
 </br>
@@ -742,7 +678,7 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
     <div class="mdc-dialog__surface">
       <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
       <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
-     -->Definition<!--
+      -->Definition<!--
    --></h2>
       <div class="mdc-dialog__content" id="my-dialog-content">
         Trees and cars don't count as a continuous barrier.
@@ -866,6 +802,30 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
    --></h2>
       <div class="mdc-dialog__content" id="my-dialog-content">
         This question asks you to measure the number of lanes through which legal right turns are possible in the direction of travel, not for the whole intersection.
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">
+          <span class="mdc-button__label">Done</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-dialog mdc-dialog12"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Definition<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        This question asks about the total number of travel lanes, not including temporary right or left turn lanes that don't last the length of the segment.
       </div>
       <footer class="mdc-dialog__actions">
         <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">

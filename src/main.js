@@ -108,6 +108,8 @@ document.addEventListener('DOMContentLoaded', function () {
   var medianButton = document.getElementById("medianButton");
   var islandButton = document.getElementById("islandButton");
   var rightTurnsButton = document.getElementById("#rightTurnsButton");
+  var travelLanesButton = document.getElementById("#travelLanesButton");
+  var travelLanesButtonAgain = document.getElementById("#travelLanesButtonAgain");
   const dialog1 = new MDCDialog(document.querySelector('.mdc-dialog1'));
   const dialog2 = new MDCDialog(document.querySelector(".mdc-dialog2"));
   const dialog3 = new MDCDialog(document.querySelector(".mdc-dialog3"));
@@ -119,6 +121,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const dialog9 = new MDCDialog(document.querySelector(".mdc-dialog9"));
   const dialog10 = new MDCDialog(document.querySelector(".mdc-dialog10"));
   const dialog11 = new MDCDialog(document.querySelector(".mdc-dialog11"));
+  const dialog12 = new MDCDialog(document.querySelector(".mdc-dialog12"));
   //const textField = new MDCTextField(document.querySelector('.mdc-text-field'));
     var lastType = false;
     resetForm();
@@ -141,6 +144,13 @@ document.addEventListener('DOMContentLoaded', function () {
       console.log(`Selected option at index ${select3.selectedIndex} with value "${select3.value}"`);
     });
 */
+    travelLanesButtonAgain.onclick = (event) => {
+      dialog12.open()
+    }
+    travelLanesButton.onclick = (event) => {
+      dialog12.open()
+    }
+
     rightTurnsButton.onclick = (event) => {
       dialog11.open()
     }
