@@ -66,7 +66,9 @@ module.exports = {
       // skipWaiting: true,
     }),
     new CopyPlugin([
-      {from: "./", to: outPath+"/manifest.json" },
+      {from: "src/manifest.json", to: outPath+"/manifest.json" },
+      {from: "images/icon512.png", to: outPath+"/icon512.png"},
+      {from: "images/icon192.png", to: outPath+"/icon192.png"},
     ]),
   ]
 };
