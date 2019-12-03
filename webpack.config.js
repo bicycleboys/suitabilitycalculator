@@ -9,10 +9,7 @@ module.exports = {
   entry: {
     main: './src/main.ts',
     result: './src/result.ts',
-<<<<<<< HEAD
     allResults: './src/allResults.js'
-=======
->>>>>>> master
   },
   module: {
 
