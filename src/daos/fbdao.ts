@@ -63,6 +63,7 @@ export class FBDao implements Dao {
     .catch(function (error: any) {
       console.error("Error adding document: ", error);
     });
+    //TODO Could only resolve after the size of firebases IndexedDB store changes (hella hacky)
     return new Promise((resolve)=>{resolve(doc.id)});
   };
 
