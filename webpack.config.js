@@ -1,13 +1,14 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 const outPath = path.resolve(__dirname, 'build');
 
 module.exports = {
   entry: {
     main: './src/main.ts',
-    result: './src/result.ts'
+    result: './src/result.ts',
   },
   module: {
 
@@ -66,8 +67,13 @@ module.exports = {
     new WorkboxPlugin.GenerateSW({
       // these options encourage the ServiceWorkers to get in there fast
       // and not allow any straggling "old" SWs to hang around
-      // clientsClaim: true,
-      // skipWaiting: true,
+      clientsClaim: true,
+      skipWaiting: true,
     }),
+    new CopyPlugin([
+      {from: "src/manifest.json", to: outPath+"/manifest.json" },
+      {from: "images/icon512.png", to: outPath+"/icon512.png"},
+      {from: "images/icon192.png", to: outPath+"/icon192.png"},
+    ]),
   ]
 };
