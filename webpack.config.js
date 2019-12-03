@@ -69,8 +69,11 @@ module.exports = {
       // and not allow any straggling "old" SWs to hang around
       clientsClaim: true,
       skipWaiting: true,
+      
+      //to reroute result.hmtl with any query strings to result.html file
+      //kinda hacky but what are you gonna do
       navigateFallback: 'result.html',
-      navigateFallbackWhitelist: [/^\/result.html/] //kinda hacky but what are you gonna do
+      navigateFallbackWhitelist: [/^\/result.html/]
     }),
     new CopyPlugin([
       {from: "src/manifest.json", to: outPath+"/manifest.json" },
