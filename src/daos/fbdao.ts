@@ -57,13 +57,13 @@ export class FBDao implements Dao {
       //do we want to pull all of the info out of the SegmentDataObject? or just store it
     })
     .then(function () {
-      // console.log("Document written with ID: ", doc.id);
+      //console.log("Document written with ID: ", doc.id);
       return doc.id
     })
     .catch(function (error: any) {
       console.error("Error adding document: ", error);
     });
-    return new Promise((resolve)=>resolve(doc.id))
+    return new Promise((resolve)=>{resolve(doc.id)});
   };
 
   getList() {
