@@ -71,6 +71,7 @@ export class FBDao implements Dao {
         list.push(doc.data());
       });
     }).then(function (result: any) {
+      console.log(list);
       return list;
     });
 
