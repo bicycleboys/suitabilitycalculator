@@ -6,6 +6,7 @@ import "./manifest.json"
 import { FBDao } from './daos/fbdao'
 import { MDCMenu } from '@material/menu';
 import { MDCSelect } from '@material/select';
+import {MDCDialog} from '@material/dialog';
 
 
 if ('serviceWorker' in navigator) {
@@ -90,6 +91,7 @@ function doSave(infoObject:any, ...calculatedData:CalculatorResponse[]):Promise<
 function gatherData(form: any):SegmentDataObject {
   if (form == null) throw Error("Invalid form passed in");
   let obj = {};
+  console.log(obj);
   let elements:any[] = form.querySelectorAll("input, select, textarea");
 
   for (let element of elements) {
@@ -107,10 +109,10 @@ function gatherData(form: any):SegmentDataObject {
       (obj as any)[name] = value;
     }
   }
-
-  (obj as any).lanesCombinedWidth = (obj as any).adjacent ? (obj as any).width : NaN;
-  (obj as any).laneWidth = (obj as any).adjacent ? NaN : (obj as any).width;
-
+  console.log(obj);
+  (obj as any).lanesCombinedWidth = (obj as any).adjacent ? (obj as any).wbl + (obj as any).parkingWidth : NaN;
+  (obj as any).laneWidth = (obj as any).adjacent ? NaN : (obj as any).wbl;
+  console.log(obj);
   return (obj as SegmentDataObject);
 }
 
@@ -127,25 +129,86 @@ function resetForm(form:any) {
 document.addEventListener('DOMContentLoaded', function () {
   var submit = document.getElementById("submit");
   var form = document.getElementById("form");
+  var sidewalkWidthButton = document.getElementById("sidewalkWidthButton");
+  var bufferButton = document.getElementById("bufferButton");
+  var barrierButton = document.getElementById("barrierButton");
+  var facilityButton = document.getElementById("facilityButton");
+  var occupancyButton = document.getElementById("occupancyButton");
+  var numberTravelLanesButton = document.getElementById("#travelLanesButton")
+  var travelLanesButtonAgain = document.getElementById("#travelLanesButtonAgain");
+  var medianButton = document.getElementById("medianButton");
+  var ratingButton = document.getElementById("ratingButton");
+  var heavyVehiclesButton = document.getElementById("heavyVehiclesButton");
+  var islandButton = document.getElementById("islandButton");
+  var unsignalizedButton = document.getElementById("unsignalizedButton");
+  var numberRightTurnsButton = document.getElementById("#rightTurnsButton");
+  const heavyVehiclesDialog = new MDCDialog(document.querySelector('.mdc-dialog1'));
+  const unsignalizedDialog = new MDCDialog(document.querySelector('.mdc-dialog2'));
+  const pavementRatingDialog = new MDCDialog(document.querySelector('.mdc-dialog3'));
+  const bufferDialog = new MDCDialog(document.querySelector('.mdc-dialog4'));
+  const sidewalkWidthDialog = new MDCDialog(document.querySelector('.mdc-dialog5'));
+  const continuousBarrierDialog = new MDCDialog(document.querySelector('.mdc-dialog6'));
+  const bikeFacilityTypeDialog = new MDCDialog(document.querySelector('.mdc-dialog7'));
+  const occupancyDialog = new MDCDialog(document.querySelector('.mdc-dialog8'));
+  const medianDialog = new MDCDialog(document.querySelector('.mdc-dialog9'));
+  const crossingIslandsDialog = new MDCDialog(document.querySelector('.mdc-dialog10'));
+  const rightTurnsDialog = new MDCDialog(document.querySelector('.mdc-dialog11'));
+  const travelLanesDialog = new MDCDialog(document.querySelector('.mdc-dialog12'));
   //Clear selection dropdowns so we don't accidentally record inaccurate data
 
-  /*
-    const select1 = new MDCSelect(document.querySelector('.mdc-select-1'));
-    const select2 = new MDCSelect(document.querySelector('.mdc-select-2'));
-    const select3 = new MDCSelect(document.querySelector('.mdc-select-3'));
 
-  select1.listen('MDCSelect:change', () => {
-    console.log(`Selected option at index ${select1.selectedIndex} with value "${select1.value}"`);
-  });
 
-  select2.listen('MDCSelect:change', () => {
-    console.log(`Selected option at index ${select2.selectedIndex} with value "${select2.value}"`);
-  });
+  sidewalkWidthButton.onclick = (event) => {
+    sidewalkWidthDialog.open()
+  };
 
-  select3.listen('MDCSelect:change', () => {
-    console.log(`Selected option at index ${select3.selectedIndex} with value "${select3.value}"`);
-  });*/
+  bufferButton.onclick = (event) => {
+    bufferDialog.open()
+  };
 
+  barrierButton.onclick = (event) => {
+    continuousBarrierDialog.open()
+  };
+
+  facilityButton.onclick = (event) =>{
+    bikeFacilityTypeDialog.open()
+  };
+
+  occupancyButton.onclick = (event) => {
+    occupancyDialog.open()
+  };
+
+  numberTravelLanesButton.onclick = (event) => {
+    travelLanesDialog.open()
+  };
+
+  travelLanesButtonAgain.onclick = (event) => {
+    travelLanesDialog.open()
+  };
+
+  medianButton.onclick = (event) => {
+    medianDialog.open()
+  };
+
+  ratingButton.onclick = (event) => {
+    pavementRatingDialog.open()
+  };
+
+  heavyVehiclesButton.onclick = (event) => {
+    heavyVehiclesDialog.open()
+  };
+
+  islandButton.onclick = (event) => {
+    crossingIslandsDialog.open()
+  };
+
+  unsignalizedButton.onclick = (event) => {
+    unsignalizedDialog.open()
+  };
+
+  numberRightTurnsButton.onclick = (event) => {
+    rightTurnsDialog.open()
+  };
 
   submit.onclick = (event) => {
     doCalculate(form)
@@ -167,6 +230,8 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
     setNameValue("segmentName", "Test")
+    setNameValue("segmentBetween1","t")
+    setNameValue("segmentBetween2","tt")
     setNameValue("laneCount", 1)
     setNameValue("median", "false")
     setNameValue("runningSpeed", 30)

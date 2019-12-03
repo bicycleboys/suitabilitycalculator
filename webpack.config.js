@@ -9,6 +9,7 @@ module.exports = {
   entry: {
     main: './src/main.ts',
     result: './src/result.ts',
+    allResults: './src/allResults.js'
   },
   module: {
 
@@ -38,7 +39,7 @@ module.exports = {
     contentBase: outPath
   },
   plugins: [
-    new HtmlWebpackPlugin({   
+    new HtmlWebpackPlugin({
       favicon: './src/favicon.ico'
     }),
     new HtmlWebpackPlugin({ //add index.html to build
@@ -62,6 +63,12 @@ module.exports = {
       chunks: ['result'],
       template: './src/result.html',
       filename: 'result.html'
+    }),
+    new HtmlWebpackPlugin({ //add result.html to build
+      inject: "head",
+      chunks: ['result'],
+      template: './src/allResults.html',
+      filename: 'allResults.html'
     }),
     //If you add new pages to src, also add them here
     new WorkboxPlugin.GenerateSW({

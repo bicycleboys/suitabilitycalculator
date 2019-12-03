@@ -7,6 +7,7 @@
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.6.0",
     "@material/button": "^4.0.0",
+    "@material/card": "^4.0.0",
     "@material/checkbox": "^4.0.0",
     "@material/data-table": "^4.0.0",
     "@material/dialog": "^4.0.0",
