@@ -186,10 +186,6 @@ input[type="radio"] {
   cursor: pointer;
 }
 
-.mdc-button:focus {
-  background-color: #dedede;
-}
-
 .mdc-button:disabled {
   background-color: transparent;
   color: rgba(0, 0, 0, 0.37);
@@ -199,9 +195,7 @@ input[type="radio"] {
 .mdc-button .mdc-button__ripple {
   border-radius: 4px;
 }
-.mdc-button:not(:disabled) {
-  background-color: transparent;
-}
+
 .mdc-button .mdc-button__icon {
   /* @noflip */
   margin-left: 0;
@@ -231,8 +225,14 @@ input[type="radio"] {
 .mdc-button:not(:disabled) {
   color: #008080;
   fill: #008080;
+  background-color: transparent;
   /* @alternate */
   /*color: var(--mdc-theme-primary, #6200ee);*/
+}
+
+
+.mdc-button:focus {
+  background-color: #dedede;
 }
 
 .mdc-button__label + .mdc-button__icon {
