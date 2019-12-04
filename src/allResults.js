@@ -39,7 +39,7 @@ function generateTable(table, data) {
       let cell = row.insertCell();
       let text = document.createTextNode(element[key]);
       let ntext = document.createTextNode("");
-    //ntext = document.createTextNode( ntext.wholeText + " " + element[key]);
+      //ntext = document.createTextNode( ntext.wholeText + " " + element[key]);
       console.log(element[key]);
       for (let i in Object.values(key)){
         if (typeof element[key][i] === 'undefined'){
@@ -75,7 +75,9 @@ function generateTable(table, data) {
 function printObject(obj){
   var output = '';
   for (var property in obj) {
-    output += property + ': ' + obj[property]+'; \n';
+    if(!(Number.isNaN(obj[property]) || obj[property] === "NaN" || obj[property] === " " || obj[property] == "")){
+      output += property + ': ' + obj[property]+'; \n';
+    }
   }
   console.log(output);
   return output;
