@@ -185,6 +185,11 @@ input[type="radio"] {
 .mdc-button:hover {
   cursor: pointer;
 }
+
+.mdc-button:focus {
+  background-color: #dedede;
+}
+
 .mdc-button:disabled {
   background-color: transparent;
   color: rgba(0, 0, 0, 0.37);
