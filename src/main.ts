@@ -121,7 +121,7 @@ function resetForm(form:any) {
 */
 document.addEventListener('DOMContentLoaded', function () {
   var submit = document.getElementById("submit");
-  var form = document.getElementById("form");
+  var form:HTMLFormElement = (document.getElementById("form") as HTMLFormElement);
   var sidewalkWidthButton = document.getElementById("sidewalkWidthButton");
   var bufferButton = document.getElementById("bufferButton");
   var barrierButton = document.getElementById("barrierButton");
@@ -149,7 +149,8 @@ document.addEventListener('DOMContentLoaded', function () {
   const travelLanesDialog = new MDCDialog(document.querySelector('.mdc-dialog12'));
   //Clear selection dropdowns so we don't accidentally record inaccurate data
 
-
+  form.addEventListener("change", (ev) => displayResults(form));
+  displayResults(form);
 
   sidewalkWidthButton.onclick = (event) => {
     sidewalkWidthDialog.open()
