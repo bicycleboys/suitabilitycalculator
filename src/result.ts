@@ -1,5 +1,6 @@
 import {FBDao, documentElement} from './daos/fbdao';
 import "./styles.css";
+import { scoreToDiv } from './calculators/calculatorUtils';
 
 var dao:FBDao;
 
@@ -13,34 +14,7 @@ function fillScores(scores: CalculatorResponse[]){
     const scoreDiv = document.getElementById("scores");
     scoreDiv.innerHTML = "";
     for(let s of scores){
-        const scoreBox = document.createElement("div")
-        scoreBox.className = "scoreBox "
-        const name = document.createElement("h2")
-        name.innerHTML = s.name;
-        const infoLink = document.createElement("a")
-        infoLink.href="./"+s.name+".html"
-        infoLink.innerText = "🛈";
-        name.appendChild(infoLink);
-
-        scoreBox.appendChild(name)
-        
-        if(scoreIsNotCalculated(s)){
-            const no = document.createElement("h5")
-            no.innerHTML = "Not Calculated";
-            scoreBox.appendChild(no)
-        }else{
-            const grade = document.createElement("h5");
-            grade.id = "grade"
-            grade.innerText = "Grade: "+s.grade;
-            scoreBox.appendChild(grade);
-            const points = document.createElement("h5");
-            points.id = "points"
-            points.innerText = "Points: "+s.points;
-            scoreBox.appendChild(points);
-            
-            scoreBox.className = scoreBox.className+" "+s.grade;
-        }
-        scoreDiv.appendChild(scoreBox);
+        scoreDiv.appendChild(scoreToDiv(s));
     }
 }
 
