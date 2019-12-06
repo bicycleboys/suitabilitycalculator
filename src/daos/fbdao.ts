@@ -7,7 +7,7 @@ export type documentElement = { key: string; SegmentDataObject: SegmentDataObjec
 export class FBDao implements Dao {
 
   db: firebase.firestore.Firestore;
-  segmentName: string;
+  collectionName: string;
 
   constructor(testing: boolean = false) {
     var firebaseConfig = {
@@ -22,9 +22,9 @@ export class FBDao implements Dao {
     };
 
     if (testing) {
-      this.segmentName = "SegmentsTest"
+      this.collectionName = "SegmentsTest"
     } else {
-      this.segmentName = "Segments"
+      this.collectionName = "Segments"
     }
 
     try {
@@ -48,7 +48,7 @@ export class FBDao implements Dao {
   }
 
   add(SegmentDataObject: SegmentDataObject, scoresArray: CalculatorResponse[]): Promise<string> {
-    return this.db.collection(this.segmentName).add({
+    return this.db.collection(this.collectionName).add({
       SegmentDataObject: SegmentDataObject,
       Scores: scoresArray,
       Timestamp: firebase.firestore.FieldValue.serverTimestamp(),
@@ -65,7 +65,7 @@ export class FBDao implements Dao {
 
   getList() {
     var list: any[] = [];
-    return this.db.collection(this.segmentName).get().then(function (querySnapshot: any) {
+    return this.db.collection(this.collectionName).get().then(function (querySnapshot: any) {
       querySnapshot.forEach(function (doc: any) {
         console.log(doc.id, " => ", doc.data());
         list.push(doc.data());
@@ -79,7 +79,7 @@ export class FBDao implements Dao {
 
   getElementBySegmentName(queryString: string) {
     var toReturn: any[] = [];
-    return this.db.collection(this.segmentName).where("SegmentDataObject.segmentName", "==", queryString)
+    return this.db.collection(this.collectionName).where("SegmentDataObject.segmentName", "==", queryString)
       .get().then(function (querySnapshot: any) {
         querySnapshot.forEach(function (doc: any) {
           toReturn.push(doc.data());
@@ -93,7 +93,7 @@ export class FBDao implements Dao {
 
   getElementID(queryString: string) {
     var toReturn: any[] = [];
-    return this.db.collection(this.segmentName).where("SegmentDataObject.segmentName", "==", queryString)
+    return this.db.collection(this.collectionName).where("SegmentDataObject.segmentName", "==", queryString)
       .get().then(function (querySnapshot: any) {
         querySnapshot.forEach(function (doc: any) {
           toReturn.push(doc.id);
@@ -105,7 +105,7 @@ export class FBDao implements Dao {
   }
 
   getElementById(docID: any) {
-    var docRef = this.db.collection(this.segmentName).doc(docID);
+    var docRef = this.db.collection(this.collectionName).doc(docID);
     var docData: documentElement = null;
     return docRef.get().then(function (doc) {
       if (doc.exists) {
@@ -121,7 +121,7 @@ export class FBDao implements Dao {
   }
 
   deleteElement(docID: any) {
-    return this.db.collection(this.segmentName).doc(docID).delete().then(function () {
+    return this.db.collection(this.collectionName).doc(docID).delete().then(function () {
       console.log("Document successfully deleted!");
     }).catch(function (error: any) {
       console.error("Error removing document: ", error);
@@ -132,7 +132,7 @@ export class FBDao implements Dao {
     var obj: any = {};
     obj[fieldToUpdate] = updatedValue;
     console.log(obj);
-    return this.db.collection(this.segmentName).doc(docID).update(obj).then(function () {
+    return this.db.collection(this.collectionName).doc(docID).update(obj).then(function () {
       console.log("Document Updated");
     })
   }

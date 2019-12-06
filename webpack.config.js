@@ -8,7 +8,6 @@ const outPath = path.resolve(__dirname, 'build');
 module.exports = {
   entry: {
     main: './src/main.ts',
-    result: './src/result.ts',
     allResults: './src/allResults.js'
   },
   module: {
@@ -57,12 +56,6 @@ module.exports = {
       chunks: ['main'],
       template: './src/form.html',
       filename: 'form.html'
-    }),
-    new HtmlWebpackPlugin({ //add result.html to build
-      inject: "head",
-      chunks: ['result'],
-      template: './src/result.html',
-      filename: 'result.html'
     }),
     new HtmlWebpackPlugin({ //add result.html to build
       inject: "head",
