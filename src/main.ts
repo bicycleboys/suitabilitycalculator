@@ -102,10 +102,8 @@ function gatherData(form: any):SegmentDataObject {
       (obj as any)[name] = value;
     }
   }
-  console.log(obj);
   (obj as any).lanesCombinedWidth = (obj as any).adjacent ? (obj as any).wbl + (obj as any).parkingWidth : NaN;
   (obj as any).laneWidth = (obj as any).adjacent ? NaN : (obj as any).wbl;
-  console.log(obj);
   return (obj as SegmentDataObject);
 }
 
