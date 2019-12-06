@@ -17,6 +17,17 @@ it was being rude*/
 @import "../node_modules/@material/card/dist/mdc.card.css";
 @import "../node_modules/@material/dialog/dist/mdc.dialog.css";
 
+table {
+  table-layout: auto;
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid black;
+}
+th,td {
+  border: 1px solid black;
+  min-width: 60px;
+}
+
 .mdc-card{
   padding-left: 1em;
   padding-right: 1em;
