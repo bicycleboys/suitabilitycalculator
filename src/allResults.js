@@ -133,7 +133,7 @@ function generateTable(table, data) {
       }
       else if ('seconds' in element[key]) {
         let cell = row.insertCell();
-        ntext = document.createTextNode( ntext.wholeText + " " + element[key]);
+        ntext = document.createTextNode( ntext.wholeText + " " + element[key].toDate());
         cell.appendChild(ntext);
       }
 
@@ -517,6 +517,8 @@ function printArrayObject(obj, document, row){
 //  console.log(output);
 //  return output;
 //}
+
+
 
 function isIterable(obj) {
   // checks for null and undefined
