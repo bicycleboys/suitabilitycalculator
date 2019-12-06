@@ -16,6 +16,7 @@ it was being rude*/
 @import "../node_modules/@material/icon-button/dist/mdc.icon-button.css";
 @import "../node_modules/@material/card/dist/mdc.card.css";
 @import "../node_modules/@material/dialog/dist/mdc.dialog.css";
+@import "../node_modules/@material/snackbar/dist/mdc.snackbar.css";
 
 table {
   table-layout: auto;
@@ -587,18 +588,25 @@ svg.mdc-button__icon {
   padding-right: .5em;
 }
 
-.scoreBox.a {
+.scoreBox.A{
   background-color: #a0ffa9;
 }
-.scoreBox.b{
+.scoreBox.B{
   background-color: #b4ffa0;
 }
-.scoreBox.c{
+.scoreBox.C {
   background-color: #fffba0;
 }
-.scoreBox.d{
+.scoreBox.D {
   background-color: #ffe4a0;
 }
-.scoreBox.f{
+.scoreBox.E {
+  background-color: #ffb373;
+}
+.scoreBox.F {
   background-color: #ffa1a0;
+}
+
+.scoreHolder {
+  flex-direction: row;
 }
