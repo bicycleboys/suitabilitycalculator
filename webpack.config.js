@@ -61,12 +61,6 @@ module.exports = {
     new HtmlWebpackPlugin({ //add result.html to build
       inject: "head",
       chunks: ['result'],
-      template: './src/result.html',
-      filename: 'result.html'
-    }),
-    new HtmlWebpackPlugin({ //add result.html to build
-      inject: "head",
-      chunks: ['result'],
       template: './src/allResults.html',
       filename: 'allResults.html'
     }),
