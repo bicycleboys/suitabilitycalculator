@@ -16,6 +16,7 @@ it was being rude*/
 @import "../node_modules/@material/icon-button/dist/mdc.icon-button.css";
 @import "../node_modules/@material/card/dist/mdc.card.css";
 @import "../node_modules/@material/dialog/dist/mdc.dialog.css";
+@import "../node_modules/@material/snackbar/dist/mdc.snackbar.css";
 
 .mdc-card{
   padding-left: 1em;

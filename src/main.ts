@@ -8,6 +8,7 @@ import { MDCMenu } from '@material/menu';
 import { MDCSelect } from '@material/select';
 import {MDCDialog} from '@material/dialog';
 import { scoreToDiv } from './calculators/calculatorUtils';
+import {MDCSnackbar} from '@material/snackbar';
 
 var dao: FBDao;
 
@@ -35,20 +36,16 @@ if ('serviceWorker' in navigator) {
 function doCalculate(form:any) {
   if (form.reportValidity()) {
     var infoObject:SegmentDataObject = gatherData(form);
-    //resetForm();
     var ltsData = lts.calculate(infoObject);
     var plosData = plos.calculate(infoObject);
     var blosData = blos.calculate(infoObject);
     try {
       doSave(infoObject, ltsData, blosData, plosData).then(id=>{
-        window.location.href = "./result.html?"+id;
+        console.log("saved")
+        const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
+        snackbar.open()
       });
     } catch (e) { console.log(e) }
-    // try {
-    //   display(ltsData);
-    //   display(blosData);
-    //   display(plosData);
-    // } catch (e) { console.log(e) }
   }
 }
 
@@ -57,7 +54,6 @@ function doCalculate(form:any) {
 * @param HTMLFormElement form
 */
 function displayResults(form: HTMLFormElement=null) {
-  console.log("displaying results")
   const scoreDiv = document.getElementById("results");
   
   if(form==null){
