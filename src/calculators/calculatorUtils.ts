@@ -30,6 +30,6 @@ export function scoreToDiv(score: CalculatorResponse) {
 }
 
 
-function scoreIsNotCalculated(score: CalculatorResponse): score is NotCalculated {
+export function scoreIsNotCalculated(score: CalculatorResponse): score is NotCalculated {
     return "because" in score
 }
