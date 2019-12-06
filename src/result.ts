@@ -28,13 +28,7 @@ function fillName(name: string){
     nameDiv.innerText = name;
 }
 
-
-function scoreIsNotCalculated(score: CalculatorResponse):score is NotCalculated{
-    return "because" in score
-}
-
 function setKey(k:any){
-    var key = k
     if(dao==null)
         dao=new FBDao();
     let element = dao.getElementById(k);
