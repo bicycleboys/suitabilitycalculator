@@ -7,6 +7,7 @@ import { FBDao } from './daos/fbdao'
 import { MDCMenu } from '@material/menu';
 import { MDCSelect } from '@material/select';
 import {MDCDialog} from '@material/dialog';
+import { scoreToDiv } from './calculators/calculatorUtils';
 
 
 if ('serviceWorker' in navigator) {
@@ -50,31 +51,23 @@ function doCalculate(form:any) {
   }
 }
 /**
-* Displays the data passed in
-* @param CalculatorResponse data
+* Displays the data from the form
+* @param HTMLFormElement form
 */
-function display(data:CalculatorResponse) {
-  //interface SegmentGrade{
-  //     points: number
-  //     grade: string
-  //     name: string
-  // }
+function displayResults(form: HTMLFormElement) {
+  console.log("displaying results")
+  const scoreDiv = document.getElementById("results");
 
-  // interface NotCalculated{
-  //     name: string;
-  //     because: string;
-  // }
-  var responseDisplay = document.createElement("p")
-  var isNotCalculated = ((d:CalculatorResponse):d is NotCalculated=>{return d.hasOwnProperty("because")})
-  if (isNotCalculated(data)) {
-    responseDisplay.textContent = `${data.name} not calculated because ${data.because} was missing`;
-  } else {
-    if (!data.grade) {
-      throw Error("Cannot display " + data.name + " without a grade");
-    }
-    responseDisplay.textContent = `${data.name}: ${data.grade} (${data.points})`;
+  var infoObject: SegmentDataObject = gatherData(form);
+
+  var ltsData = lts.calculate(infoObject);
+  var plosData = plos.calculate(infoObject);
+  var blosData = blos.calculate(infoObject);
+
+  scoreDiv.innerHTML = "";
+  for (let s of [ltsData, plosData, blosData]) {
+    scoreDiv.appendChild(scoreToDiv(s));
   }
-  document.body.appendChild(responseDisplay);
 }
 
 function doSave(infoObject:any, ...calculatedData:CalculatorResponse[]):Promise<string> {
