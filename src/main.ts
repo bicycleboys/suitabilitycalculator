@@ -33,7 +33,7 @@ if ('serviceWorker' in navigator) {
 /***
 * Checks form valididty and runs calculations
 */
-function doCalculate(form:any) {
+function doSubmit(form:any) {
   if (form.reportValidity()) {
     var infoObject:SegmentDataObject = gatherData(form);
     var ltsData = lts.calculate(infoObject);
@@ -41,7 +41,6 @@ function doCalculate(form:any) {
     var blosData = blos.calculate(infoObject);
     try {
       doSave(infoObject, ltsData, blosData, plosData).then(id=>{
-        console.log("saved")
         const snackbar = new MDCSnackbar(document.querySelector('.mdc-snackbar'));
         snackbar.open()
       });
@@ -247,7 +246,7 @@ document.addEventListener('DOMContentLoaded', function () {
   };
 
   submit.onclick = (event) => {
-    doCalculate(form)
+    doSubmit(form)
   };
 
   clear.onclick = (event) => {
