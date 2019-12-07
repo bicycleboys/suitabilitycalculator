@@ -1,14 +1,22 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "5633ac78ef4db5b741c49d9235d5c5d6",
+    "revision": "f141a0564910f1119709a868b64773c8",
+    "url": "BLOS.html"
+  },
+  {
+    "revision": "ce75798306267e64a1809c9c481a2110",
     "url": "LTS.html"
   },
   {
-    "revision": "92ec155234020013cd021bf0c500e4e7",
+    "revision": "17c134b88c12b6c872a76221ef4ddea8",
+    "url": "PLOS.html"
+  },
+  {
+    "revision": "564ec2c349d688b9d3256bfa653538ba",
     "url": "allResults.html"
   },
   {
-    "revision": "2edf8b16b2bf3dedbafa",
+    "revision": "c9ed28f8b96e8ccafc1e",
     "url": "allResults.js"
   },
   {
@@ -16,7 +24,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "favicon.ico"
   },
   {
-    "revision": "c619126712fa00af6a39a4b474adc383",
+    "revision": "4a41a5d75a1e28349924288a20f24c02",
     "url": "form.html"
   },
   {
@@ -24,7 +32,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "index.html"
   },
   {
-    "revision": "f935d26adb852123aa53",
+    "revision": "de82f70902665b41b478",
     "url": "main.js"
   }
 ]);
