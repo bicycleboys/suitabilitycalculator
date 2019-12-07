@@ -51,6 +51,16 @@ module.exports = {
       template: './src/LTS.html',
       filename: 'LTS.html'
     }),
+    new HtmlWebpackPlugin({ //add BLOS.html to build
+      inject: false,
+      template: './src/BLOS.html',
+      filename: 'BLOS.html'
+    }),
+    new HtmlWebpackPlugin({ //add PLOS.html to build
+      inject: false,
+      template: './src/PLOS.html',
+      filename: 'PLOS.html'
+    }),
     new HtmlWebpackPlugin({ //add form.html to build
       inject: "head",
       chunks: ['main'],
