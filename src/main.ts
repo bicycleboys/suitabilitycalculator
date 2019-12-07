@@ -54,7 +54,7 @@ function doSubmit(form:any) {
 */
 function displayResults(form: HTMLFormElement=null) {
   const scoreDiv = document.getElementById("results");
-  
+
   if(form==null){
     form=(document.getElementById("form") as HTMLFormElement);
   }
@@ -140,7 +140,7 @@ function fillPage(data: SegmentDataObject){
 
 /**
  * Set the key to fill the form with
- * @param k 
+ * @param k
  */
 function setKey(k:string){
   if(dao==null)
@@ -173,6 +173,7 @@ document.addEventListener('DOMContentLoaded', function () {
   var islandButton = document.getElementById("islandButton");
   var unsignalizedButton = document.getElementById("unsignalizedButton");
   var numberRightTurnsButton = document.getElementById("#rightTurnsButton");
+  var straightBikeLaneButton = document.getElementById("straightBikeLaneButton");
   const heavyVehiclesDialog = new MDCDialog(document.querySelector('.mdc-dialog1'));
   const unsignalizedDialog = new MDCDialog(document.querySelector('.mdc-dialog2'));
   const pavementRatingDialog = new MDCDialog(document.querySelector('.mdc-dialog3'));
@@ -185,6 +186,7 @@ document.addEventListener('DOMContentLoaded', function () {
   const crossingIslandsDialog = new MDCDialog(document.querySelector('.mdc-dialog10'));
   const rightTurnsDialog = new MDCDialog(document.querySelector('.mdc-dialog11'));
   const travelLanesDialog = new MDCDialog(document.querySelector('.mdc-dialog12'));
+  const straightBikeLaneDialog = new MDCDialog(document.querySelector('.mdc-dialog13'));
   //Clear selection dropdowns so we don't accidentally record inaccurate data
 
   const search = window.location.search.slice(1);
@@ -192,6 +194,10 @@ document.addEventListener('DOMContentLoaded', function () {
     setKey(search);
   form.addEventListener("change", (ev) => displayResults(form));
   displayResults(form);
+
+  straightBikeLaneButton.onclick = (event) => {
+    straightBikeLaneDialog.open();
+  };
 
   sidewalkWidthButton.onclick = (event) => {
     sidewalkWidthDialog.open()

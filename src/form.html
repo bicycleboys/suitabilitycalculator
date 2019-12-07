@@ -526,6 +526,9 @@ color: blue;
 <div>
 </br>
 <label for="laneShift" >Does the bike lane shift left or continue straight as the right lane appears?
+  <button type="button" class="mdc-button" id="straightBikeLaneButton">
+    <span class="mdc-button__label">Help</span>
+  </button>
 </br>
 <div class="mdc-select">
 <select name="laneShift" class= "select-css" id="laneShift">
@@ -542,7 +545,7 @@ color: blue;
 
 
 <div class="scoreHolder" id="results">
-      
+
 </div>
 <br/>
 
@@ -861,6 +864,30 @@ color: blue;
   <div class="mdc-dialog__scrim"></div>
 </div>
 
+<div class="mdc-dialog mdc-dialog13"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Definition<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        <img class = "responsive" src="https://nacto.org/wp-content/uploads/gallery/crt_3d/combinedrightturnlane_top.jpg" alt="An example of a straight bike lane">
+        <p>The bike lane continuing straight means it looks like the above image.</p>
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">
+          <span class="mdc-button__label">Done</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
 </body>
 
 </html>
