@@ -26,9 +26,14 @@ table {
 }
 th,td {
   border: 1px solid black;
+  padding-left: 10px;
+  padding-right: 10px;
   min-width: 60px;
 }
 
+th.Long{
+  min-width: 220px;
+}
 .responsive{
   max-width: 100%;
   height: auto;

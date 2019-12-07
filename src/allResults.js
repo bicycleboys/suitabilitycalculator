@@ -72,7 +72,8 @@ function generateTableHead(table, data) {
     }
     else if ('seconds' === Object.keys(key)[0]) {
       th = document.createElement("th");
-      text = document.createTextNode("Timestamp");
+      th.classList.add("Long")
+      text = document.createTextNode("Timestamp (Date Submitted to Firebase)");
       th.appendChild(text);
       row.appendChild(th);
     }
