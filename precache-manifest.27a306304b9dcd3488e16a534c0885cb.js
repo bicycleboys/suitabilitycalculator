@@ -12,11 +12,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "PLOS.html"
   },
   {
-    "revision": "564ec2c349d688b9d3256bfa653538ba",
+    "revision": "a29dd7cadb1bd371d3a50356b2e66ac2",
     "url": "allResults.html"
   },
   {
-    "revision": "c9ed28f8b96e8ccafc1e",
+    "revision": "0d18bcf33df8dd79272b",
     "url": "allResults.js"
   },
   {
@@ -28,11 +28,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "form.html"
   },
   {
-    "revision": "947a5e82199bbe33f008ea9700e3bc1e",
+    "revision": "3c7fc1913501c718532c28e4fd202ee7",
     "url": "index.html"
   },
   {
-    "revision": "de82f70902665b41b478",
+    "revision": "e91247e5a5fe21888462",
     "url": "main.js"
   }
 ]);

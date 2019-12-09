@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "precache-manifest.4d168c9334b446bfc09aaa226d0aa211.js"
+  "precache-manifest.27a306304b9dcd3488e16a534c0885cb.js"
 );
 
 workbox.core.skipWaiting();
@@ -28,3 +28,8 @@ workbox.core.clientsClaim();
  */
 self.__precacheManifest = [].concat(self.__precacheManifest || []);
 workbox.precaching.precacheAndRoute(self.__precacheManifest, {});
+
+workbox.routing.registerNavigationRoute(workbox.precaching.getCacheKeyForURL("form.html"), {
+  whitelist: [/^\/form.html/],
+  
+});
