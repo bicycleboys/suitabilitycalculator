@@ -41,7 +41,7 @@ test('get added object', ()=>{
 
 test('getDocID', ()=>{
   let myfbdao = new FBDao(true);
-  myfbdao.db.collection("SegmentsTest").doc("ID").set({
+  myfbdao.getDB().collection("SegmentsTest").doc("ID").set({
     segmentName: "test3",
     otherData: 9000
   });
@@ -59,7 +59,7 @@ test('getDocID', ()=>{
 
 test('delete', ()=>{
   let myfbdao = new FBDao(true);
-  myfbdao.db.collection(myfbdao.collectionName).doc("ToBeDeleted").set({
+  myfbdao.getDB().collection(myfbdao.collectionName).doc("ToBeDeleted").set({
     segmentName: "test4",
     otherData: 404
   });
@@ -80,7 +80,7 @@ test('delete', ()=>{
 
 test('update', () => {
   let myfbdao = new FBDao(true);
-  myfbdao.db.collection("SegmentsTest").doc("ToBeUpdated").set({
+  myfbdao.getDB().collection(myfbdao.collectionName).doc("ToBeUpdated").set({
     segmentName: "test5",
     otherData: 5
   });

@@ -148,6 +148,11 @@ export class FBDao implements Dao {
   remove(key: any): void {
     this.deleteElement(key);
   }
+
+  getDB() {
+    return FBDao.db;
+  }
+
   getInfo(key: any): Promise<{ key: any; data: SegmentDataObject; scores: CalculatorResponse[]; }> {
     return this.getElementById(key).then(r => {
       let obj: any = {}
