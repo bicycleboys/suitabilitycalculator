@@ -8,7 +8,7 @@ const outPath = path.resolve(__dirname, 'build');
 module.exports = {
   entry: {
     main: './src/main.ts',
-    result: './src/result.ts',
+    allResults: './src/allResults.js'
   },
   module: {
 
@@ -38,7 +38,7 @@ module.exports = {
     contentBase: outPath
   },
   plugins: [
-    new HtmlWebpackPlugin({   
+    new HtmlWebpackPlugin({
       favicon: './src/favicon.ico'
     }),
     new HtmlWebpackPlugin({ //add index.html to build
@@ -51,6 +51,16 @@ module.exports = {
       template: './src/LTS.html',
       filename: 'LTS.html'
     }),
+    new HtmlWebpackPlugin({ //add BLOS.html to build
+      inject: false,
+      template: './src/BLOS.html',
+      filename: 'BLOS.html'
+    }),
+    new HtmlWebpackPlugin({ //add PLOS.html to build
+      inject: false,
+      template: './src/PLOS.html',
+      filename: 'PLOS.html'
+    }),
     new HtmlWebpackPlugin({ //add form.html to build
       inject: "head",
       chunks: ['main'],
@@ -60,8 +70,8 @@ module.exports = {
     new HtmlWebpackPlugin({ //add result.html to build
       inject: "head",
       chunks: ['result'],
-      template: './src/result.html',
-      filename: 'result.html'
+      template: './src/allResults.html',
+      filename: 'allResults.html'
     }),
     //If you add new pages to src, also add them here
     new WorkboxPlugin.GenerateSW({

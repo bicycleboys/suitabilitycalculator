@@ -7,6 +7,7 @@
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.6.0",
     "@material/button": "^4.0.0",
+    "@material/card": "^4.0.0",
     "@material/checkbox": "^4.0.0",
     "@material/data-table": "^4.0.0",
     "@material/dialog": "^4.0.0",
@@ -55,6 +56,7 @@
   },
   "homepage": "https://github.com/bicycleboys/suitabilitycalculator#readme",
   "dependencies": {
+    "@material/snackbar": "^4.0.0",
     "babel-jest": "^24.9.0",
     "idb": "^4.0.5"
   },

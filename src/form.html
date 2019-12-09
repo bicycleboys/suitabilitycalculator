@@ -10,18 +10,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="shortcut icon" href="favicon.ico">
   <link rel="manifest" href="./manifest.json">
-  <!--<style>
-
-  body {
-  background-color: lightblue;
-}
-label, p{
-color: blue;
-}
-
-
-</style>-->
-<link ref="stylesheet" type='text/css' href="styles.css">
+<link rel="stylesheet" type='text/css' href="styles.css">
 </head>
 
 <body>
@@ -40,21 +29,56 @@ color: blue;
 </br>
 </br>
 
-<label for="segmentName" class="TopOfPage">Segment name:
-  <input type="text" class="mdc-text-field__input" name="segmentName" size="35" placeholder="eg. Humboldt: Locust-Chambers" required /></label>
-
+<div>
+<label for="segmentName" class="TopOfPage">Roadway segment name:
+  <input type="text" class="mdc-text-field__input" name="segmentName" size="35" placeholder="eg. Humboldt" required /></label>
+</div>
 </br>
+
+<div>
+<label for="segmentName">Segment cross street number 1:
+  <input type="text" class="mdc-text-field__input" name="segmentBetween1" size="35" placeholder="eg. Locust" required /></label>
+</div>
+</br>
+
+<div>
+<label for="segmentName">Segment cross street number 2:
+  <input type="text" class="mdc-text-field__input" name="segmentBetween2" size="35" placeholder="eg. Chambers" required /></label>
+</div>
+</br>
+
+<div>
+  <h4> This section is about the sidewalk</h4>
+</div>
+</br>
+
 <!--Sidewalk Stuff-->
-
-<label for="waa">Width of sidewalk at the most narrow place in the segment:
+<div>
+<label for="waa">Width of sidewalk at the most narrow place in the segment in feet (typically 0-16ft):
+  <button type="button" class="mdc-button" id="sidewalkWidthButton">
+    <span class="mdc-button__label">Help</span>
+  </button>
   <input type="number" class="mdc-text-field__input" name="waa" value=" " /></label>
+</div>
 </br>
 
-<label for="wbuf">Width of buffer between roadway and sidewalk in feet:
+
+<div>
+<label for="wbuf">Width of buffer between roadway and sidewalk in feet (typically 0-12ft):
+  <button type="button" class="mdc-button" id="bufferButton">
+    <span class="mdc-button__label">Help</span>
+  </button>
   <input type="number" class="mdc-text-field__input" name="wbuf" value=" " step="0.5" /></label>
+</div>
 </br>
 
-<p>Is there a continuous barrier at least 3 feet high for the length of the segment? (ex: a concrete barrier)</p>
+
+<div>
+<p>Is there a continuous barrier at least 3 feet high for the length of the segment? (ex: a concrete barrier)
+<button type="button" class="mdc-button" id="barrierButton">
+  <span class="mdc-button__label">Help</span>
+</button>
+</p>
 <div class="mdc-form-field">
   <div class="mdc-radio">
     <input type="radio" class="mdc-radio__native-control" id="barrierYes"
@@ -76,9 +100,12 @@ color: blue;
   </div>
 </div>
 </br>
+</div>
 </br>
 
+</br>
 
+<div>
 <p>Is there a curb present?</p>
 <div class="mdc-form-field">
   <div class="mdc-radio">
@@ -101,47 +128,23 @@ color: blue;
   </div>
 </div>
 </br>
-</br>
-
-
-
-<h5>Bike lane information</h5>
-
-<!--
-<div class="mdc-select mdc-select-1 bigboi">
-  <div class="mdc-select__anchor bigboi">
-    <i class="mdc-select__dropdown-icon"></i>
-    <div id="demo-selected-text" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="demo-label demo-selected-text"></div>
-    <span id="demo-label" class="mdc-floating-label mdc-floating-label--float-above">Bike Facility Type</span>
-    <div class="mdc-line-ripple"></div>
-  </div>
-
-  <div class="mdc-select__menu mdc-menu mdc-menu-surface bigboi" role="listbox">
-    <ul class="mdc-list">
-      <li class="mdc-list-item mdc-list-item--selected" data-value="" role="option"></li>
-      <li class="mdc-list-item" data-value="stand-alone" role="option">
-        Stand-alone
-      </li>
-      <li class="mdc-list-item" data-value="segregated" role="option">
-        Segregated
-      </li>
-      <li class="mdc-list-item" data-value="bike lane" role="option">
-        Bike Lane
-      </li>
-      <li class="mdc-list-item mdc-list-item--disabled" data-value="mixed traffic" aria-selected="true" aria-disabled="true" role="option">
-        Mixed Traffic
-      </li>
-    </ul>
-  </div>
 </div>
 </br>
--->
+</br>
+
 
 <div>
-<label>Bike Facility Type</label>
+<h4>Bike lane information</h4>
+</div>
 </br>
+
+<div>
+<div>
+
 <div class="mdc-select">
-<select name="segmentType" class="mdc-select__native-control" id="type" >
+  <label>Bike Facility Type</label>
+  </br>
+<select name="segmentType" class="select-css" id="type" >
 <optgroup>
 <option value="" disabled selected></option>
 <option value="stand-alone">Stand-alone</option>
@@ -153,45 +156,20 @@ color: blue;
 <div class="mdc-line-ripple"></div>
 </div>
 </div>
+<button type="button" class="mdc-button" id="facilityButton">
+  <span class="mdc-button__label">Help</span>
 </br>
-
-
-<!--
-I'm so close to getting the material design select to work, but on click nothing happens
-it looks pretty but it's useless
--->
-
-<!--
-<div class="mdc-select mdc-select-2">
-  <div class="mdc-select__anchor bigboi">
-    <i class="mdc-select__dropdown-icon"></i>
-    <div id="demo-selected-text" class="mdc-select__selected-text" role="button" aria-haspopup="listbox" aria-labelledby="demo-label demo-selected-text"></div>
-    <span id="demo-label" class="mdc-floating-label mdc-floating-label--float-above">Bike Lane Blockage frequency</span>
-    <div class="mdc-line-ripple"></div>
-  </div>
-
-  <div class="mdc-select__menu mdc-menu mdc-menu-surface bigboi" role="listbox">
-    <ul class="mdc-list">
-      <li class="mdc-list-item mdc-list-item--selected" data-value="" role="option"></li>
-      <li class="mdc-list-item" data-value="frequently" role="option">
-        Frequently
-      </li>
-      <li class="mdc-list-item mdc-list-item--disabled" data-value="rarely" aria-selected="true" aria-disabled="true" role="option">
-        Rarely
-      </li>
-    </ul>
-  </div>
 </div>
 </br>
--->
 
 
 
 <div>
+<div>
 <label>Bike Lane Blockage Frequency</label>
 </br>
 <div class="mdc-select">
-<select name="blockage" id="blockage" class="if-bike-lane mdc-select__native-control">
+<select name="blockage" id="blockage" class="if-bike-lane select-css">
 <option value="" disabled selected></option>
 <option value="rarely">Rarely</option>
 <option value="frequently">Frequently</option>
@@ -200,10 +178,12 @@ it looks pretty but it's useless
 </div>
 </div>
 </br>
+</div>
+</br>
 
 
-
-<label for="lanesAdjacent">Bike lane beetween on-street parking and driving lane:</label>
+<div>
+<label for="lanesAdjacent">Bike lane is located beetween on-street parking and driving lane:</label>
 <div class="mdc-form-field">
   <div class="mdc-radio">
     <input type="radio" class="mdc-radio__native-control" id="lanesAdjacentYes"
@@ -225,64 +205,78 @@ it looks pretty but it's useless
   </div>
 </div>
 </br>
+</div>
 </br>
 
-<!--<div class="mdc-form-field">
-<label for="lanesAdjacent">Bike lane beetween on-street parking and driving lane:</label>
-<div class="mdc-checkbox">
-<input type="checkbox" class="mdc-checkbox__native-control" name="lanesAdjacent" /> <!--class="if-bike-lane"-->
-<!--    <div class="mdc-checkbox__background">
-<svg class="mdc-checkbox__checkmark"
-viewBox="0 0 24 24">
-<path class="mdc-checkbox__checkmark-path"
-fill="none"
-d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
-</svg>
-<div class="mdc-checkbox__mixedmark"></div>
-</div>
-</div>
-</div>
--->
 
-
-<label for="wbl">Width of bike lane in feet:
+<div>
+<label for="wbl">Width of bike lane in feet (typically 0-7ft):
   <input type="number" class="mdc-text-field__input" name="wbl" value=" " step="0.5" /> </label>
+</div>
 </br>
 
-<label for="wos">Width of paved outside shoulder in feet:
+<div>
+<label for="wos">Width of paved outside shoulder in feet (typically 0-10ft):
   <input type="number" class="mdc-text-field__input" name="wos" value = " " step="0.5" /> </label>
+</div>
 </br>
-
 <!--Parking lane stuff-->
 
-<label for="width">Sum of bike lane and parking lane width or just bike lane width if not adjacent (ft):
-  <input type="number" class="if-bike-lane mdc-text-field__input"  name="width" value=" " step="0.5" /></label>
+
+<div>
+<label for="width">Width of the parking lane, in feet (typically 0-9ft)
+  <input type="number" class="if-bike-lane mdc-text-field__input"  name="parkingWidth" value=" " step="0.5" /></label>
+</div>
 </br>
 
+<div>
 <label for="ppk">Parking occupancy as a percentage (0-100):
+  <button type="button" class="mdc-button" id="occupancyButton">
+    <span class="mdc-button__label">Help</span>
+  </button>
   <input type="number" class="mdc-text-field__input" name="ppk" value = " " /> </label>
+</div>
 </br>
 
+
+<div>
+<h4> This section is about the roadway </h4>
+</div>
+</br>
 
 <!--Car lane stuff (or mixed traffic)-->
-<label for="speed">Speed Limit:
+<div>
+<label for="speed">Speed Limit in Miles per Hour (typically 5-55mph):
   <input type="number"  name="speed"  value=" " class="if-bike-lane if-mixed mdc-text-field__input" /></label>
+</div>
 </br>
 
-
-<label for="runningSpeed">Prevailing speed:
+<div>
+<label for="runningSpeed">Prevailing speed in Miles per Hour (typically 5-55mph):
 <input type="number" class="mdc-text-field__input" name="runningSpeed" value=" " /></label>
+</div>
 </br>
 
-<label for="laneCount">Number of travel lanes per direction: <!--TODO: verify lanes is positive-->
+<div>
+<label for="laneCount">Number of travel lanes in the direction of travel (typically 1-4):
+  <button type="button" class="mdc-button" id="#travelLanesButton">
+    <span class="mdc-button__label">Help</span>
+  </button> <!--TODO: verify lanes is positive-->
   <input type="number" class="if-bike-lane mdc-text-field__input"  name="laneCount" value=" " /></label>
+</div>
 </br>
 
-<label for="wol">Width of outside lane in feet:
+<div>
+<label for="wol">Width of outside lane in feet (typically 9-16ft):
   <input type="number" class="mdc-text-field__input" name="wol" value = " " step="0.5" /> </label>
+</div>
 </br>
 
-<p>Is there a median between directions of travel (eg. a boulevard)</p> <!--(required if bike lane is not adjacent to parking)-->
+<div>
+<p>Is there a median between directions of travel?
+  <button type="button" class="mdc-button" id="medianButton">
+    <span class="mdc-button__label">Help</span>
+  </button></p> <!--(required if bike lane is not adjacent to parking)-->
 <div class="mdc-form-field">
   <div class="mdc-radio">
     <input type="radio" class="mdc-radio__native-control" id="medianYes"
@@ -304,10 +298,12 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
   </div>
 </div>
 </br>
+</div>
+</br>
 </br>
 
 
-
+<div>
 <p>Is there a marked centerline?</p> <!--if-mixed-traffic-->
 <div class="mdc-form-field">
   <div class="mdc-radio">
@@ -329,30 +325,57 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
     <label class="radiobuttonLabel" for="centerlineNo">No</label>
   </div>
 </div>
+</br>
 </div>
 </br>
 </br>
 
-
-<label for="totalLanes">Total number of lanes in both directions:
+<div>
+<label for="totalLanes">Total number of lanes in both directions (typically 1-6):
+  <button type="button" class="mdc-button" id="#travelLanesButtonAgain">
+    <span class="mdc-button__label">Help</span>
+  </button>
   <input type="number"  name="totalLanes" class="if-mixed-traffic mdc-text-field__input"/></label>
+</div>
 </br>
 
+<div>
 <label for="adt">Average daily vehicle traffic (in both directions):
   <input type="number" class="mdc-text-field__input" name="adt" value=" " autocomplete="off"/></label>
+</div>
 </br>
 
-<label for="pc">Pavement condition as a number between 1 and 5, 1 being very bad and 5 being very good:
+<div>
+
+<label for="pc">Pavement condition as a number between 1 and 5:
+<button type="button" class="mdc-button" id="ratingButton">
+    <span class="mdc-button__label">Help</span>
+  </button>
   <input type="number" class="mdc-text-field__input" name="pc" value=" " /></label>
+</div>
 </br>
 
-<label for="phv">Heavy vehicles (e.g. Buses, Delivery Vehicles, Work Trucks) in the midsection flow rate as a percentage: (0-100)
+<div>
+<label for="phv">Heavy vehicles in the segment flow rate as a percentage: (0-100)
+  <button type="button" class="mdc-button" id="heavyVehiclesButton">
+    <span class="mdc-button__label">Help</span>
+  </button>
   <input type="number" class="mdc-text-field__input" name="phv" value=" " /></label>
+
+</div>
 </br>
 
+<div>
+<h4>Intersection Stuff</h4>
+</div>
+</br>
 
-<h5>Intersection Stuff</h5>
-<p>Is there a crossing island?</p>
+<div>
+<p>Is there a crossing island?
+  <button type="button" class="mdc-button" id="islandButton">
+    <span class="mdc-button__label">Help</span>
+  </button>
+</p>
 <div class="mdc-form-field">
   <div class="mdc-radio">
     <input type="radio" class="mdc-radio__native-control" id="islandYes"
@@ -374,11 +397,18 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
   </div>
 </div>
 </br>
+</div>
 </br>
 
-
-<p>Do the bike facilities have to interface with an unsignalized crossing?</p>
+<div>
+  <div>
+<p>Is the crossing unsignalized?
+<button type="button" class="mdc-button" id="unsignalizedButton">
+  <span class="mdc-button__label">Help</span>
+  </p>
+</div>
 <div class="mdc-form-field">
+
   <div class="mdc-radio">
     <input type="radio" class="mdc-radio__native-control" id="unsignalizedYes"
     name="unsignalized" value="true">
@@ -399,15 +429,20 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
   </div>
 </div>
 </br>
+</div>
 </br>
 
-
-<label for="xStreetWidth">Count of vehicle lanes in cross-street:
+<div>
+<label for="xStreetWidth">Count of vehicle lanes in cross-street (typically 1-6):
   <input type="number" class="mdc-text-field__input" name="xStreetWidth" value=" " /></label>
-  <br />
+</div>
 </br>
 
-<h5>right turn lane/bike lane interfacing at intersection approach </h5>
+<div>
+<h4>right turn lane/bike lane interfacing at intersection approach </h4>
+</div>
+</br>
+<div>
 <p>Is the bike lane between the traffic lane and the right turn lane or a marked lane within the right turn lane?</p>
 <div class="mdc-form-field">
   <div class="mdc-radio">
@@ -430,22 +465,28 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
   </div>
 </div>
 </br>
+</div>
 </br>
 
 
 <div>
   <label for="turningSpeed">Speed of vehicles turning right from cyclist's direction of travel:
     <input type="number" class="mdc-text-field__input" name="turningSpeed" value=" " /></label>
-  </br>
-
+</div>
+</br>
+<div>
   <label for="RLCount">How many right turn lanes are there?
+    <button type="button" class="mdc-button" id="#rightTurnsButton">
+      <span class="mdc-button__label">Help</span>
+    </button>
     <input type="number" class="mdc-text-field__input" name="RLCount" value=" " /></label>
-  </br>
-
-  <label for="RLLength">How long is the longest right turn lane (in feet)?
+</div>
+</br>
+<div>
+  <label for="RLLength">How long is the longest right turn lane, in feet?
     <input type="number" class="mdc-text-field__input" name="RLLength" value=" " /></label>
-  </br>
-
+</div>
+</br>
 <!--
 </br>
 <div class="mdc-select mdc-select-3">
@@ -470,12 +511,16 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
 </div>
 </br>
 -->
-
 <div>
+<div>
+</br>
 <label for="laneShift" >Does the bike lane shift left or continue straight as the right lane appears?
+  <button type="button" class="mdc-button" id="straightBikeLaneButton">
+    <span class="mdc-button__label">Help</span>
+  </button>
 </br>
 <div class="mdc-select">
-<select name="laneShift" class= "mdc-select__native-control" id="laneShift">
+<select name="laneShift" class= "select-css" id="laneShift">
   <option value="" disabled selected></option>
 <option value="left">Shifts left</option>
 <option value="abrupt">Continues straight</option>
@@ -484,15 +529,354 @@ d="M1.73,12.91 8.1,19.28 22.79,4.59"/>
 </div>
 </div>
 </br>
-
+</div>
 </br>
+
+
+<div class="scoreHolder" id="results">
+
+</div>
+<br/>
 
 
 <button id="submit" type="button" class="mdc-button turnItTeal mdc-button--raised mdc-button--outlined" value="Calculate">
   <div class="mdc-button__ripple"></div>
   <span class="mdc-button__label">Sumbit</span>
 </button>
+<button id="new" type="button" class="mdc-button turnItTeal mdc-button--raised mdc-button--outlined" value="Calculate">
+  <div class="mdc-button__ripple"></div>
+  <span class="mdc-button__label">New</span>
+</button>
 </form>
+
+<div class="mdc-snackbar">
+  <div class="mdc-snackbar__surface">
+    <div class="mdc-snackbar__label"
+         role="status"
+         aria-live="polite">
+      Successfully sent to server!
+    </div>
+  </div>
+</div>
+
+<div class="mdc-dialog mdc-dialog1"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Definition<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        Heavy vehicles are things like busses, construction trucks, and semi trailers. Default value is 4%.
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">
+          <span class="mdc-button__label">Done</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-dialog mdc-dialog2"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Definition<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        An unsignalized crossing is one without any traffic control-- no traffic lights, stop signs, or yield signs.
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">
+          <span class="mdc-button__label">Done</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+<div class="mdc-dialog mdc-dialog3"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Rating Scale<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        <p>5: Perfect or near perfect pavement </p>
+        <p>4: Occasional bumps and cracks, still good to ride on</p>
+        <p>3: Pavement in need of some upkeep, potholes exist</p>
+        <p>2: Pavement needs upkeep, has lots of potholes and discontiuities</p>
+        <p>1: Pavement in dire need of repair</p>
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">
+          <span class="mdc-button__label">Done</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-dialog mdc-dialog4"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Definition<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        Measure from the top of the curb to sidewalk. If there's no sidewalk, enter 0.
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">
+          <span class="mdc-button__label">Done</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-dialog mdc-dialog5"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Definition<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        If there's no sidewalk, enter 0.
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">
+          <span class="mdc-button__label">Done</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-dialog mdc-dialog6"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+      -->Definition<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        Trees and cars don't count as a continuous barrier.
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">
+          <span class="mdc-button__label">Done</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+<div class="mdc-dialog mdc-dialog7"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Definition<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        <p>Stand Alone: a side path, not connected to the roadway</p>
+        <p>Segregated: some physical barrier seperates the bike lane from the roadway.</p>
+        <p>Bike lane: painted lane on the roadway for cyclists</p>
+        <p>Mixed Traffic: There are no designated bike facilities</p>
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">
+          <span class="mdc-button__label">Done</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-dialog mdc-dialog8"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Definition<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        Places where parking is illegal still contributes to this percentage;
+        that is, this question asks you to measure how much of the total physical curb space is filled with parked vehicles
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">
+          <span class="mdc-button__label">Done</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-dialog mdc-dialog9"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Definition<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        A center turn lane does not count as a median, the two directions of travel must have a physical barrier between them.
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">
+          <span class="mdc-button__label">Done</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-dialog mdc-dialog10"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Definition<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        This question does not count crossing islands next to a right turn lane as valid crossing islands.
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">
+          <span class="mdc-button__label">Done</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-dialog mdc-dialog11"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Definition<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        This question asks you to measure the number of lanes through which legal right turns are possible in the direction of travel, not for the whole intersection.
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">
+          <span class="mdc-button__label">Done</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-dialog mdc-dialog12"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Definition<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        This question asks about the total number of travel lanes, not including temporary right or left turn lanes that don't last the length of the segment.
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">
+          <span class="mdc-button__label">Done</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
+
+<div class="mdc-dialog mdc-dialog13"
+     role="alertdialog"
+     aria-modal="true"
+     aria-labelledby="my-dialog-title"
+     aria-describedby="my-dialog-content">
+  <div class="mdc-dialog__container">
+    <div class="mdc-dialog__surface">
+      <!-- Title cannot contain leading whitespace due to mdc-typography-baseline-top() -->
+      <h2 class="mdc-dialog__title" id="my-dialog-title"><!--
+     -->Definition<!--
+   --></h2>
+      <div class="mdc-dialog__content" id="my-dialog-content">
+        <img class = "responsive" src="https://nacto.org/wp-content/uploads/gallery/crt_3d/combinedrightturnlane_top.jpg" alt="An example of a straight bike lane">
+        <p>The bike lane continuing straight means it looks like the above image.</p>
+      </div>
+      <footer class="mdc-dialog__actions">
+        <button type="button" class="mdc-button mdc-dialog__button" data-mdc-dialog-action="yes">
+          <span class="mdc-button__label">Done</span>
+        </button>
+      </footer>
+    </div>
+  </div>
+  <div class="mdc-dialog__scrim"></div>
+</div>
 </body>
 
 </html>

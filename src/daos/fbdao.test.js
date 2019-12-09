@@ -59,7 +59,7 @@ test('getDocID', ()=>{
 
 test('delete', ()=>{
   let myfbdao = new FBDao(true);
-  myfbdao.db.collection("Segments").doc("ToBeDeleted").set({
+  myfbdao.db.collection(myfbdao.collectionName).doc("ToBeDeleted").set({
     segmentName: "test4",
     otherData: 404
   });
