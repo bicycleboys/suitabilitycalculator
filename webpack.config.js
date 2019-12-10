@@ -67,9 +67,9 @@ module.exports = {
       template: './src/form.html',
       filename: 'form.html'
     }),
-    new HtmlWebpackPlugin({ //add result.html to build
+    new HtmlWebpackPlugin({ //add allResults.html to build
       inject: "head",
-      chunks: ['result'],
+      chunks: ['allResults'],
       template: './src/allResults.html',
       filename: 'allResults.html'
     }),
@@ -79,6 +79,11 @@ module.exports = {
       // and not allow any straggling "old" SWs to hang around
       clientsClaim: true,
       skipWaiting: true,
+      
+      //to reroute form.hmtl with any query strings to form.html file
+      //kinda hacky but what are you gonna do
+      navigateFallback: 'form.html',
+      navigateFallbackWhitelist: [/^\/form.html/]
     }),
     new CopyPlugin([
       {from: "src/manifest.json", to: outPath+"/manifest.json" },

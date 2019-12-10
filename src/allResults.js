@@ -3,8 +3,10 @@ import calculatorUtils from './calculators/calculatorUtils'
 import "./styles.css";
 
 var dao = new FBDao();
-let table = document.querySelector("table");
-
+document.addEventListener("DOMContentLoaded",e=>{
+  let table = document.querySelector("table");
+  getListAndPopulate(dao, table);
+})
 
 function getListAndPopulate(dao, table){
   var list = dao.getList()
