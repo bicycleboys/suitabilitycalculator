@@ -5,7 +5,7 @@ export function scoreToDiv(score: CalculatorResponse) {
     name.innerHTML = score.name;
     const infoLink = document.createElement("a")
     infoLink.href = "./" + score.name + ".html"
-    infoLink.innerText = "🛈";
+    infoLink.innerText = "ⓘ";
     name.appendChild(infoLink);
 
     scoreBox.appendChild(name)
