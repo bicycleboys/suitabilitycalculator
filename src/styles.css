@@ -30,7 +30,9 @@ th,td {
   padding-right: 10px;
   min-width: 60px;
 }
-
+.right{
+  float: right;
+}
 th.Long{
   min-width: 220px;
 }
