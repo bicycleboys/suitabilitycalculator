@@ -1,5 +1,5 @@
 export function calculate(o: SegmentDataObject): CalculatorResponse {
-    let properties: NotCalculated | null = requireProperties(o, 'adt', 'ppk', 'curb', 'wos', 'wol', 'devided', 'wbl', 'wos', 'runningSpeed', 'laneCount', 'phv', 'pc')
+    let properties: NotCalculated | null = requireProperties(o, 'adt', 'ppk', 'curb', 'wos', 'wol', 'median', 'wbl', 'wos', 'runningSpeed', 'laneCount', 'phv', 'pc')
     if (properties != null) return properties;
     let wv;
     let we;
