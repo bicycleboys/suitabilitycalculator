@@ -1,3 +1,7 @@
+/**
+ * @jest-environment node
+ */
+
 import {FBDao} from "./fbdao"
 import firebase from 'firebase/app';
 import 'firebase/firestore';
