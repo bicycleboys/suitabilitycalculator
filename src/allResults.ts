@@ -10,17 +10,12 @@ document.addEventListener("DOMContentLoaded", _ => {
   getListAndPopulate(dao, table);
 })
 
-function getListAndPopulate(dao: Dao, table: HTMLTableElement) {
-  var list = dao.getList()
-  return list.then(function (l) {
-    console.log(Object.values(list));
-    let data = Object.values(l[0]);
-    console.log(Object.entries(l));
-    console.log(typeof l);
-    console.log("l:", l)
-    generateTableHead(table, data);
-    generateTable(table, l);
-  });
+async function getListAndPopulate(dao: Dao, table: HTMLTableElement) {
+  const l = await dao.getList();
+  console.log(Object.entries(l));
+  console.log("l:", l);
+  generateTableHead(table, l);
+  generateTable(table, l);
 }
 
 function makeandappendheader(name: string, row: HTMLTableRowElement) {
@@ -30,7 +25,7 @@ function makeandappendheader(name: string, row: HTMLTableRowElement) {
   return th;
 }
 
-function generateTableHead(table: HTMLTableElement, data: any[]) {
+function generateTableHead(table: HTMLTableElement, dataList: any[]) {
   //This is mad ugly, but we need it working for the demo
   let thead = table.createTHead();
   let row = thead.insertRow();
@@ -146,46 +141,46 @@ row.appendChild(th);
 
 function generateTable(table: HTMLTableElement, data: DaoOutput[]) {
   console.log("data:", data);
-  data.sort((d1,d2)=>d1.Timestamp.seconds-d2.Timestamp.seconds);
+  data.sort((d1, d2) => d1.Timestamp.seconds - d2.Timestamp.seconds);
   //Same here. mad ugly, but it's demo time and the for loops aren't working
   //maybe iterate over every Firebase object, add each key to a list, and then
   //use that list?
   for (let element of data) {
     let row = table.insertRow();
+
     // First, scores
     for (const score of element.Scores) {
       addScoreToRow(score, row);
     }
 
     // Second, all data
-    printObject(element.SegmentDataObject, document, row);
+    addSegmentDataToRow(element.SegmentDataObject, document, row);
 
-    // Third, timestamp to date
-    addTimestampToTable(element.Timestamp, row);
+    // Third, timestamp (as date)
+    addTimestampToRow(element.Timestamp, row);
   }
 }
-//TODO replace uses of those three lines in the if statement with a function
 
 //TODO this "any" is gross
-function addScoreToRow(score: any, row: HTMLTableRowElement){
+function addScoreToRow(score: any, row: HTMLTableRowElement) {
   var pointsHeaderOrder = ["name", "because", "grade", "points"];
 
-  for(var property of pointsHeaderOrder){
-    if(property in score){
-      createandappendcell(score[property],row);
-    }else{
+  for (var property of pointsHeaderOrder) {
+    if (property in score) {
+      createandappendcell(score[property], row);
+    } else {
       createandappendemptycell(row);
     }
   }
 }
 
-function addTimestampToTable(timestamp:any, row:HTMLTableRowElement){
+function addTimestampToRow(timestamp: any, row: HTMLTableRowElement) {
   let cell = row.insertCell();
   var timeText = document.createTextNode(timestamp.toDate());
   cell.appendChild(timeText);
 }
 
-function createandappendcell(text: string, row:HTMLTableRowElement) {
+function createandappendcell(text: string, row: HTMLTableRowElement) {
   let cell = row.insertCell();
   cell.innerText = text;
 }
@@ -194,18 +189,7 @@ function createandappendemptycell(row: HTMLTableRowElement) {
   cell.innerText = "";
 }
 
-function printObject(obj:any, document: HTMLDocument, row:HTMLTableRowElement) {
-  //console.log(obj);
-  //this for loop doesn't handle when an object has a property that another doesn't
-  //it results in an uneven table
-  /*for (let property in obj) {
-  //if(!(Number.isNaN(obj[property]) || obj[property] === "NaN" || obj[property] === " " || obj[property] == "")){
-  let cell = row.insertCell();
-  let ntext = document.createTextNode(obj[property]);
-  cell.appendChild(ntext);
-  //}
-}*/
-
+function addSegmentDataToRow(obj: any, document: HTMLDocument, row: HTMLTableRowElement) {
   for (var property of arrayOfNames) {
     if (property in obj) {
       createandappendcell(obj[property], row);
@@ -214,23 +198,7 @@ function printObject(obj:any, document: HTMLDocument, row:HTMLTableRowElement) {
       createandappendemptycell(row);
     }
   }
-
-  // console.log(output);
-  return;
 }
-//The old, working but ugly print object
-//function printObject(obj){
-//  var output = '';
-//  for (var property in obj) {
-//    if(!(Number.isNaN(obj[property]) || obj[property] === "NaN" || obj[property] === " " || obj[property] == "")){
-//      output += property + ': ' + obj[property]+'; \n';
-//    }
-//  }
-//  console.log(output);
-//  return output;
-//}
-
-
 
 function isIterable(obj: any) {
   // checks for null and undefined
