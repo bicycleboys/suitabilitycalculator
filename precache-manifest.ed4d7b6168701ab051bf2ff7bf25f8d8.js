@@ -12,11 +12,11 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "PLOS.html"
   },
   {
-    "revision": "beeb78dbc0b8009b6b4e074ce1a60a98",
+    "revision": "9d3f66a3f590eb55b872330d1d7915d2",
     "url": "allResults.html"
   },
   {
-    "revision": "92fe17e3b7cceb1ae705",
+    "revision": "fba814c00f22984af461",
     "url": "allResults.js"
   },
   {
@@ -24,7 +24,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "favicon.ico"
   },
   {
-    "revision": "1b53c2f0869da0d1e04eae3e3ab6c75a",
+    "revision": "e6e34b884cfb8a0e8699744bd3446014",
     "url": "form.html"
   },
   {
@@ -32,7 +32,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "index.html"
   },
   {
-    "revision": "2e455fabd99362c6ffc6",
+    "revision": "e3d44db5ad4078df0a16",
     "url": "main.js"
   }
 ]);
