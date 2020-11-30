@@ -8,7 +8,7 @@ const outPath = path.resolve(__dirname, 'build');
 module.exports = {
   entry: {
     main: './src/main.ts',
-    allResults: './src/allResults.js'
+    allResults: './src/allResults.ts'
   },
   module: {
 

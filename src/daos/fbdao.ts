@@ -142,7 +142,7 @@ export class FBDao implements Dao {
   }
 
   closeConnection() {
-    FBDao.db.terminate();
+    return FBDao.db.terminate();
   }
 
   remove(key: any): void {
