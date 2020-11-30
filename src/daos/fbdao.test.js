@@ -1,15 +1,14 @@
-import {FBDao} from "./fbdao"
+import { FBDao } from "./fbdao"
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/auth';
 
-test("constructor",()=>{
+test("constructor", () => {
   let myfbdao = new FBDao(true);
   expect(myfbdao);
-
 });
 
-test('construct and immediately add',()=>{
+test('construct and immediately add', () => {
   let toAdd = {
     segmentName: "test"
   };
@@ -17,11 +16,10 @@ test('construct and immediately add',()=>{
   let myfbdao = new FBDao(true);
   //console.log(myfbdao);
   //console.log(myfbdao.db);
-  myfbdao.add(toAdd, scoresArray);
-
+  return myfbdao.add(toAdd, scoresArray);
 })
 
-test('get added object', ()=>{
+test('get added object', () => {
   let toAdd = {
     segmentName: "test2",
     otherData: 10
@@ -32,44 +30,41 @@ test('get added object', ()=>{
   let element = myfbdao.getElementBySegmentName("test2");
   expect(element).toBeDefined();
   console.log(element);
-  return element.then((array)=>{
-    expect(array[0].SegmentDataObject).toEqual({segmentName:"test2", otherData:10})
+  return element.then((array) => {
+    expect(array[0].SegmentDataObject).toEqual({ segmentName: "test2", otherData: 10 })
     expect(array[0].Scores).toEqual(["F", 98.6])
-
   })
 });
 
-test('getDocID', ()=>{
+test('getDocID', () => {
   let myfbdao = new FBDao(true);
   myfbdao.getDB().collection("SegmentsTest").doc("ID").set({
     segmentName: "test3",
     otherData: 9000
   });
-  let element= myfbdao.getElementById("ID");
+  let element = myfbdao.getElementById("ID");
   expect(element).toBeDefined();
 
-  return element.then((element)=>{
+  return element.then((element) => {
     console.log(element);
     expect(element.segmentName).toEqual("test3");
     expect(element.otherData).toEqual(9000);
-
   })
-
 })
 
-test('delete', ()=>{
+test('delete', () => {
   let myfbdao = new FBDao(true);
   myfbdao.getDB().collection(myfbdao.collectionName).doc("ToBeDeleted").set({
     segmentName: "test4",
     otherData: 404
   });
-  let element= myfbdao.getElementById("ToBeDeleted");
-  return element.then((element)=>{
+  let element = myfbdao.getElementById("ToBeDeleted");
+  return element.then((element) => {
     expect(element).toBeDefined();
-  }).then((element)=>{
+  }).then((element) => {
     myfbdao.deleteElement("ToBeDeleted")
-  }).then((element)=>{
-    element= myfbdao.getElementById("ToBeDeleted");
+  }).then((element) => {
+    element = myfbdao.getElementById("ToBeDeleted");
     expect(element).toEqual(expect.not.objectContaining({
       segmentName: "test4",
       otherData: 404
@@ -85,14 +80,13 @@ test('update', () => {
     otherData: 5
   });
   let element = myfbdao.getElementById("ToBeUpdated");
-  return element.then((element=>{
+  return element.then((element => {
     return expect(element).toBeDefined();
-  })).then((element)=>{
+  })).then((element) => {
     return myfbdao.updateElement("ToBeUpdated", "otherData", 55);
-  }).then((element)=>{
+  }).then((element) => {
     return element = myfbdao.getElementById("ToBeUpdated");
-  }).then((element)=>{
-    
+  }).then((element) => {
     return expect(element).toEqual({
       segmentName: "test5",
       otherData: 55
@@ -100,7 +94,8 @@ test('update', () => {
   })
 })
 
-afterAll(()=>{
+afterAll(async done => {
   let myfbdao = new FBDao(true);
-  myfbdao.closeConnection();
+  myfbdao.closeConnection()
+    .then(()=>done());
 })
